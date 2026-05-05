@@ -1,0 +1,39 @@
+{
+  "operationId": "listEvents",
+  "request": {
+    "method": "GET",
+    "url": "https://api.shift4.com/events?limit=2",
+    "headers": {
+      "Authorization": "Basic <base64(secret_key:)>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "list": [
+        {
+          "id": "evt_abc123",
+          "created": 1746489600,
+          "type": "charge.succeeded",
+          "data": {
+            "id": "char_8a4cb45e8a2c4adcb6d23f72b3b3a5d2",
+            "amount": 1000,
+            "currency": "USD",
+            "status": "SUCCESSFUL"
+          }
+        },
+        {
+          "id": "evt_def456",
+          "created": 1746489700,
+          "type": "customer.created",
+          "data": {
+            "id": "cust_7e8c2a47e9c14a93b5b6d99e6c2b5d4f",
+            "email": "jane@example.com"
+          }
+        }
+      ],
+      "hasMore": true,
+      "totalCount": 2
+    }
+  }
+}

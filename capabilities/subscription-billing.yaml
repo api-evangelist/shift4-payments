@@ -1,0 +1,72 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shift4 Subscription Billing"
+  description: >-
+    Recurring billing operations on Shift4. Combines plans, subscriptions, and
+    customer/card management to support SaaS and membership-style billing.
+  tags:
+    - Shift4
+    - Subscriptions
+    - Plans
+    - Billing
+    - Customers
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      SHIFT4_API_KEY: SHIFT4_API_KEY
+
+capability:
+  consumes:
+    - import: shift4-customers
+      location: ./shared/customers.yaml
+    - import: shift4-subscriptions
+      location: ./shared/subscriptions.yaml
+
+  exposes:
+    - type: mcp
+      port: 9081
+      namespace: shift4-subscription-billing-mcp
+      transport: http
+      description: "MCP surface for managing Shift4 subscription billing."
+      tools:
+        - name: create-customer
+          description: "Create a Shift4 customer."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-customers.create-customer"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-plan
+          description: "Create a Shift4 plan."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-subscriptions.create-plan"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-subscription
+          description: "Create a Shift4 subscription for a customer on a plan."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-subscriptions.create-subscription"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-subscription
+          description: "Update or cancel a Shift4 subscription."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-subscriptions.update-subscription"
+          with:
+            subscription: "tools.subscription"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-plans
+          description: "List Shift4 plans."
+          hints: { readOnly: true }
+          call: "shift4-subscriptions.list-plans"
+          outputParameters:
+            - type: object
+              mapping: "$."

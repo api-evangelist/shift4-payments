@@ -1,0 +1,248 @@
+name: Shift4 Payments
+description: >-
+  Vocabulary of key terms, objects, statuses, and operations used across Shift4's
+  developer-facing payments API, JavaScript library, and hosted Checkout. Sourced
+  from dev.shift4.com/docs/api and the official Shift4 SDKs.
+version: "1.0"
+created: "2026-05-05"
+modified: "2026-05-05"
+tags:
+  - Payments
+  - Fintech
+  - Commerce
+  - Checkout
+
+terms:
+  - term: Charge
+    definition: >-
+      A single payment authorization or capture against a card or other payment method.
+      Has lifecycle status SUCCESSFUL, FAILED, or PENDING.
+    category: Core Object
+    tags: [Charges, Payments]
+
+  - term: Refund
+    definition: >-
+      A reversal of a Shift4 charge. Refunds may be full or partial and may carry a
+      reason of FRAUDULENT, DUPLICATE, or REQUESTED_BY_CUSTOMER.
+    category: Core Object
+    tags: [Refunds, Payments]
+
+  - term: Customer
+    definition: >-
+      A saved purchaser, optionally holding one or more cards and billing details.
+      Required for saved-card flows and subscriptions.
+    category: Core Object
+    tags: [Customers]
+
+  - term: Card
+    definition: >-
+      A card stored against a Shift4 customer, identified by the last4 digits and a
+      brand (Visa, MasterCard, AmericanExpress, etc.). Cards are attached via the
+      tokenization flow rather than by raw PAN.
+    category: Core Object
+    tags: [Cards, Tokenization]
+
+  - term: Token
+    definition: >-
+      A short-lived reference to card data created via the public key. Tokens are
+      consumed once when creating a charge or attaching a card.
+    category: Core Object
+    tags: [Tokenization, Security]
+
+  - term: Plan
+    definition: >-
+      A recurring billing definition (amount, currency, interval, billingCycles)
+      consumed by subscriptions.
+    category: Core Object
+    tags: [Plans, Subscriptions, Billing]
+
+  - term: Subscription
+    definition: >-
+      A recurring billing agreement on a single customer for a single plan, with
+      lifecycle statuses ACTIVE, PAST_DUE, CANCELED, UNPAID.
+    category: Core Object
+    tags: [Subscriptions, Billing]
+
+  - term: Payment Method
+    definition: >-
+      A non-card payment instrument such as Apple Pay, Google Pay, 3D Secure, iDEAL,
+      Bancontact, BLIK, or other regional methods. Lifecycle includes
+      REQUIRES_ACTION, CHARGEABLE, USED, DELETED, FAILED.
+    category: Core Object
+    tags: [Payment Methods, Wallets]
+
+  - term: Checkout Session
+    definition: >-
+      A hosted Shift4 checkout flow created for a single payment, setup, or
+      subscription. Returns a URL the customer is redirected to.
+    category: Core Object
+    tags: [Checkout, Hosted Payments]
+
+  - term: Payment Link
+    definition: >-
+      A persistent, sharable URL for collecting a payment of a specified amount and
+      currency.
+    category: Core Object
+    tags: [Payment Links, Checkout]
+
+  - term: Credit
+    definition: >-
+      A funds-out transfer from the merchant to a recipient (the inverse of a charge).
+      Supports a 'fast' option for expedited disbursement.
+    category: Core Object
+    tags: [Credits, Payouts]
+
+  - term: Dispute
+    definition: >-
+      A chargeback raised against a charge. Carries a reason and a status spanning
+      WARNING_NEEDS_RESPONSE through WON/LOST/ACCEPTED. Evidence may be submitted via
+      the disputes endpoint and uploaded files.
+    category: Core Object
+    tags: [Disputes, Risk]
+
+  - term: Fraud Warning
+    definition: >-
+      An early warning of potential fraud (e.g., issuer-reported) that may precede a
+      formal dispute.
+    category: Core Object
+    tags: [Fraud, Risk]
+
+  - term: Blacklist Rule
+    definition: >-
+      A merchant-defined fraud rule keyed on FINGERPRINT, IP_ADDRESS, IP_COUNTRY,
+      EMAIL, USER_AGENT, ACCEPT_LANGUAGE, METADATA, CARD_BIN, CARD_COUNTRY, or
+      CARD_ISSUER.
+    category: Core Object
+    tags: [Fraud, Blacklist]
+
+  - term: File Upload
+    definition: >-
+      An uploaded file (typically dispute evidence or identity document) referenced by
+      ID in dispute submissions.
+    category: Core Object
+    tags: [Files, Disputes]
+
+  - term: Payout
+    definition: >-
+      A scheduled or completed transfer of collected funds to the merchant's bank.
+    category: Core Object
+    tags: [Payouts, Settlement]
+
+  - term: Webhook Endpoint
+    definition: >-
+      A registered HTTP endpoint that receives event notifications. Endpoints have a
+      signing secret for verifying delivery authenticity.
+    category: Core Object
+    tags: [Webhooks, Events]
+
+  - term: Event
+    definition: >-
+      An immutable record of an action that occurred (e.g., charge.succeeded,
+      customer.created), driving webhook deliveries.
+    category: Core Object
+    tags: [Events, Webhooks]
+
+  - term: 3D Secure
+    definition: >-
+      A cardholder authentication step (per the EMV 3DS protocol) that may be
+      required to complete a charge in supported regions.
+    category: Concept
+    tags: [Authentication, Security, Fraud]
+
+  - term: Tokenization
+    definition: >-
+      The process of exchanging raw card data for a token via the public key, so the
+      raw PAN never reaches the merchant server.
+    category: Concept
+    tags: [Security, Tokenization]
+
+  - term: Fingerprint
+    definition: >-
+      A stable hash of card data used to identify the same card across tokens, charges,
+      and customers without exposing the PAN.
+    category: Concept
+    tags: [Cards, Security]
+
+  - term: Captured
+    definition: >-
+      The act of finalizing an authorized charge. If a charge is created with
+      captured=false, a separate /charges/{id}/capture call is required.
+    category: Concept
+    tags: [Charges, Authorization]
+
+  - term: Idempotency
+    definition: >-
+      Shift4 supports client-supplied identifiers (clientObjectId / Idempotency-Key
+      header) so retried POSTs do not double-charge.
+    category: Concept
+    tags: [Reliability, API Design]
+
+  - term: Sandbox
+    definition: >-
+      A merchant-isolated test environment with separate keys. Test-mode charges can
+      be resolved manually for state-machine simulation.
+    category: Concept
+    tags: [Testing, Sandbox]
+
+statuses:
+  charge:
+    - SUCCESSFUL
+    - FAILED
+    - PENDING
+  refund:
+    - SUCCESSFUL
+    - FAILED
+    - PENDING
+  subscription:
+    - ACTIVE
+    - PAST_DUE
+    - CANCELED
+    - UNPAID
+  payment_method:
+    - REQUIRES_ACTION
+    - CHARGEABLE
+    - USED
+    - DELETED
+    - FAILED
+  checkout_session:
+    - OPEN
+    - COMPLETED
+    - EXPIRED
+  dispute:
+    - WARNING_NEEDS_RESPONSE
+    - WARNING_UNDER_REVIEW
+    - WARNING_CLOSED
+    - NEEDS_RESPONSE
+    - UNDER_REVIEW
+    - CHARGE_REFUNDED
+    - WON
+    - LOST
+    - ACCEPTED
+
+events:
+  - charge.succeeded
+  - charge.failed
+  - charge.updated
+  - charge.captured
+  - charge.refunded
+  - customer.created
+  - customer.updated
+  - customer.deleted
+  - card.created
+  - card.updated
+  - card.deleted
+  - subscription.created
+  - subscription.updated
+  - subscription.canceled
+  - plan.created
+  - plan.updated
+  - plan.deleted
+  - dispute.created
+  - dispute.updated
+  - fraud_warning.created
+  - payment_method.created
+  - payment_method.updated
+  - checkout_session.completed
+  - payout.created
+  - payout.paid
+  - payout.failed

@@ -1,0 +1,136 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "shift4": "https://shift4.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Customer": {
+      "@id": "shift4:Customer",
+      "@context": {
+        "id": { "@id": "shift4:customerId", "@type": "xsd:string" },
+        "email": { "@id": "schema:email", "@type": "xsd:string" },
+        "phoneNumber": { "@id": "schema:telephone", "@type": "xsd:string" },
+        "description": { "@id": "schema:description", "@type": "xsd:string" },
+        "defaultCardId": { "@id": "shift4:defaultCardId", "@type": "xsd:string" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" },
+        "deleted": { "@id": "shift4:deleted", "@type": "xsd:boolean" },
+        "metadata": { "@id": "shift4:metadata", "@type": "@json" }
+      }
+    },
+    "Card": {
+      "@id": "shift4:Card",
+      "@context": {
+        "id": { "@id": "shift4:cardId", "@type": "xsd:string" },
+        "first6": { "@id": "shift4:first6", "@type": "xsd:string" },
+        "last4": { "@id": "shift4:last4", "@type": "xsd:string" },
+        "brand": { "@id": "shift4:cardBrand", "@type": "xsd:string" },
+        "type": { "@id": "shift4:cardType", "@type": "xsd:string" },
+        "expMonth": { "@id": "shift4:expMonth", "@type": "xsd:string" },
+        "expYear": { "@id": "shift4:expYear", "@type": "xsd:string" },
+        "cardholderName": { "@id": "schema:name", "@type": "xsd:string" },
+        "customerId": { "@id": "shift4:customer", "@type": "xsd:string" },
+        "country": { "@id": "schema:addressCountry", "@type": "xsd:string" },
+        "issuer": { "@id": "shift4:issuer", "@type": "xsd:string" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" }
+      }
+    },
+    "Token": {
+      "@id": "shift4:Token",
+      "@context": {
+        "id": { "@id": "shift4:tokenId", "@type": "xsd:string" },
+        "first6": { "@id": "shift4:first6", "@type": "xsd:string" },
+        "last4": { "@id": "shift4:last4", "@type": "xsd:string" },
+        "brand": { "@id": "shift4:cardBrand", "@type": "xsd:string" },
+        "used": { "@id": "shift4:used", "@type": "xsd:boolean" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" }
+      }
+    },
+    "Charge": {
+      "@id": "shift4:Charge",
+      "@context": {
+        "id": { "@id": "shift4:chargeId", "@type": "xsd:string" },
+        "amount": { "@id": "schema:price", "@type": "xsd:integer" },
+        "amountRefunded": { "@id": "shift4:amountRefunded", "@type": "xsd:integer" },
+        "currency": { "@id": "schema:priceCurrency", "@type": "xsd:string" },
+        "description": { "@id": "schema:description", "@type": "xsd:string" },
+        "status": { "@id": "shift4:status", "@type": "xsd:string" },
+        "type": { "@id": "shift4:chargeType", "@type": "xsd:string" },
+        "captured": { "@id": "shift4:captured", "@type": "xsd:boolean" },
+        "refunded": { "@id": "shift4:refunded", "@type": "xsd:boolean" },
+        "disputed": { "@id": "shift4:disputed", "@type": "xsd:boolean" },
+        "customerId": { "@id": "shift4:customer", "@type": "xsd:string" },
+        "subscriptionId": { "@id": "shift4:subscription", "@type": "xsd:string" },
+        "merchantAccountId": { "@id": "shift4:merchantAccount", "@type": "xsd:string" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" },
+        "metadata": { "@id": "shift4:metadata", "@type": "@json" }
+      }
+    },
+    "Refund": {
+      "@id": "shift4:Refund",
+      "@context": {
+        "id": { "@id": "shift4:refundId", "@type": "xsd:string" },
+        "amount": { "@id": "schema:price", "@type": "xsd:integer" },
+        "currency": { "@id": "schema:priceCurrency", "@type": "xsd:string" },
+        "charge": { "@id": "shift4:charge", "@type": "xsd:string" },
+        "reason": { "@id": "shift4:refundReason", "@type": "xsd:string" },
+        "status": { "@id": "shift4:status", "@type": "xsd:string" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" },
+        "metadata": { "@id": "shift4:metadata", "@type": "@json" }
+      }
+    },
+    "Plan": {
+      "@id": "shift4:Plan",
+      "@context": {
+        "id": { "@id": "shift4:planId", "@type": "xsd:string" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" },
+        "amount": { "@id": "schema:price", "@type": "xsd:integer" },
+        "currency": { "@id": "schema:priceCurrency", "@type": "xsd:string" },
+        "interval": { "@id": "shift4:interval", "@type": "xsd:string" },
+        "intervalCount": { "@id": "shift4:intervalCount", "@type": "xsd:integer" },
+        "billingCycles": { "@id": "shift4:billingCycles", "@type": "xsd:integer" },
+        "trialPeriodDays": { "@id": "shift4:trialPeriodDays", "@type": "xsd:integer" },
+        "statementDescription": { "@id": "shift4:statementDescription", "@type": "xsd:string" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" }
+      }
+    },
+    "Subscription": {
+      "@id": "shift4:Subscription",
+      "@context": {
+        "id": { "@id": "shift4:subscriptionId", "@type": "xsd:string" },
+        "planId": { "@id": "shift4:plan", "@type": "xsd:string" },
+        "customerId": { "@id": "shift4:customer", "@type": "xsd:string" },
+        "status": { "@id": "shift4:status", "@type": "xsd:string" },
+        "quantity": { "@id": "schema:quantity", "@type": "xsd:integer" },
+        "captureCharges": { "@id": "shift4:captureCharges", "@type": "xsd:boolean" },
+        "currentPeriodStart": { "@id": "shift4:currentPeriodStart", "@type": "xsd:integer" },
+        "currentPeriodEnd": { "@id": "shift4:currentPeriodEnd", "@type": "xsd:integer" },
+        "cancelAtPeriodEnd": { "@id": "shift4:cancelAtPeriodEnd", "@type": "xsd:boolean" },
+        "trialStart": { "@id": "shift4:trialStart", "@type": "xsd:integer" },
+        "trialEnd": { "@id": "shift4:trialEnd", "@type": "xsd:integer" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" }
+      }
+    },
+    "CheckoutSession": {
+      "@id": "shift4:CheckoutSession",
+      "@context": {
+        "id": { "@id": "shift4:sessionId", "@type": "xsd:string" },
+        "url": { "@id": "schema:url", "@type": "@id" },
+        "redirectUrl": { "@id": "shift4:redirectUrl", "@type": "@id" },
+        "status": { "@id": "shift4:status", "@type": "xsd:string" },
+        "action": { "@id": "shift4:action", "@type": "xsd:string" },
+        "currency": { "@id": "schema:priceCurrency", "@type": "xsd:string" },
+        "customer": { "@id": "shift4:customer", "@type": "xsd:string" },
+        "metadata": { "@id": "shift4:metadata", "@type": "@json" }
+      }
+    },
+    "Event": {
+      "@id": "shift4:Event",
+      "@context": {
+        "id": { "@id": "shift4:eventId", "@type": "xsd:string" },
+        "type": { "@id": "shift4:eventType", "@type": "xsd:string" },
+        "data": { "@id": "shift4:eventData", "@type": "@json" },
+        "created": { "@id": "schema:dateCreated", "@type": "xsd:integer" }
+      }
+    }
+  }
+}

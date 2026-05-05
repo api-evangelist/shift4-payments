@@ -1,0 +1,122 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shift4 Checkout Sessions and Payment Links API"
+  description: >-
+    Create hosted checkout sessions and payment links for drop-in payment acceptance.
+  tags:
+    - Shift4
+    - Checkout
+    - Hosted Payments
+    - Payment Links
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      SHIFT4_API_KEY: SHIFT4_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: shift4-checkout
+      baseUri: https://api.shift4.com
+      authentication:
+        type: basic
+        username: "{{SHIFT4_API_KEY}}"
+        password: ""
+      resources:
+        - name: checkout-sessions
+          path: /checkout/sessions
+          operations:
+            - name: create-checkout-session
+              method: POST
+              description: "Create a checkout session."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: checkout-session
+          path: /checkout/sessions/{session}
+          operations:
+            - name: get-checkout-session
+              method: GET
+              description: "Retrieve a checkout session by ID."
+              inputParameters:
+                - name: session
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: payment-links
+          path: /payment-links
+          operations:
+            - name: create-payment-link
+              method: POST
+              description: "Create a payment link."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: payment-link
+          path: /payment-links/{link}
+          operations:
+            - name: get-payment-link
+              method: GET
+              description: "Retrieve a payment link by ID."
+              inputParameters:
+                - name: link
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: mcp
+      port: 9105
+      namespace: shift4-checkout-mcp
+      transport: http
+      tools:
+        - name: create-checkout-session
+          description: "Create a Shift4 hosted checkout session."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-checkout.create-checkout-session"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-checkout-session
+          description: "Retrieve a Shift4 checkout session by ID."
+          hints: { readOnly: true }
+          call: "shift4-checkout.get-checkout-session"
+          with:
+            session: "tools.session"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-payment-link
+          description: "Create a Shift4 payment link."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-checkout.create-payment-link"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-payment-link
+          description: "Retrieve a Shift4 payment link by ID."
+          hints: { readOnly: true }
+          call: "shift4-checkout.get-payment-link"
+          with:
+            link: "tools.link"
+          outputParameters:
+            - type: object
+              mapping: "$."

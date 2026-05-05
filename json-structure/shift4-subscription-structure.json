@@ -1,0 +1,28 @@
+{
+  "name": "Subscription",
+  "description": "The Shift4 Subscription object: a recurring billing instance for a single customer on a single plan.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier (prefix: sub_)." },
+    "created": { "type": "integer", "description": "Unix timestamp (seconds)." },
+    "planId": { "type": "string", "description": "ID of the plan driving the subscription." },
+    "customerId": { "type": "string", "description": "ID of the subscribed customer." },
+    "quantity": { "type": "integer", "description": "Quantity multiplier on the plan amount." },
+    "captureCharges": { "type": "boolean", "description": "Whether recurring charges are captured automatically." },
+    "status": {
+      "type": "string",
+      "description": "Lifecycle status.",
+      "enum": ["ACTIVE", "PAST_DUE", "CANCELED", "UNPAID"]
+    },
+    "remainingBillingCycles": { "type": "integer", "description": "Cycles remaining before subscription ends." },
+    "start": { "type": "integer", "description": "Unix timestamp the subscription started." },
+    "currentPeriodStart": { "type": "integer", "description": "Start of current billing period." },
+    "currentPeriodEnd": { "type": "integer", "description": "End of current billing period." },
+    "canceledAt": { "type": "integer", "description": "When the subscription was canceled (if applicable)." },
+    "endedAt": { "type": "integer", "description": "When the subscription ended (if applicable)." },
+    "trialStart": { "type": "integer", "description": "Trial period start, if any." },
+    "trialEnd": { "type": "integer", "description": "Trial period end, if any." },
+    "cancelAtPeriodEnd": { "type": "boolean", "description": "Whether cancellation is scheduled at period end." },
+    "metadata": { "type": "object", "description": "Custom string key-value metadata." }
+  }
+}

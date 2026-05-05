@@ -1,0 +1,15 @@
+{
+  "name": "Customer",
+  "description": "The Shift4 Customer object: a saved purchaser with optional saved cards, billing details, and metadata.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Unique identifier (prefix: cust_).", "example": "cust_7e8c2a47e9c14a93b5b6d99e6c2b5d4f" },
+    "created": { "type": "integer", "description": "Unix timestamp (seconds)." },
+    "deleted": { "type": "boolean", "description": "True if the customer has been deleted." },
+    "email": { "type": "string", "description": "Customer email.", "example": "jane@example.com" },
+    "phoneNumber": { "type": "string", "description": "Customer phone number." },
+    "description": { "type": "string", "description": "Free-form description." },
+    "defaultCardId": { "type": "string", "description": "ID of the default card on the customer." },
+    "metadata": { "type": "object", "description": "Custom string key-value metadata." }
+  }
+}

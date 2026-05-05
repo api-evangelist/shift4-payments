@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-refund-schema.json",
+  "title": "Shift4 Refund",
+  "description": "A Shift4 refund record. Source: shift4-java SDK Refund response model.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "created": { "type": "integer" },
+    "amount": { "type": "integer" },
+    "currency": { "type": "string" },
+    "charge": { "type": "string" },
+    "reason": { "type": "string", "enum": ["FRAUDULENT", "DUPLICATE", "REQUESTED_BY_CUSTOMER"] },
+    "status": { "type": "string", "enum": ["SUCCESSFUL", "FAILED", "PENDING"] },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } }
+  },
+  "required": ["id", "amount", "currency", "charge", "status"]
+}

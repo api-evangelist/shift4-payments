@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-plan-schema.json",
+  "title": "Shift4 Plan",
+  "description": "A Shift4 recurring billing plan. Source: shift4-java SDK Plan response model.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "created": { "type": "integer" },
+    "deleted": { "type": "boolean" },
+    "amount": { "type": "integer" },
+    "currency": { "type": "string" },
+    "interval": { "type": "string", "enum": ["DAY", "WEEK", "MONTH", "YEAR"] },
+    "intervalCount": { "type": "integer" },
+    "billingCycles": { "type": "integer" },
+    "name": { "type": "string" },
+    "trialPeriodDays": { "type": "integer" },
+    "recursTo": { "type": "string" },
+    "statementDescription": { "type": "string" },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } }
+  },
+  "required": ["id", "amount", "currency", "interval", "name"]
+}

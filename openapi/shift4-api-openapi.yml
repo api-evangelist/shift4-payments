@@ -1,0 +1,1749 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments API
+  description: >-
+    The Shift4 Payments API enables merchants and platforms to accept and manage
+    payments, including one-time charges, refunds, customers, cards, tokenization,
+    subscriptions, plans, payment methods, payment links, checkout sessions, fraud
+    warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints,
+    and events. Endpoints, parameters, and resource shapes are extracted from the
+    public Shift4 documentation at https://dev.shift4.com/docs/api and the official
+    open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android,
+    WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+  - url: https://api.shift4.com
+    description: Production
+tags:
+  - name: Charges
+    description: Create, retrieve, update, capture, and list charges.
+  - name: Refunds
+    description: Refund charges and manage refund records.
+  - name: Customers
+    description: Create, retrieve, update, delete, and list customers.
+  - name: Cards
+    description: Manage saved cards on customer records.
+  - name: Tokens
+    description: Tokenize card data for safe transmission.
+  - name: Subscriptions
+    description: Create and manage recurring subscriptions for customers.
+  - name: Plans
+    description: Define recurring billing plans used by subscriptions.
+  - name: Payment Methods
+    description: Create and retrieve alternative payment methods (Apple Pay, Google Pay, 3D Secure, etc.).
+  - name: Payment Links
+    description: Create and retrieve hosted payment links.
+  - name: Checkout Sessions
+    description: Create hosted checkout sessions for drop-in payment acceptance.
+  - name: Credits
+    description: Send funds (credits) to recipients.
+  - name: Disputes
+    description: Retrieve and respond to chargeback disputes.
+  - name: Fraud Warnings
+    description: Retrieve early-warning fraud notifications.
+  - name: Blacklist
+    description: Manage blacklist rules for fraud prevention.
+  - name: File Uploads
+    description: Upload files such as dispute evidence.
+  - name: Payouts
+    description: Retrieve scheduled and historical payouts to bank accounts.
+  - name: Webhook Endpoints
+    description: Register and manage webhook endpoints.
+  - name: Events
+    description: Retrieve event records that drive webhooks.
+security:
+  - BasicAuth: []
+paths:
+  /charges:
+    post:
+      tags: [Charges]
+      summary: Create a Charge
+      operationId: createCharge
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargeRequest'
+      responses:
+        '200':
+          description: Charge created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Charge'
+        default:
+          $ref: '#/components/responses/ErrorResponse'
+    get:
+      tags: [Charges]
+      summary: List Charges
+      operationId: listCharges
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/StartingAfter'
+        - $ref: '#/components/parameters/EndingBefore'
+      responses:
+        '200':
+          description: A list of charges.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChargeList'
+  /charges/{chargeId}:
+    parameters:
+      - name: chargeId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Charges]
+      summary: Retrieve a Charge
+      operationId: getCharge
+      responses:
+        '200':
+          description: A charge object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Charge'
+    post:
+      tags: [Charges]
+      summary: Update a Charge
+      operationId: updateCharge
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChargeUpdateRequest'
+      responses:
+        '200':
+          description: Updated charge.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Charge'
+  /charges/{chargeId}/capture:
+    parameters:
+      - name: chargeId
+        in: path
+        required: true
+        schema: { type: string }
+    post:
+      tags: [Charges]
+      summary: Capture a Charge
+      operationId: captureCharge
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CaptureRequest'
+      responses:
+        '200':
+          description: Captured charge.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Charge'
+  /refunds:
+    post:
+      tags: [Refunds]
+      summary: Refund a Charge
+      operationId: createRefund
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+      responses:
+        '200':
+          description: Refund created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+    get:
+      tags: [Refunds]
+      summary: List Refunds
+      operationId: listRefunds
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of refunds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundList'
+  /refunds/{refundId}:
+    parameters:
+      - name: refundId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Refunds]
+      summary: Retrieve a Refund
+      operationId: getRefund
+      responses:
+        '200':
+          description: A refund object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+    post:
+      tags: [Refunds]
+      summary: Update a Refund
+      operationId: updateRefund
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  additionalProperties: { type: string }
+      responses:
+        '200':
+          description: Updated refund.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+  /customers:
+    post:
+      tags: [Customers]
+      summary: Create a Customer
+      operationId: createCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        '200':
+          description: Customer created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    get:
+      tags: [Customers]
+      summary: List Customers
+      operationId: listCustomers
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of customers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerList'
+  /customers/{customerId}:
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Customers]
+      summary: Retrieve a Customer
+      operationId: getCustomer
+      responses:
+        '200':
+          description: A customer object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    post:
+      tags: [Customers]
+      summary: Update a Customer
+      operationId: updateCustomer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRequest'
+      responses:
+        '200':
+          description: Updated customer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    delete:
+      tags: [Customers]
+      summary: Delete a Customer
+      operationId: deleteCustomer
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+  /customers/{customerId}/cards:
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema: { type: string }
+    post:
+      tags: [Cards]
+      summary: Create a Card
+      operationId: createCard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardRequest'
+      responses:
+        '200':
+          description: Card created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+    get:
+      tags: [Cards]
+      summary: List Cards
+      operationId: listCards
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of cards.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardList'
+  /customers/{customerId}/cards/{cardId}:
+    parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema: { type: string }
+      - name: cardId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Cards]
+      summary: Retrieve a Card
+      operationId: getCard
+      responses:
+        '200':
+          description: A card object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+    post:
+      tags: [Cards]
+      summary: Update a Card
+      operationId: updateCard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardUpdateRequest'
+      responses:
+        '200':
+          description: Updated card.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+    delete:
+      tags: [Cards]
+      summary: Delete a Card
+      operationId: deleteCard
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+  /tokens:
+    post:
+      tags: [Tokens]
+      summary: Create a Card Token
+      operationId: createToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Token created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+  /subscriptions:
+    post:
+      tags: [Subscriptions]
+      summary: Create a Subscription
+      operationId: createSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '200':
+          description: Subscription created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+  /subscriptions/{subscriptionId}:
+    parameters:
+      - name: subscriptionId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Subscriptions]
+      summary: Retrieve a Subscription
+      operationId: getSubscription
+      responses:
+        '200':
+          description: A subscription object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+    post:
+      tags: [Subscriptions]
+      summary: Update a Subscription
+      operationId: updateSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '200':
+          description: Updated subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+  /plans:
+    post:
+      tags: [Plans]
+      summary: Create a Plan
+      operationId: createPlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanRequest'
+      responses:
+        '200':
+          description: Plan created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+    get:
+      tags: [Plans]
+      summary: List Plans
+      operationId: listPlans
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of plans.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanList'
+  /plans/{planId}:
+    parameters:
+      - name: planId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Plans]
+      summary: Retrieve a Plan
+      operationId: getPlan
+      responses:
+        '200':
+          description: A plan object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+    post:
+      tags: [Plans]
+      summary: Update a Plan
+      operationId: updatePlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanRequest'
+      responses:
+        '200':
+          description: Updated plan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+  /payment-methods:
+    post:
+      tags: [Payment Methods]
+      summary: Create a Payment Method
+      operationId: createPaymentMethod
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentMethodRequest'
+      responses:
+        '200':
+          description: Payment method created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethod'
+    get:
+      tags: [Payment Methods]
+      summary: List Payment Methods
+      operationId: listPaymentMethods
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of payment methods.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethodList'
+  /payment-methods/{paymentMethodId}:
+    parameters:
+      - name: paymentMethodId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Payment Methods]
+      summary: Retrieve a Payment Method
+      operationId: getPaymentMethod
+      responses:
+        '200':
+          description: A payment method object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethod'
+  /payment-links:
+    post:
+      tags: [Payment Links]
+      summary: Create a Payment Link
+      operationId: createPaymentLink
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount: { type: integer, minimum: 1 }
+                currency: { type: string }
+                description: { type: string }
+                metadata:
+                  type: object
+                  additionalProperties: { type: string }
+      responses:
+        '200':
+          description: Payment link created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  url: { type: string, format: uri }
+                  amount: { type: integer }
+                  currency: { type: string }
+                  created: { type: integer, format: int64 }
+  /payment-links/{linkId}:
+    parameters:
+      - name: linkId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Payment Links]
+      summary: Retrieve a Payment Link
+      operationId: getPaymentLink
+      responses:
+        '200':
+          description: A payment link object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string }
+                  url: { type: string, format: uri }
+                  amount: { type: integer }
+                  currency: { type: string }
+  /checkout/sessions:
+    post:
+      tags: [Checkout Sessions]
+      summary: Create a Checkout Session
+      operationId: createCheckoutSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionRequest'
+      responses:
+        '200':
+          description: Checkout session created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+  /checkout/sessions/{sessionId}:
+    parameters:
+      - name: sessionId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Checkout Sessions]
+      summary: Retrieve a Checkout Session
+      operationId: getCheckoutSession
+      responses:
+        '200':
+          description: A checkout session object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+  /credits:
+    post:
+      tags: [Credits]
+      summary: Create a Credit
+      operationId: createCredit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditRequest'
+      responses:
+        '200':
+          description: Credit created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+    get:
+      tags: [Credits]
+      summary: List Credits
+      operationId: listCredits
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of credits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditList'
+  /credits/{creditId}:
+    parameters:
+      - name: creditId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Credits]
+      summary: Retrieve a Credit
+      operationId: getCredit
+      responses:
+        '200':
+          description: A credit object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+  /disputes:
+    get:
+      tags: [Disputes]
+      summary: List Disputes
+      operationId: listDisputes
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of disputes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisputeList'
+  /disputes/{disputeId}:
+    parameters:
+      - name: disputeId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Disputes]
+      summary: Retrieve a Dispute
+      operationId: getDispute
+      responses:
+        '200':
+          description: A dispute object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dispute'
+  /fraud-warnings:
+    get:
+      tags: [Fraud Warnings]
+      summary: List Fraud Warnings
+      operationId: listFraudWarnings
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of fraud warnings.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FraudWarningList'
+  /blacklist:
+    post:
+      tags: [Blacklist]
+      summary: Create a Blacklist Rule
+      operationId: createBlacklistRule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlacklistRuleRequest'
+      responses:
+        '200':
+          description: Blacklist rule created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRule'
+    get:
+      tags: [Blacklist]
+      summary: List Blacklist Rules
+      operationId: listBlacklistRules
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of blacklist rules.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRuleList'
+  /blacklist/{ruleId}:
+    parameters:
+      - name: ruleId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Blacklist]
+      summary: Retrieve a Blacklist Rule
+      operationId: getBlacklistRule
+      responses:
+        '200':
+          description: A blacklist rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRule'
+    post:
+      tags: [Blacklist]
+      summary: Update a Blacklist Rule
+      operationId: updateBlacklistRule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlacklistRuleRequest'
+      responses:
+        '200':
+          description: Updated rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRule'
+    delete:
+      tags: [Blacklist]
+      summary: Delete a Blacklist Rule
+      operationId: deleteBlacklistRule
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+  /files:
+    post:
+      tags: [File Uploads]
+      summary: Upload a File
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                purpose:
+                  type: string
+                  enum: [dispute_evidence, identity_document]
+      responses:
+        '200':
+          description: File uploaded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUpload'
+  /payouts:
+    get:
+      tags: [Payouts]
+      summary: List Payouts
+      operationId: listPayouts
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of payouts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutList'
+  /payouts/{payoutId}:
+    parameters:
+      - name: payoutId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Payouts]
+      summary: Retrieve a Payout
+      operationId: getPayout
+      responses:
+        '200':
+          description: A payout object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+  /webhook-endpoints:
+    post:
+      tags: [Webhook Endpoints]
+      summary: Create a Webhook Endpoint
+      operationId: createWebhookEndpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url]
+              properties:
+                url: { type: string, format: uri }
+                enabledEvents:
+                  type: array
+                  items: { type: string }
+                description: { type: string }
+      responses:
+        '200':
+          description: Webhook endpoint created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+    get:
+      tags: [Webhook Endpoints]
+      summary: List Webhook Endpoints
+      operationId: listWebhookEndpoints
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of webhook endpoints.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  list:
+                    type: array
+                    items: { $ref: '#/components/schemas/WebhookEndpoint' }
+                  hasMore: { type: boolean }
+                  totalCount: { type: integer }
+  /webhook-endpoints/{endpointId}:
+    parameters:
+      - name: endpointId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Webhook Endpoints]
+      summary: Retrieve a Webhook Endpoint
+      operationId: getWebhookEndpoint
+      responses:
+        '200':
+          description: A webhook endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+    post:
+      tags: [Webhook Endpoints]
+      summary: Update a Webhook Endpoint
+      operationId: updateWebhookEndpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url: { type: string, format: uri }
+                enabledEvents:
+                  type: array
+                  items: { type: string }
+      responses:
+        '200':
+          description: Updated webhook endpoint.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookEndpoint'
+  /events:
+    get:
+      tags: [Events]
+      summary: List Events
+      operationId: listEvents
+      parameters:
+        - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventList'
+  /events/{eventId}:
+    parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Events]
+      summary: Retrieve an Event
+      operationId: getEvent
+      responses:
+        '200':
+          description: An event object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema: { type: integer, minimum: 1, maximum: 100, default: 10 }
+      description: A limit on the number of objects to be returned.
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema: { type: string }
+      description: A cursor for use in pagination.
+    EndingBefore:
+      name: endingBefore
+      in: query
+      schema: { type: string }
+      description: A cursor for use in pagination.
+  responses:
+    ErrorResponse:
+      description: An error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Address:
+      type: object
+      properties:
+        line1: { type: string }
+        line2: { type: string }
+        zip: { type: string }
+        city: { type: string }
+        state: { type: string }
+        country: { type: string, description: ISO 3166-1 alpha-2 country code. }
+    Billing:
+      type: object
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber: { type: string }
+    Shipping:
+      type: object
+      properties:
+        name: { type: string }
+        email: { type: string, format: email }
+        phoneNumber: { type: string }
+        address:
+          $ref: '#/components/schemas/Address'
+    Card:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64, description: Unix timestamp. }
+        deleted: { type: boolean }
+        first6: { type: string }
+        last4: { type: string }
+        fingerprint: { type: string }
+        expMonth: { type: string }
+        expYear: { type: string }
+        cardholderName: { type: string }
+        customerId: { type: string }
+        brand:
+          type: string
+          description: Card brand.
+          enum: [Visa, MasterCard, AmericanExpress, Discover, JCB, DinersClub, UnionPay, Other]
+        type:
+          type: string
+          enum: [Credit, Debit, Prepaid, Other]
+        country: { type: string }
+        addressLine1: { type: string }
+        addressLine2: { type: string }
+        addressCity: { type: string }
+        addressState: { type: string }
+        addressZip: { type: string }
+        addressCountry: { type: string }
+        issuer: { type: string }
+        merchantAccountId: { type: string }
+    CardRequest:
+      type: object
+      properties:
+        cardholderName: { type: string }
+        number: { type: string }
+        expMonth: { type: string }
+        expYear: { type: string }
+        cvc: { type: string }
+        addressLine1: { type: string }
+        addressLine2: { type: string }
+        addressCity: { type: string }
+        addressState: { type: string }
+        addressZip: { type: string }
+        addressCountry: { type: string }
+    CardUpdateRequest:
+      type: object
+      properties:
+        cardholderName: { type: string }
+        expMonth: { type: string }
+        expYear: { type: string }
+        addressLine1: { type: string }
+        addressLine2: { type: string }
+        addressCity: { type: string }
+        addressState: { type: string }
+        addressZip: { type: string }
+        addressCountry: { type: string }
+    CardList:
+      $ref: '#/components/schemas/ListResponseCard'
+    Token:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        first6: { type: string }
+        last4: { type: string }
+        fingerprint: { type: string }
+        expMonth: { type: string }
+        expYear: { type: string }
+        brand: { type: string }
+        type: { type: string }
+        cardholderName: { type: string }
+        used: { type: boolean }
+        addressLine1: { type: string }
+        addressLine2: { type: string }
+        addressCity: { type: string }
+        addressState: { type: string }
+        addressZip: { type: string }
+        addressCountry: { type: string }
+    TokenRequest:
+      type: object
+      properties:
+        number: { type: string }
+        expMonth: { type: string }
+        expYear: { type: string }
+        cvc: { type: string }
+        cardholderName: { type: string }
+        addressLine1: { type: string }
+        addressLine2: { type: string }
+        addressCity: { type: string }
+        addressState: { type: string }
+        addressZip: { type: string }
+        addressCountry: { type: string }
+    Charge:
+      type: object
+      properties:
+        id: { type: string }
+        clientObjectId: { type: string }
+        created: { type: integer, format: int64 }
+        amount:
+          type: integer
+          description: Smallest currency unit (e.g., cents).
+        amountRefunded: { type: integer }
+        currency: { type: string, description: ISO 4217 currency code. }
+        description: { type: string }
+        status:
+          type: string
+          enum: [SUCCESSFUL, FAILED, PENDING]
+        type:
+          type: string
+          enum: [FIRST_RECURRING, SUBSEQUENT_RECURRING, CARDHOLDER_INITIATED, MERCHANT_INITIATED]
+        card: { $ref: '#/components/schemas/Card' }
+        paymentMethod: { $ref: '#/components/schemas/PaymentMethod' }
+        customerId: { type: string }
+        subscriptionId: { type: string }
+        captured: { type: boolean }
+        refunded: { type: boolean }
+        refunds:
+          type: array
+          items: { $ref: '#/components/schemas/Refund' }
+        disputed: { type: boolean }
+        shipping: { $ref: '#/components/schemas/Shipping' }
+        billing: { $ref: '#/components/schemas/Billing' }
+        merchantAccountId: { type: string }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+        failureCode: { type: string }
+        failureIssuerDeclineCode: { type: string }
+        failureMessage: { type: string }
+    ChargeRequest:
+      type: object
+      required: [amount, currency]
+      properties:
+        amount: { type: integer, minimum: 1 }
+        currency: { type: string }
+        description: { type: string }
+        captured: { type: boolean, default: true }
+        customerId: { type: string }
+        cardId: { type: string }
+        card:
+          oneOf:
+            - $ref: '#/components/schemas/CardRequest'
+            - type: string
+              description: A token id (tok_...).
+        billing: { $ref: '#/components/schemas/Billing' }
+        shipping: { $ref: '#/components/schemas/Shipping' }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    ChargeUpdateRequest:
+      type: object
+      properties:
+        description: { type: string }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    CaptureRequest:
+      type: object
+      properties:
+        amount: { type: integer, minimum: 1 }
+    ChargeList:
+      $ref: '#/components/schemas/ListResponseCharge'
+    Refund:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        amount: { type: integer }
+        currency: { type: string }
+        charge: { type: string }
+        reason:
+          type: string
+          enum: [FRAUDULENT, DUPLICATE, REQUESTED_BY_CUSTOMER]
+        status:
+          type: string
+          enum: [SUCCESSFUL, FAILED, PENDING]
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    RefundRequest:
+      type: object
+      required: [chargeId]
+      properties:
+        chargeId: { type: string }
+        amount: { type: integer, minimum: 1 }
+        reason:
+          type: string
+          enum: [fraudulent, duplicate, requested_by_customer]
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    RefundList:
+      $ref: '#/components/schemas/ListResponseRefund'
+    Customer:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        deleted: { type: boolean }
+        email: { type: string, format: email }
+        phoneNumber: { type: string }
+        description: { type: string }
+        defaultCardId: { type: string }
+        cards:
+          type: array
+          items: { $ref: '#/components/schemas/Card' }
+        billing: { $ref: '#/components/schemas/Billing' }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    CustomerRequest:
+      type: object
+      properties:
+        email: { type: string, format: email }
+        phoneNumber: { type: string }
+        description: { type: string }
+        billing: { $ref: '#/components/schemas/Billing' }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+        card:
+          oneOf:
+            - $ref: '#/components/schemas/CardRequest'
+            - type: string
+    CustomerList:
+      $ref: '#/components/schemas/ListResponseCustomer'
+    Plan:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        deleted: { type: boolean }
+        amount: { type: integer }
+        currency: { type: string }
+        interval:
+          type: string
+          enum: [DAY, WEEK, MONTH, YEAR]
+        intervalCount: { type: integer }
+        billingCycles: { type: integer }
+        name: { type: string }
+        trialPeriodDays: { type: integer }
+        recursTo: { type: string }
+        statementDescription: { type: string }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    PlanRequest:
+      type: object
+      required: [amount, currency, interval, name]
+      properties:
+        amount: { type: integer, minimum: 1 }
+        currency: { type: string }
+        interval:
+          type: string
+          enum: [day, week, month, year]
+        intervalCount: { type: integer, minimum: 1, default: 1 }
+        billingCycles: { type: integer }
+        name: { type: string }
+        trialPeriodDays: { type: integer }
+        recursTo: { type: string }
+        statementDescription: { type: string }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    PlanList:
+      $ref: '#/components/schemas/ListResponsePlan'
+    Subscription:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        deleted: { type: boolean }
+        planId: { type: string }
+        customerId: { type: string }
+        quantity: { type: integer }
+        captureCharges: { type: boolean }
+        status:
+          type: string
+          enum: [ACTIVE, PAST_DUE, CANCELED, UNPAID]
+        remainingBillingCycles: { type: integer }
+        start: { type: integer, format: int64 }
+        currentPeriodStart: { type: integer, format: int64 }
+        currentPeriodEnd: { type: integer, format: int64 }
+        canceledAt: { type: integer, format: int64 }
+        endedAt: { type: integer, format: int64 }
+        trialStart: { type: integer, format: int64 }
+        trialEnd: { type: integer, format: int64 }
+        cancelAtPeriodEnd: { type: boolean }
+        shipping: { $ref: '#/components/schemas/Shipping' }
+        billing: { $ref: '#/components/schemas/Billing' }
+        merchantAccountId: { type: string }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    SubscriptionRequest:
+      type: object
+      properties:
+        planId: { type: string }
+        customerId: { type: string }
+        cardId: { type: string }
+        quantity: { type: integer, minimum: 1, default: 1 }
+        captureCharges: { type: boolean, default: true }
+        trialEnd: { type: integer, format: int64 }
+        cancelAtPeriodEnd: { type: boolean }
+        shipping: { $ref: '#/components/schemas/Shipping' }
+        billing: { $ref: '#/components/schemas/Billing' }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    PaymentMethod:
+      type: object
+      properties:
+        id: { type: string }
+        customerId: { type: string }
+        clientObjectId: { type: string }
+        created: { type: integer, format: int64 }
+        type:
+          type: string
+          enum: [CARD, APPLE_PAY, GOOGLE_PAY, THREE_D_SECURE, IDEAL, P24, EPS, BANCONTACT, GIROPAY, MULTIBANCO, SOFORT, BLIK, BLIK_REDIRECT, OTHER]
+        status:
+          type: string
+          enum: [REQUIRES_ACTION, CHARGEABLE, USED, DELETED, FAILED]
+        deleted: { type: boolean }
+        billing: { $ref: '#/components/schemas/Billing' }
+        applePay:
+          type: object
+          properties:
+            cardBrand: { type: string }
+            cardType: { type: string }
+            first6: { type: string }
+            last4: { type: string }
+            amount: { type: integer }
+            currency: { type: string }
+            merchantTokenIdentifier: { type: string }
+        googlePay:
+          type: object
+          properties:
+            cardBrand: { type: string }
+            cardType: { type: string }
+            first6: { type: string }
+            last4: { type: string }
+        threeDSecure:
+          type: object
+          properties:
+            currency: { type: string }
+            amount: { type: integer }
+        merchantAccountId: { type: string }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    PaymentMethodRequest:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+          enum: [card, apple_pay, google_pay, three_d_secure, ideal, p24, eps, bancontact, giropay, multibanco, sofort, blik, blik_redirect]
+        customerId: { type: string }
+        billing: { $ref: '#/components/schemas/Billing' }
+        threeDSecure:
+          type: object
+          properties:
+            amount: { type: integer }
+            currency: { type: string }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    PaymentMethodList:
+      $ref: '#/components/schemas/ListResponsePaymentMethod'
+    CheckoutSession:
+      type: object
+      properties:
+        id: { type: string }
+        lastCharge: { type: string }
+        paymentLink: { type: string }
+        invoice: { type: string }
+        customer: { type: string }
+        clientSecret: { type: string }
+        lineItems:
+          type: array
+          items: { $ref: '#/components/schemas/LineItem' }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+        locale: { type: string }
+        collectBillingAddress: { type: boolean }
+        collectShippingAddress: { type: boolean }
+        capture: { type: boolean }
+        captchaRequired: { type: boolean }
+        status:
+          type: string
+          enum: [OPEN, COMPLETED, EXPIRED]
+        allowSavedCards: { type: boolean }
+        action:
+          type: string
+          enum: [PAYMENT, SETUP, SUBSCRIPTION]
+        currency: { type: string }
+        url: { type: string, format: uri }
+        redirectUrl: { type: string, format: uri }
+        vendorReference: { type: string }
+    CheckoutSessionRequest:
+      type: object
+      properties:
+        lineItems:
+          type: array
+          items: { $ref: '#/components/schemas/LineItemRequest' }
+        currency: { type: string }
+        locale: { type: string }
+        collectBillingAddress: { type: boolean }
+        collectShippingAddress: { type: boolean }
+        allowSavedCards: { type: boolean }
+        capture: { type: boolean, default: true }
+        action:
+          type: string
+          enum: [payment, setup, subscription]
+        redirectUrl: { type: string, format: uri }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    LineItem:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        quantity: { type: integer }
+        unitAmount: { type: integer }
+        currency: { type: string }
+    LineItemRequest:
+      type: object
+      properties:
+        name: { type: string }
+        description: { type: string }
+        quantity: { type: integer, minimum: 1 }
+        unitAmount: { type: integer, minimum: 1 }
+        currency: { type: string }
+    Credit:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        amount: { type: integer }
+        currency: { type: string }
+        description: { type: string }
+        card: { $ref: '#/components/schemas/Card' }
+        customerId: { type: string }
+        fast: { type: boolean }
+        merchantAccountId: { type: string }
+        disputed: { type: boolean }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+        failureCode: { type: string }
+        failureIssuerDeclineCode: { type: string }
+        failureMessage: { type: string }
+    CreditRequest:
+      type: object
+      required: [amount, currency]
+      properties:
+        amount: { type: integer, minimum: 1 }
+        currency: { type: string }
+        description: { type: string }
+        cardId: { type: string }
+        customerId: { type: string }
+        fast: { type: boolean }
+        metadata:
+          type: object
+          additionalProperties: { type: string }
+    CreditList:
+      $ref: '#/components/schemas/ListResponseCredit'
+    Dispute:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        updated: { type: integer, format: int64 }
+        amount: { type: integer }
+        currency: { type: string }
+        status:
+          type: string
+          enum: [WARNING_NEEDS_RESPONSE, WARNING_UNDER_REVIEW, WARNING_CLOSED, NEEDS_RESPONSE, UNDER_REVIEW, CHARGE_REFUNDED, WON, LOST, ACCEPTED]
+        reason:
+          type: string
+          enum: [GENERAL, FRAUDULENT, DUPLICATE, SUBSCRIPTION_CANCELED, PRODUCT_UNACCEPTABLE, PRODUCT_NOT_RECEIVED, UNRECOGNIZED, CREDIT_NOT_PROCESSED, INCORRECT_ACCOUNT_DETAILS, INSUFFICIENT_FUNDS, BANK_CANNOT_PROCESS, DEBIT_NOT_AUTHORIZED, GOODS_SERVICES_RETURNED_OR_REFUSED, GOODS_SERVICES_CANCELED, TRANSACTION_AMOUNT_DIFFERS, OTHER]
+        acceptedAsLost: { type: boolean }
+        charge: { $ref: '#/components/schemas/Charge' }
+    DisputeList:
+      $ref: '#/components/schemas/ListResponseDispute'
+    FraudWarning:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        actionable: { type: boolean }
+        type: { type: string }
+        chargeId: { type: string }
+    FraudWarningList:
+      $ref: '#/components/schemas/ListResponseFraudWarning'
+    BlacklistRule:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        deleted: { type: boolean }
+        ruleType:
+          type: string
+          enum: [FINGERPRINT, IP_ADDRESS, IP_COUNTRY, EMAIL, USER_AGENT, ACCEPT_LANGUAGE, METADATA, CARD_BIN, CARD_COUNTRY, CARD_ISSUER]
+        fingerprint: { type: string }
+        ipAddress: { type: string }
+        ipCountry: { type: string }
+        metadataKey: { type: string }
+        metadataValue: { type: string }
+        email: { type: string, format: email }
+        userAgent: { type: string }
+        acceptLanguage: { type: string }
+        cardCountry: { type: string }
+        cardBin: { type: string }
+        cardIssuer: { type: string }
+    BlacklistRuleRequest:
+      type: object
+      required: [ruleType]
+      properties:
+        ruleType:
+          type: string
+          enum: [fingerprint, ip_address, ip_country, email, user_agent, accept_language, metadata, card_bin, card_country, card_issuer]
+        fingerprint: { type: string }
+        ipAddress: { type: string }
+        ipCountry: { type: string }
+        metadataKey: { type: string }
+        metadataValue: { type: string }
+        email: { type: string }
+        userAgent: { type: string }
+        acceptLanguage: { type: string }
+        cardCountry: { type: string }
+        cardBin: { type: string }
+        cardIssuer: { type: string }
+    BlacklistRuleList:
+      $ref: '#/components/schemas/ListResponseBlacklistRule'
+    FileUpload:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        purpose:
+          type: string
+          enum: [DISPUTE_EVIDENCE, IDENTITY_DOCUMENT]
+        size: { type: integer }
+        type: { type: string }
+        url: { type: string, format: uri }
+    Payout:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        amount: { type: integer }
+        currency: { type: string }
+        status: { type: string }
+        type: { type: string }
+        destination: { type: string }
+    PayoutList:
+      $ref: '#/components/schemas/ListResponsePayout'
+    WebhookEndpoint:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        url: { type: string, format: uri }
+        signingSecret: { type: string }
+        enabledEvents:
+          type: array
+          items: { type: string }
+        description: { type: string }
+        deleted: { type: boolean }
+    Event:
+      type: object
+      properties:
+        id: { type: string }
+        created: { type: integer, format: int64 }
+        type:
+          type: string
+          description: Event type, e.g., charge.succeeded, customer.created.
+        data:
+          description: Event payload (shape varies by event type).
+        log: { type: string }
+    EventList:
+      $ref: '#/components/schemas/ListResponseEvent'
+    DeleteResponse:
+      type: object
+      properties:
+        id: { type: string }
+        deleted: { type: boolean }
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              enum: [invalid_request, gateway_error, processing_error, card_error, fraud, three_d_secure_error, blacklist_error]
+            code: { type: string }
+            message: { type: string }
+            chargeId: { type: string }
+            creditId: { type: string }
+            issuerDeclineCode: { type: string }
+    ListResponseCharge:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Charge' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseCustomer:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Customer' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseCard:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Card' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseRefund:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Refund' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponsePlan:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Plan' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponsePaymentMethod:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/PaymentMethod' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseCredit:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Credit' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseDispute:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Dispute' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseFraudWarning:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/FraudWarning' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseBlacklistRule:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/BlacklistRule' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponsePayout:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Payout' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }
+    ListResponseEvent:
+      type: object
+      properties:
+        list:
+          type: array
+          items: { $ref: '#/components/schemas/Event' }
+        hasMore: { type: boolean }
+        totalCount: { type: integer }

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-event-schema.json",
+  "title": "Shift4 Event",
+  "description": "A Shift4 event record (drives webhook deliveries). Source: shift4-java SDK Event response model.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "created": { "type": "integer" },
+    "type": { "type": "string", "description": "Event type, e.g. charge.succeeded, customer.created." },
+    "data": { "description": "Resource snapshot for the event." },
+    "log": { "type": "string" }
+  },
+  "required": ["id", "type"]
+}

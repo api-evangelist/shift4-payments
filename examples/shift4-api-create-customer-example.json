@@ -1,0 +1,32 @@
+{
+  "operationId": "createCustomer",
+  "request": {
+    "method": "POST",
+    "url": "https://api.shift4.com/customers",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic <base64(secret_key:)>"
+    },
+    "body": {
+      "email": "jane@example.com",
+      "description": "Premier customer",
+      "metadata": {
+        "internalId": "cust-001"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "cust_7e8c2a47e9c14a93b5b6d99e6c2b5d4f",
+      "created": 1746489600,
+      "deleted": false,
+      "email": "jane@example.com",
+      "description": "Premier customer",
+      "metadata": {
+        "internalId": "cust-001"
+      },
+      "cards": []
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-subscription-schema.json",
+  "title": "Shift4 Subscription",
+  "description": "A Shift4 recurring subscription. Source: shift4-java SDK Subscription response model.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "created": { "type": "integer" },
+    "deleted": { "type": "boolean" },
+    "planId": { "type": "string" },
+    "customerId": { "type": "string" },
+    "quantity": { "type": "integer" },
+    "captureCharges": { "type": "boolean" },
+    "status": { "type": "string", "enum": ["ACTIVE", "PAST_DUE", "CANCELED", "UNPAID"] },
+    "remainingBillingCycles": { "type": "integer" },
+    "start": { "type": "integer" },
+    "currentPeriodStart": { "type": "integer" },
+    "currentPeriodEnd": { "type": "integer" },
+    "canceledAt": { "type": "integer" },
+    "endedAt": { "type": "integer" },
+    "trialStart": { "type": "integer" },
+    "trialEnd": { "type": "integer" },
+    "cancelAtPeriodEnd": { "type": "boolean" },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } }
+  },
+  "required": ["id", "planId", "customerId", "status"]
+}

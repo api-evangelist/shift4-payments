@@ -1,0 +1,136 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shift4 Payment Processing"
+  description: >-
+    End-to-end payment processing on Shift4. Combines charges, refunds, checkout
+    sessions, and disputes for e-commerce and merchant operations workflows.
+  tags:
+    - Shift4
+    - Payments
+    - Checkout
+    - Refunds
+    - Disputes
+    - E-Commerce
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      SHIFT4_API_KEY: SHIFT4_API_KEY
+
+capability:
+  consumes:
+    - import: shift4-charges
+      location: ./shared/charges.yaml
+    - import: shift4-refunds
+      location: ./shared/refunds.yaml
+    - import: shift4-checkout
+      location: ./shared/checkout.yaml
+    - import: shift4-disputes
+      location: ./shared/disputes.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: shift4-payment-processing-api
+      description: "Unified REST surface for Shift4 payment workflows."
+      resources:
+        - path: /charges
+          name: charges
+          operations:
+            - method: GET
+              name: list-charges
+              call: "shift4-charges.list-charges"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-charge
+              call: "shift4-charges.create-charge"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /charges/{charge}/capture
+          name: charge-capture
+          operations:
+            - method: POST
+              name: capture-charge
+              call: "shift4-charges.capture-charge"
+              with:
+                charge: "rest.charge"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /refunds
+          name: refunds
+          operations:
+            - method: POST
+              name: create-refund
+              call: "shift4-refunds.create-refund"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /checkout/sessions
+          name: checkout-sessions
+          operations:
+            - method: POST
+              name: create-checkout-session
+              call: "shift4-checkout.create-checkout-session"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /disputes
+          name: disputes
+          operations:
+            - method: GET
+              name: list-disputes
+              call: "shift4-disputes.list-disputes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: shift4-payment-processing-mcp
+      transport: http
+      description: "MCP surface for AI-assisted Shift4 payment workflows."
+      tools:
+        - name: create-charge
+          description: "Create a Shift4 charge against a card or token."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-charges.create-charge"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: capture-charge
+          description: "Capture a previously authorized Shift4 charge."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-charges.capture-charge"
+          with:
+            charge: "tools.charge"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-refund
+          description: "Refund a Shift4 charge."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-refunds.create-refund"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-checkout-session
+          description: "Create a Shift4 hosted checkout session."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-checkout.create-checkout-session"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-disputes
+          description: "List Shift4 disputes."
+          hints: { readOnly: true }
+          call: "shift4-disputes.list-disputes"
+          outputParameters:
+            - type: object
+              mapping: "$."

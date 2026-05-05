@@ -1,0 +1,46 @@
+{
+  "operationId": "createCheckoutSession",
+  "request": {
+    "method": "POST",
+    "url": "https://api.shift4.com/checkout/sessions",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic <base64(secret_key:)>"
+    },
+    "body": {
+      "lineItems": [
+        {
+          "name": "Annual Subscription",
+          "quantity": 1,
+          "unitAmount": 12000,
+          "currency": "USD"
+        }
+      ],
+      "currency": "USD",
+      "action": "payment",
+      "collectBillingAddress": true,
+      "redirectUrl": "https://merchant.example.com/return"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "cs_5b8d4f7e9c1a2b3c4d5e6f70a8b1c2d3",
+      "clientSecret": "cs_5b8d_secret_xxx",
+      "lineItems": [
+        {
+          "name": "Annual Subscription",
+          "quantity": 1,
+          "unitAmount": 12000,
+          "currency": "USD"
+        }
+      ],
+      "status": "OPEN",
+      "action": "PAYMENT",
+      "currency": "USD",
+      "url": "https://checkout.shift4.com/session/cs_5b8d4f7e9c1a2b3c4d5e6f70a8b1c2d3",
+      "redirectUrl": "https://merchant.example.com/return",
+      "capture": true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-charge-schema.json",
+  "title": "Shift4 Charge",
+  "description": "A Shift4 charge resource. Source: shift4-java SDK Charge response model and dev.shift4.com/docs/api.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "clientObjectId": { "type": "string" },
+    "created": { "type": "integer", "description": "Unix timestamp (seconds)." },
+    "amount": { "type": "integer", "description": "Amount in smallest currency unit." },
+    "amountRefunded": { "type": "integer" },
+    "currency": { "type": "string", "description": "ISO 4217 currency code." },
+    "description": { "type": "string" },
+    "status": { "type": "string", "enum": ["SUCCESSFUL", "FAILED", "PENDING"] },
+    "type": { "type": "string", "enum": ["FIRST_RECURRING", "SUBSEQUENT_RECURRING", "CARDHOLDER_INITIATED", "MERCHANT_INITIATED"] },
+    "captured": { "type": "boolean" },
+    "refunded": { "type": "boolean" },
+    "disputed": { "type": "boolean" },
+    "customerId": { "type": "string" },
+    "subscriptionId": { "type": "string" },
+    "merchantAccountId": { "type": "string" },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } },
+    "failureCode": { "type": "string" },
+    "failureIssuerDeclineCode": { "type": "string" },
+    "failureMessage": { "type": "string" }
+  },
+  "required": ["id", "amount", "currency", "status"]
+}

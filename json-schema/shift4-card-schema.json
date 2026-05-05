@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-card-schema.json",
+  "title": "Shift4 Card",
+  "description": "A Shift4 saved card on a customer. Source: shift4-java SDK Card response model.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "created": { "type": "integer" },
+    "deleted": { "type": "boolean" },
+    "first6": { "type": "string" },
+    "last4": { "type": "string" },
+    "fingerprint": { "type": "string" },
+    "expMonth": { "type": "string" },
+    "expYear": { "type": "string" },
+    "cardholderName": { "type": "string" },
+    "customerId": { "type": "string" },
+    "brand": { "type": "string", "enum": ["Visa", "MasterCard", "AmericanExpress", "Discover", "JCB", "DinersClub", "UnionPay", "Other"] },
+    "type": { "type": "string", "enum": ["Credit", "Debit", "Prepaid", "Other"] },
+    "country": { "type": "string" },
+    "issuer": { "type": "string" },
+    "merchantAccountId": { "type": "string" }
+  },
+  "required": ["id", "last4"]
+}

@@ -1,0 +1,133 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shift4 Webhooks and Events API"
+  description: >-
+    Manage webhook endpoints and read event records that drive webhooks.
+  tags:
+    - Shift4
+    - Webhooks
+    - Events
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      SHIFT4_API_KEY: SHIFT4_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: shift4-webhooks
+      baseUri: https://api.shift4.com
+      authentication:
+        type: basic
+        username: "{{SHIFT4_API_KEY}}"
+        password: ""
+      resources:
+        - name: events
+          path: /events
+          operations:
+            - name: list-events
+              method: GET
+              description: "List events."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: event
+          path: /events/{event}
+          operations:
+            - name: get-event
+              method: GET
+              description: "Retrieve an event by ID."
+              inputParameters:
+                - name: event
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: webhook-endpoints
+          path: /webhook-endpoints
+          operations:
+            - name: list-webhook-endpoints
+              method: GET
+              description: "List webhook endpoints."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-webhook-endpoint
+              method: POST
+              description: "Create a webhook endpoint."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: webhook-endpoint
+          path: /webhook-endpoints/{endpoint}
+          operations:
+            - name: get-webhook-endpoint
+              method: GET
+              description: "Retrieve a webhook endpoint by ID."
+              inputParameters:
+                - name: endpoint
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-webhook-endpoint
+              method: POST
+              description: "Update a webhook endpoint."
+              inputParameters:
+                - name: endpoint
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: mcp
+      port: 9107
+      namespace: shift4-webhooks-mcp
+      transport: http
+      tools:
+        - name: list-events
+          description: "List Shift4 events."
+          hints: { readOnly: true }
+          call: "shift4-webhooks.list-events"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-event
+          description: "Retrieve a Shift4 event by ID."
+          hints: { readOnly: true }
+          call: "shift4-webhooks.get-event"
+          with:
+            event: "tools.event"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-webhook-endpoint
+          description: "Create a Shift4 webhook endpoint."
+          hints: { readOnly: false, destructive: false }
+          call: "shift4-webhooks.create-webhook-endpoint"
+          outputParameters:
+            - type: object
+              mapping: "$."

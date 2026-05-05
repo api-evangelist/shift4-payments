@@ -1,0 +1,28 @@
+{
+  "operationId": "createRefund",
+  "request": {
+    "method": "POST",
+    "url": "https://api.shift4.com/refunds",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic <base64(secret_key:)>"
+    },
+    "body": {
+      "chargeId": "char_8a4cb45e8a2c4adcb6d23f72b3b3a5d2",
+      "amount": 1000,
+      "reason": "requested_by_customer"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "rfd_3c2a1b0f9e8d7c6b5a49382716054f3e",
+      "created": 1746497600,
+      "amount": 1000,
+      "currency": "USD",
+      "charge": "char_8a4cb45e8a2c4adcb6d23f72b3b3a5d2",
+      "reason": "REQUESTED_BY_CUSTOMER",
+      "status": "SUCCESSFUL"
+    }
+  }
+}

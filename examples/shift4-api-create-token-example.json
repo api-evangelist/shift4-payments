@@ -1,0 +1,34 @@
+{
+  "operationId": "createToken",
+  "request": {
+    "method": "POST",
+    "url": "https://api.shift4.com/tokens",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic <base64(public_key:)>"
+    },
+    "body": {
+      "number": "4111111111111111",
+      "expMonth": "12",
+      "expYear": "2030",
+      "cvc": "123",
+      "cardholderName": "Jane Doe"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "tok_4d8b81b6c7164d2cb9c1ebe0e7c1e3a7",
+      "created": 1746489600,
+      "first6": "411111",
+      "last4": "1111",
+      "fingerprint": "FP_a1b2c3d4e5f6",
+      "expMonth": "12",
+      "expYear": "2030",
+      "brand": "Visa",
+      "type": "Credit",
+      "cardholderName": "Jane Doe",
+      "used": false
+    }
+  }
+}

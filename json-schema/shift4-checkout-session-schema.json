@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-checkout-session-schema.json",
+  "title": "Shift4 Checkout Session",
+  "description": "A Shift4 hosted checkout session. Source: shift4-java SDK CheckoutSession response model.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "lastCharge": { "type": "string" },
+    "paymentLink": { "type": "string" },
+    "invoice": { "type": "string" },
+    "customer": { "type": "string" },
+    "clientSecret": { "type": "string" },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } },
+    "locale": { "type": "string" },
+    "collectBillingAddress": { "type": "boolean" },
+    "collectShippingAddress": { "type": "boolean" },
+    "capture": { "type": "boolean" },
+    "captchaRequired": { "type": "boolean" },
+    "status": { "type": "string", "enum": ["OPEN", "COMPLETED", "EXPIRED"] },
+    "allowSavedCards": { "type": "boolean" },
+    "action": { "type": "string", "enum": ["PAYMENT", "SETUP", "SUBSCRIPTION"] },
+    "currency": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "redirectUrl": { "type": "string", "format": "uri" }
+  },
+  "required": ["id", "status"]
+}

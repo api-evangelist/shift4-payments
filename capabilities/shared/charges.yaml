@@ -1,0 +1,182 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shift4 Charges API"
+  description: >-
+    Create, retrieve, update, capture, and list Shift4 charges. Charges represent
+    payment authorizations and captures against cards or other payment methods.
+  tags:
+    - Shift4
+    - Payments
+    - Charges
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      SHIFT4_API_KEY: SHIFT4_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: shift4-charges
+      baseUri: https://api.shift4.com
+      description: "Shift4 Charges API for processing card and payment-method charges."
+      authentication:
+        type: basic
+        username: "{{SHIFT4_API_KEY}}"
+        password: ""
+      resources:
+        - name: charges
+          path: /charges
+          description: "Charges collection."
+          operations:
+            - name: list-charges
+              method: GET
+              description: "List charges."
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                - name: startingAfter
+                  in: query
+                  type: string
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-charge
+              method: POST
+              description: "Create a new charge."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  amount: "{{tools.amount}}"
+                  currency: "{{tools.currency}}"
+                  card: "{{tools.card}}"
+                  description: "{{tools.description}}"
+
+        - name: charge
+          path: /charges/{charge}
+          description: "Individual charge resource."
+          operations:
+            - name: get-charge
+              method: GET
+              description: "Retrieve a charge by ID."
+              inputParameters:
+                - name: charge
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-charge
+              method: POST
+              description: "Update a charge."
+              inputParameters:
+                - name: charge
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: charge-capture
+          path: /charges/{charge}/capture
+          description: "Capture an authorized charge."
+          operations:
+            - name: capture-charge
+              method: POST
+              description: "Capture a previously authorized charge."
+              inputParameters:
+                - name: charge
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: shift4-charges-rest
+      resources:
+        - path: /charges
+          name: charges
+          operations:
+            - method: GET
+              name: list-charges
+              description: "List charges."
+              call: "shift4-charges.list-charges"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-charge
+              description: "Create a charge."
+              call: "shift4-charges.create-charge"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: shift4-charges-mcp
+      transport: http
+      tools:
+        - name: list-charges
+          description: "List Shift4 charges."
+          hints:
+            readOnly: true
+          call: "shift4-charges.list-charges"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-charge
+          description: "Create a Shift4 charge against a card or token."
+          hints:
+            readOnly: false
+            destructive: false
+          call: "shift4-charges.create-charge"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-charge
+          description: "Retrieve a Shift4 charge by ID."
+          hints:
+            readOnly: true
+          call: "shift4-charges.get-charge"
+          with:
+            charge: "tools.charge"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: capture-charge
+          description: "Capture a previously authorized Shift4 charge."
+          hints:
+            readOnly: false
+            destructive: false
+          call: "shift4-charges.capture-charge"
+          with:
+            charge: "tools.charge"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,57 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shift4 Fraud and Dispute Operations"
+  description: >-
+    Fraud-prevention and dispute-management workflows on Shift4. Combines
+    blacklist rules, fraud warnings, and chargeback disputes for risk and
+    operations teams.
+  tags:
+    - Shift4
+    - Fraud
+    - Disputes
+    - Risk
+    - Operations
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      SHIFT4_API_KEY: SHIFT4_API_KEY
+
+capability:
+  consumes:
+    - import: shift4-disputes
+      location: ./shared/disputes.yaml
+
+  exposes:
+    - type: mcp
+      port: 9082
+      namespace: shift4-fraud-disputes-mcp
+      transport: http
+      description: "MCP surface for Shift4 fraud and dispute workflows."
+      tools:
+        - name: list-disputes
+          description: "List Shift4 disputes (chargebacks)."
+          hints: { readOnly: true }
+          call: "shift4-disputes.list-disputes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-dispute
+          description: "Retrieve a Shift4 dispute by ID."
+          hints: { readOnly: true }
+          call: "shift4-disputes.get-dispute"
+          with:
+            dispute: "tools.dispute"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-fraud-warnings
+          description: "List Shift4 fraud warnings."
+          hints: { readOnly: true }
+          call: "shift4-disputes.list-fraud-warnings"
+          outputParameters:
+            - type: object
+              mapping: "$."

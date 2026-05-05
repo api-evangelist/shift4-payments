@@ -1,0 +1,48 @@
+{
+  "operationId": "createCharge",
+  "request": {
+    "method": "POST",
+    "url": "https://api.shift4.com/charges",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic <base64(secret_key:)>"
+    },
+    "body": {
+      "amount": 1000,
+      "currency": "USD",
+      "description": "Order #1234",
+      "card": "tok_4d8b81b6c7164d2cb9c1ebe0e7c1e3a7",
+      "captured": true,
+      "metadata": {
+        "orderId": "1234"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "char_8a4cb45e8a2c4adcb6d23f72b3b3a5d2",
+      "created": 1746489600,
+      "amount": 1000,
+      "amountRefunded": 0,
+      "currency": "USD",
+      "description": "Order #1234",
+      "status": "SUCCESSFUL",
+      "captured": true,
+      "refunded": false,
+      "disputed": false,
+      "card": {
+        "id": "card_7f2a4b9d2e514a4b8c1d2e3a4b5c6d7e",
+        "first6": "411111",
+        "last4": "1111",
+        "brand": "Visa",
+        "type": "Credit",
+        "expMonth": "12",
+        "expYear": "2030"
+      },
+      "metadata": {
+        "orderId": "1234"
+      }
+    }
+  }
+}

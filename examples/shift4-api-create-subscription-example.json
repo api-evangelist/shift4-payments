@@ -1,0 +1,33 @@
+{
+  "operationId": "createSubscription",
+  "request": {
+    "method": "POST",
+    "url": "https://api.shift4.com/subscriptions",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Basic <base64(secret_key:)>"
+    },
+    "body": {
+      "planId": "plan_basic_monthly",
+      "customerId": "cust_7e8c2a47e9c14a93b5b6d99e6c2b5d4f",
+      "quantity": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "id": "sub_e1c9d2a3f4b54c6e8d7a9b0c1d2e3f40",
+      "created": 1746489600,
+      "deleted": false,
+      "planId": "plan_basic_monthly",
+      "customerId": "cust_7e8c2a47e9c14a93b5b6d99e6c2b5d4f",
+      "quantity": 1,
+      "captureCharges": true,
+      "status": "ACTIVE",
+      "start": 1746489600,
+      "currentPeriodStart": 1746489600,
+      "currentPeriodEnd": 1749081600,
+      "cancelAtPeriodEnd": false
+    }
+  }
+}

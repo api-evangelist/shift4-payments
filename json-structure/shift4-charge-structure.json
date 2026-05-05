@@ -1,0 +1,58 @@
+{
+  "name": "Charge",
+  "description": "The Shift4 Charge object: a single payment authorization or capture against a card or payment method. Sourced from the official shift4-java SDK and dev.shift4.com/docs/api.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the charge (prefix: char_).",
+      "example": "char_8a4cb45e8a2c4adcb6d23f72b3b3a5d2"
+    },
+    "clientObjectId": {
+      "type": "string",
+      "description": "Optional client-supplied idempotency identifier."
+    },
+    "created": {
+      "type": "integer",
+      "description": "Unix timestamp (seconds) when the charge was created.",
+      "example": 1746489600
+    },
+    "amount": {
+      "type": "integer",
+      "description": "Amount in the smallest currency unit (e.g., cents)."
+    },
+    "amountRefunded": {
+      "type": "integer",
+      "description": "Total amount refunded across all refunds."
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code.",
+      "example": "USD"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description."
+    },
+    "status": {
+      "type": "string",
+      "description": "Lifecycle status of the charge.",
+      "enum": ["SUCCESSFUL", "FAILED", "PENDING"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Transaction type for scheme reporting.",
+      "enum": ["FIRST_RECURRING", "SUBSEQUENT_RECURRING", "CARDHOLDER_INITIATED", "MERCHANT_INITIATED"]
+    },
+    "captured": { "type": "boolean", "description": "True if the charge has been captured." },
+    "refunded": { "type": "boolean", "description": "True if fully refunded." },
+    "disputed": { "type": "boolean", "description": "True if a dispute exists." },
+    "customerId": { "type": "string", "description": "Associated customer identifier." },
+    "subscriptionId": { "type": "string", "description": "Associated subscription, if recurring." },
+    "merchantAccountId": { "type": "string", "description": "Merchant account that processed the charge." },
+    "metadata": { "type": "object", "description": "Custom string key-value metadata." },
+    "failureCode": { "type": "string", "description": "Shift4 failure code, if status is FAILED." },
+    "failureIssuerDeclineCode": { "type": "string", "description": "Issuer decline code." },
+    "failureMessage": { "type": "string", "description": "Human-readable failure description." }
+  }
+}

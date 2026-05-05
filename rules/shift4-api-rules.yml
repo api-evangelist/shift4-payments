@@ -1,0 +1,153 @@
+extends: spectral:oas
+rules:
+  shift4-operation-id-required:
+    description: All Shift4 operations must have an operationId.
+    message: "Operation at {{path}} is missing operationId"
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+
+  shift4-operation-id-camel-case:
+    description: Shift4 operationIds use camelCase (e.g., createCharge, listEvents).
+    message: "operationId '{{value}}' should use camelCase"
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  shift4-tags-required:
+    description: All Shift4 operations must declare at least one tag.
+    message: "Operation '{{path}}' must include at least one tag"
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+
+  shift4-summary-title-case:
+    description: Operation summaries should use Title Case.
+    message: "Summary '{{value}}' should use Title Case"
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    severity: hint
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  shift4-no-versioned-paths:
+    description: Shift4 paths are unversioned (no /v1/ prefix); the version lives in the secret key.
+    message: "Path '{{property}}' must not include a version prefix"
+    given: "$.paths[*]~"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "^/v[0-9]+/"
+
+  shift4-no-trailing-slash:
+    description: Shift4 paths must not have trailing slashes.
+    message: "Path '{{property}}' must not end with a slash"
+    given: "$.paths[*]~"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  shift4-basic-auth-defined:
+    description: Shift4 uses HTTP Basic auth with the secret key as username.
+    message: "API must declare BasicAuth security scheme"
+    given: "$.components.securitySchemes"
+    severity: error
+    then:
+      field: BasicAuth
+      function: truthy
+
+  shift4-server-production:
+    description: The Shift4 production server must be https://api.shift4.com.
+    message: "Servers list should include https://api.shift4.com"
+    given: "$.servers[*].url"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://api\\.shift4\\.com$"
+
+  shift4-amount-integer:
+    description: Amount fields must be integers expressed in the smallest currency unit.
+    message: "amount field at '{{path}}' must be type integer"
+    given: "$.components.schemas[*].properties.amount.type"
+    severity: warn
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - integer
+
+  shift4-currency-string:
+    description: Currency must be a string (ISO 4217 code).
+    message: "currency field at '{{path}}' must be type string"
+    given: "$.components.schemas[*].properties.currency.type"
+    severity: warn
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - string
+
+  shift4-created-int64:
+    description: Resource 'created' timestamps are Unix seconds (integer int64).
+    message: "created field at '{{path}}' should be int64 integer"
+    given: "$.components.schemas[*].properties.created"
+    severity: hint
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type: { const: integer }
+            format: { const: int64 }
+
+  shift4-response-200-defined:
+    description: All Shift4 operations should define a 200 response.
+    message: "Operation '{{path}}' should define a 200 success response"
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    severity: warn
+    then:
+      field: "200"
+      function: truthy
+
+  shift4-list-response-shape:
+    description: List endpoints should use a list/hasMore/totalCount envelope.
+    message: "List response schema at '{{path}}' should include list, hasMore, totalCount"
+    given: "$.components.schemas[?(@property.match(/^ListResponse/))].properties"
+    severity: hint
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required: [list, hasMore]
+
+  shift4-info-contact:
+    description: Shift4 OpenAPI specs must include contact info.
+    message: "Info object must include contact details"
+    given: "$.info"
+    severity: warn
+    then:
+      field: contact
+      function: truthy
+
+  shift4-servers-defined:
+    description: Shift4 API must define at least one server.
+    message: "API must define at least one server"
+    given: "$"
+    severity: error
+    then:
+      field: servers
+      function: truthy

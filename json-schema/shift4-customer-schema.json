@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/shift4-payments/json-schema/shift4-customer-schema.json",
+  "title": "Shift4 Customer",
+  "description": "A Shift4 customer resource. Source: shift4-java SDK Customer response model.",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "created": { "type": "integer" },
+    "deleted": { "type": "boolean" },
+    "email": { "type": "string", "format": "email" },
+    "phoneNumber": { "type": "string" },
+    "description": { "type": "string" },
+    "defaultCardId": { "type": "string" },
+    "metadata": { "type": "object", "additionalProperties": { "type": "string" } }
+  },
+  "required": ["id"]
+}

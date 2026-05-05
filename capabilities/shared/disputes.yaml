@@ -1,0 +1,96 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Shift4 Disputes and Fraud Warnings API"
+  description: >-
+    Retrieve chargeback disputes, fraud warnings, and submit dispute evidence.
+  tags:
+    - Shift4
+    - Disputes
+    - Fraud
+  created: "2026-05-05"
+  modified: "2026-05-05"
+
+binds:
+  - namespace: env
+    keys:
+      SHIFT4_API_KEY: SHIFT4_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: shift4-disputes
+      baseUri: https://api.shift4.com
+      authentication:
+        type: basic
+        username: "{{SHIFT4_API_KEY}}"
+        password: ""
+      resources:
+        - name: disputes
+          path: /disputes
+          operations:
+            - name: list-disputes
+              method: GET
+              description: "List disputes."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: dispute
+          path: /disputes/{dispute}
+          operations:
+            - name: get-dispute
+              method: GET
+              description: "Retrieve a dispute by ID."
+              inputParameters:
+                - name: dispute
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: fraud-warnings
+          path: /fraud-warnings
+          operations:
+            - name: list-fraud-warnings
+              method: GET
+              description: "List fraud warnings."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: mcp
+      port: 9106
+      namespace: shift4-disputes-mcp
+      transport: http
+      tools:
+        - name: list-disputes
+          description: "List Shift4 disputes."
+          hints: { readOnly: true }
+          call: "shift4-disputes.list-disputes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-dispute
+          description: "Retrieve a Shift4 dispute by ID."
+          hints: { readOnly: true }
+          call: "shift4-disputes.get-dispute"
+          with:
+            dispute: "tools.dispute"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-fraud-warnings
+          description: "List Shift4 fraud warnings."
+          hints: { readOnly: true }
+          call: "shift4-disputes.list-fraud-warnings"
+          outputParameters:
+            - type: object
+              mapping: "$."
