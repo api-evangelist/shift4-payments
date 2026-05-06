@@ -1,72 +1,242 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Shift4 Subscription Billing"
-  description: >-
-    Recurring billing operations on Shift4. Combines plans, subscriptions, and
-    customer/card management to support SaaS and membership-style billing.
+  label: Shift4 Subscription Billing
+  description: Recurring billing operations on Shift4. Combines plans, subscriptions, and customer/card management to support
+    SaaS and membership-style billing.
   tags:
-    - Shift4
-    - Subscriptions
-    - Plans
-    - Billing
-    - Customers
-  created: "2026-05-05"
-  modified: "2026-05-05"
-
+  - Shift4
+  - Subscriptions
+  - Plans
+  - Billing
+  - Customers
+  created: '2026-05-05'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SHIFT4_API_KEY: SHIFT4_API_KEY
-
+- namespace: env
+  keys:
+    SHIFT4_API_KEY: SHIFT4_API_KEY
 capability:
   consumes:
-    - import: shift4-customers
-      location: ./shared/customers.yaml
-    - import: shift4-subscriptions
-      location: ./shared/subscriptions.yaml
-
+  - type: http
+    namespace: shift4-customers
+    baseUri: https://api.shift4.com
+    authentication:
+      type: basic
+      username: '{{SHIFT4_API_KEY}}'
+      password: ''
+    resources:
+    - name: customers
+      path: /customers
+      operations:
+      - name: list-customers
+        method: GET
+        description: List customers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-customer
+        method: POST
+        description: Create a customer.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        body:
+          type: json
+          data:
+            email: '{{tools.email}}'
+            description: '{{tools.description}}'
+    - name: customer
+      path: /customers/{customer}
+      operations:
+      - name: get-customer
+        method: GET
+        description: Retrieve a customer by ID.
+        inputParameters:
+        - name: customer
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-customer
+        method: POST
+        description: Update a customer.
+        inputParameters:
+        - name: customer
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-customer
+        method: DELETE
+        description: Delete a customer.
+        inputParameters:
+        - name: customer
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: shift4-subscriptions
+    baseUri: https://api.shift4.com
+    authentication:
+      type: basic
+      username: '{{SHIFT4_API_KEY}}'
+      password: ''
+    resources:
+    - name: plans
+      path: /plans
+      operations:
+      - name: list-plans
+        method: GET
+        description: List plans.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-plan
+        method: POST
+        description: Create a plan.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: plan
+      path: /plans/{plan}
+      operations:
+      - name: get-plan
+        method: GET
+        description: Retrieve a plan by ID.
+        inputParameters:
+        - name: plan
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-plan
+        method: POST
+        description: Update a plan.
+        inputParameters:
+        - name: plan
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions
+      path: /subscriptions
+      operations:
+      - name: create-subscription
+        method: POST
+        description: Create a subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscription
+      path: /subscriptions/{subscription}
+      operations:
+      - name: get-subscription
+        method: GET
+        description: Retrieve a subscription by ID.
+        inputParameters:
+        - name: subscription
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-subscription
+        method: POST
+        description: Update or cancel a subscription.
+        inputParameters:
+        - name: subscription
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: mcp
-      port: 9081
-      namespace: shift4-subscription-billing-mcp
-      transport: http
-      description: "MCP surface for managing Shift4 subscription billing."
-      tools:
-        - name: create-customer
-          description: "Create a Shift4 customer."
-          hints: { readOnly: false, destructive: false }
-          call: "shift4-customers.create-customer"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-plan
-          description: "Create a Shift4 plan."
-          hints: { readOnly: false, destructive: false }
-          call: "shift4-subscriptions.create-plan"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: create-subscription
-          description: "Create a Shift4 subscription for a customer on a plan."
-          hints: { readOnly: false, destructive: false }
-          call: "shift4-subscriptions.create-subscription"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: update-subscription
-          description: "Update or cancel a Shift4 subscription."
-          hints: { readOnly: false, destructive: false }
-          call: "shift4-subscriptions.update-subscription"
-          with:
-            subscription: "tools.subscription"
-          outputParameters:
-            - type: object
-              mapping: "$."
-        - name: list-plans
-          description: "List Shift4 plans."
-          hints: { readOnly: true }
-          call: "shift4-subscriptions.list-plans"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: mcp
+    port: 9081
+    namespace: shift4-subscription-billing-mcp
+    transport: http
+    description: MCP surface for managing Shift4 subscription billing.
+    tools:
+    - name: create-customer
+      description: Create a Shift4 customer.
+      hints:
+        readOnly: false
+        destructive: false
+      call: shift4-customers.create-customer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-plan
+      description: Create a Shift4 plan.
+      hints:
+        readOnly: false
+        destructive: false
+      call: shift4-subscriptions.create-plan
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-subscription
+      description: Create a Shift4 subscription for a customer on a plan.
+      hints:
+        readOnly: false
+        destructive: false
+      call: shift4-subscriptions.create-subscription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-subscription
+      description: Update or cancel a Shift4 subscription.
+      hints:
+        readOnly: false
+        destructive: false
+      call: shift4-subscriptions.update-subscription
+      with:
+        subscription: tools.subscription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-plans
+      description: List Shift4 plans.
+      hints:
+        readOnly: true
+      call: shift4-subscriptions.list-plans
+      outputParameters:
+      - type: object
+        mapping: $.
