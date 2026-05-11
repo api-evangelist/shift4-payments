@@ -173,6 +173,13 @@ common:
     url: https://github.com/shift4developer/shift4-salesforce-b2c
   - type: Vocabulary
     url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/vocabulary/shift4-payments-vocabulary.yml
+integrations:
+  - name: Shift4
+  - name: facebook
+  - name: twitter
+  - name: instagram
+  - name: Linkedin
+  - name: Vimeo
 maintainers:
   - FN: API Evangelist
     url: https://apievangelist.com
