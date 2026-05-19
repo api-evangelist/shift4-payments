@@ -1,0 +1,103 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Events
+  description: 'Shift4 Payments API — Events. 2 operations. Lead operation: List Events. Self-contained Naftiko capability
+    covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-events
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Events business capability. Self-contained, no shared references.
+    resources:
+    - name: events
+      path: /events
+      operations:
+      - name: listevents
+        method: GET
+        description: List Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: events-eventId
+      path: /events/{eventId}
+      operations:
+      - name: getevent
+        method: GET
+        description: Retrieve an Event
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-events-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Events. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/events
+      name: events
+      description: REST surface for events.
+      operations:
+      - method: GET
+        name: listevents
+        description: List Events
+        call: shift4-events.listevents
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/events/{eventid}
+      name: events-eventid
+      description: REST surface for events-eventId.
+      operations:
+      - method: GET
+        name: getevent
+        description: Retrieve an Event
+        call: shift4-events.getevent
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Events. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-events
+      description: List Events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-events.listevents
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-event
+      description: Retrieve an Event
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-events.getevent
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Tokens
+  description: 'Shift4 Payments API — Tokens. 1 operations. Lead operation: Create a Card Token. Self-contained Naftiko capability
+    covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-tokens
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: tokens
+      path: /tokens
+      operations:
+      - name: createtoken
+        method: POST
+        description: Create a Card Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-tokens-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Tokens. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tokens
+      name: tokens
+      description: REST surface for tokens.
+      operations:
+      - method: POST
+        name: createtoken
+        description: Create a Card Token
+        call: shift4-tokens.createtoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Tokens. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-card-token
+      description: Create a Card Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-tokens.createtoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

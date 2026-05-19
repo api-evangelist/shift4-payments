@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Cards
+  description: 'Shift4 Payments API — Cards. 5 operations. Lead operation: Create a Card. Self-contained Naftiko capability
+    covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Cards
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-cards
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Cards business capability. Self-contained, no shared references.
+    resources:
+    - name: customers-customerId-cards
+      path: /customers/{customerId}/cards
+      operations:
+      - name: createcard
+        method: POST
+        description: Create a Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listcards
+        method: GET
+        description: List Cards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: customers-customerId-cards-cardId
+      path: /customers/{customerId}/cards/{cardId}
+      operations:
+      - name: getcard
+        method: GET
+        description: Retrieve a Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecard
+        method: POST
+        description: Update a Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecard
+        method: DELETE
+        description: Delete a Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-cards-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Cards. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/customers/{customerid}/cards
+      name: customers-customerid-cards
+      description: REST surface for customers-customerId-cards.
+      operations:
+      - method: POST
+        name: createcard
+        description: Create a Card
+        call: shift4-cards.createcard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listcards
+        description: List Cards
+        call: shift4-cards.listcards
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customers/{customerid}/cards/{cardid}
+      name: customers-customerid-cards-cardid
+      description: REST surface for customers-customerId-cards-cardId.
+      operations:
+      - method: GET
+        name: getcard
+        description: Retrieve a Card
+        call: shift4-cards.getcard
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatecard
+        description: Update a Card
+        call: shift4-cards.updatecard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecard
+        description: Delete a Card
+        call: shift4-cards.deletecard
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-cards-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Cards. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-card
+      description: Create a Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-cards.createcard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-cards
+      description: List Cards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-cards.listcards
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-card
+      description: Retrieve a Card
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-cards.getcard
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-card
+      description: Update a Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-cards.updatecard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-card
+      description: Delete a Card
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: shift4-cards.deletecard
+      outputParameters:
+      - type: object
+        mapping: $.

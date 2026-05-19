@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Fraud Warnings
+  description: 'Shift4 Payments API — Fraud Warnings. 1 operations. Lead operation: List Fraud Warnings. Self-contained Naftiko
+    capability covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Fraud Warnings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-fraud-warnings
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Fraud Warnings business capability. Self-contained, no shared references.
+    resources:
+    - name: fraud-warnings
+      path: /fraud-warnings
+      operations:
+      - name: listfraudwarnings
+        method: GET
+        description: List Fraud Warnings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-fraud-warnings-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Fraud Warnings. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/fraud-warnings
+      name: fraud-warnings
+      description: REST surface for fraud-warnings.
+      operations:
+      - method: GET
+        name: listfraudwarnings
+        description: List Fraud Warnings
+        call: shift4-fraud-warnings.listfraudwarnings
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-fraud-warnings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Fraud Warnings. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-fraud-warnings
+      description: List Fraud Warnings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-fraud-warnings.listfraudwarnings
+      outputParameters:
+      - type: object
+        mapping: $.

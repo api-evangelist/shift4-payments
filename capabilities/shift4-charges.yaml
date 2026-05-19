@@ -1,0 +1,215 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Charges
+  description: 'Shift4 Payments API — Charges. 5 operations. Lead operation: Create a Charge. Self-contained Naftiko capability
+    covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Charges
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-charges
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Charges business capability. Self-contained, no shared references.
+    resources:
+    - name: charges
+      path: /charges
+      operations:
+      - name: createcharge
+        method: POST
+        description: Create a Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listcharges
+        method: GET
+        description: List Charges
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: charges-chargeId
+      path: /charges/{chargeId}
+      operations:
+      - name: getcharge
+        method: GET
+        description: Retrieve a Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecharge
+        method: POST
+        description: Update a Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: charges-chargeId-capture
+      path: /charges/{chargeId}/capture
+      operations:
+      - name: capturecharge
+        method: POST
+        description: Capture a Charge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-charges-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Charges. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/charges
+      name: charges
+      description: REST surface for charges.
+      operations:
+      - method: POST
+        name: createcharge
+        description: Create a Charge
+        call: shift4-charges.createcharge
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listcharges
+        description: List Charges
+        call: shift4-charges.listcharges
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/charges/{chargeid}
+      name: charges-chargeid
+      description: REST surface for charges-chargeId.
+      operations:
+      - method: GET
+        name: getcharge
+        description: Retrieve a Charge
+        call: shift4-charges.getcharge
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatecharge
+        description: Update a Charge
+        call: shift4-charges.updatecharge
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/charges/{chargeid}/capture
+      name: charges-chargeid-capture
+      description: REST surface for charges-chargeId-capture.
+      operations:
+      - method: POST
+        name: capturecharge
+        description: Capture a Charge
+        call: shift4-charges.capturecharge
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-charges-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Charges. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-charge
+      description: Create a Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-charges.createcharge
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-charges
+      description: List Charges
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-charges.listcharges
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-charge
+      description: Retrieve a Charge
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-charges.getcharge
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-charge
+      description: Update a Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-charges.updatecharge
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: capture-charge
+      description: Capture a Charge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-charges.capturecharge
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

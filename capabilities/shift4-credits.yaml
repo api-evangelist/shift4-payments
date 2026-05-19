@@ -1,0 +1,138 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Credits
+  description: 'Shift4 Payments API — Credits. 3 operations. Lead operation: Create a Credit. Self-contained Naftiko capability
+    covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Credits
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-credits
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Credits business capability. Self-contained, no shared references.
+    resources:
+    - name: credits
+      path: /credits
+      operations:
+      - name: createcredit
+        method: POST
+        description: Create a Credit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listcredits
+        method: GET
+        description: List Credits
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: credits-creditId
+      path: /credits/{creditId}
+      operations:
+      - name: getcredit
+        method: GET
+        description: Retrieve a Credit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-credits-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Credits. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/credits
+      name: credits
+      description: REST surface for credits.
+      operations:
+      - method: POST
+        name: createcredit
+        description: Create a Credit
+        call: shift4-credits.createcredit
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listcredits
+        description: List Credits
+        call: shift4-credits.listcredits
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/credits/{creditid}
+      name: credits-creditid
+      description: REST surface for credits-creditId.
+      operations:
+      - method: GET
+        name: getcredit
+        description: Retrieve a Credit
+        call: shift4-credits.getcredit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-credits-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Credits. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-credit
+      description: Create a Credit
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-credits.createcredit
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-credits
+      description: List Credits
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-credits.listcredits
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-credit
+      description: Retrieve a Credit
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-credits.getcredit
+      outputParameters:
+      - type: object
+        mapping: $.

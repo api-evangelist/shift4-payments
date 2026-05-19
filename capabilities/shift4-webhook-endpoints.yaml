@@ -1,0 +1,173 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Webhook Endpoints
+  description: 'Shift4 Payments API — Webhook Endpoints. 4 operations. Lead operation: Create a Webhook Endpoint. Self-contained
+    Naftiko capability covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Webhook Endpoints
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-webhook-endpoints
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Webhook Endpoints business capability. Self-contained, no shared references.
+    resources:
+    - name: webhook-endpoints
+      path: /webhook-endpoints
+      operations:
+      - name: createwebhookendpoint
+        method: POST
+        description: Create a Webhook Endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listwebhookendpoints
+        method: GET
+        description: List Webhook Endpoints
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: webhook-endpoints-endpointId
+      path: /webhook-endpoints/{endpointId}
+      operations:
+      - name: getwebhookendpoint
+        method: GET
+        description: Retrieve a Webhook Endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatewebhookendpoint
+        method: POST
+        description: Update a Webhook Endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-webhook-endpoints-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Webhook Endpoints. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/webhook-endpoints
+      name: webhook-endpoints
+      description: REST surface for webhook-endpoints.
+      operations:
+      - method: POST
+        name: createwebhookendpoint
+        description: Create a Webhook Endpoint
+        call: shift4-webhook-endpoints.createwebhookendpoint
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listwebhookendpoints
+        description: List Webhook Endpoints
+        call: shift4-webhook-endpoints.listwebhookendpoints
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhook-endpoints/{endpointid}
+      name: webhook-endpoints-endpointid
+      description: REST surface for webhook-endpoints-endpointId.
+      operations:
+      - method: GET
+        name: getwebhookendpoint
+        description: Retrieve a Webhook Endpoint
+        call: shift4-webhook-endpoints.getwebhookendpoint
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatewebhookendpoint
+        description: Update a Webhook Endpoint
+        call: shift4-webhook-endpoints.updatewebhookendpoint
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-webhook-endpoints-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Webhook Endpoints. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-webhook-endpoint
+      description: Create a Webhook Endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-webhook-endpoints.createwebhookendpoint
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-webhook-endpoints
+      description: List Webhook Endpoints
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-webhook-endpoints.listwebhookendpoints
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-webhook-endpoint
+      description: Retrieve a Webhook Endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-webhook-endpoints.getwebhookendpoint
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-webhook-endpoint
+      description: Update a Webhook Endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-webhook-endpoints.updatewebhookendpoint
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

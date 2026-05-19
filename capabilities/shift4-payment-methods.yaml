@@ -1,0 +1,138 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Shift4 Payments API — Payment Methods
+  description: 'Shift4 Payments API — Payment Methods. 3 operations. Lead operation: Create a Payment Method. Self-contained
+    Naftiko capability covering one Shift4 Payments business surface.'
+  tags:
+  - Shift4 Payments
+  - Payment Methods
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIFT4_PAYMENTS_API_KEY: SHIFT4_PAYMENTS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shift4-payment-methods
+    baseUri: https://api.shift4.com
+    description: Shift4 Payments API — Payment Methods business capability. Self-contained, no shared references.
+    resources:
+    - name: payment-methods
+      path: /payment-methods
+      operations:
+      - name: createpaymentmethod
+        method: POST
+        description: Create a Payment Method
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listpaymentmethods
+        method: GET
+        description: List Payment Methods
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: payment-methods-paymentMethodId
+      path: /payment-methods/{paymentMethodId}
+      operations:
+      - name: getpaymentmethod
+        method: GET
+        description: Retrieve a Payment Method
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.SHIFT4_PAYMENTS_USER}}'
+      password: '{{env.SHIFT4_PAYMENTS_PASS}}'
+  exposes:
+  - type: rest
+    namespace: shift4-payment-methods-rest
+    port: 8080
+    description: REST adapter for Shift4 Payments API — Payment Methods. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/payment-methods
+      name: payment-methods
+      description: REST surface for payment-methods.
+      operations:
+      - method: POST
+        name: createpaymentmethod
+        description: Create a Payment Method
+        call: shift4-payment-methods.createpaymentmethod
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listpaymentmethods
+        description: List Payment Methods
+        call: shift4-payment-methods.listpaymentmethods
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/payment-methods/{paymentmethodid}
+      name: payment-methods-paymentmethodid
+      description: REST surface for payment-methods-paymentMethodId.
+      operations:
+      - method: GET
+        name: getpaymentmethod
+        description: Retrieve a Payment Method
+        call: shift4-payment-methods.getpaymentmethod
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shift4-payment-methods-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Shift4 Payments API — Payment Methods. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: create-payment-method
+      description: Create a Payment Method
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shift4-payment-methods.createpaymentmethod
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-payment-methods
+      description: List Payment Methods
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-payment-methods.listpaymentmethods
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-payment-method
+      description: Retrieve a Payment Method
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shift4-payment-methods.getpaymentmethod
+      outputParameters:
+      - type: object
+        mapping: $.
