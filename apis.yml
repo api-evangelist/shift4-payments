@@ -2,7 +2,7 @@ aid: shift4-payments
 url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/refs/heads/main/apis.yml
 name: Shift4 Payments
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Payments
   - Fintech
@@ -34,7 +34,7 @@ apis:
       - Fraud
       - Webhooks
       - Events
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://dev.shift4.com/docs/api
     baseURL: https://api.shift4.com
     description: >-
@@ -111,7 +111,7 @@ apis:
     tags:
       - Checkout
       - Hosted Payments
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://dev.shift4.com/docs/checkout
     description: >-
       Shift4 Checkout provides a drop-in, frictionless checkout overlay that can be added to a website with copy-paste
@@ -125,7 +125,7 @@ apis:
       - JavaScript
       - SDK
       - Components
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://dev.shift4.com/docs/js
     description: >-
       The Shift4 JavaScript library provides secure, customizable HTML/CSS components for building on-page payment forms
