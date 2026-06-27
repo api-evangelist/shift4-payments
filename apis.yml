@@ -49,28 +49,28 @@ apis:
         url: https://dev.shift4.com/docs
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/openapi/shift4-api-openapi.yml
-      - type: SDK
+      - type: SDKs
         title: Java SDK
         url: https://github.com/shift4developer/shift4-java
-      - type: SDK
+      - type: SDKs
         title: Node.js SDK
         url: https://github.com/shift4developer/shift4-node
-      - type: SDK
+      - type: SDKs
         title: Python SDK
         url: https://github.com/shift4developer/shift4-python
-      - type: SDK
+      - type: SDKs
         title: Ruby SDK
         url: https://github.com/shift4developer/shift4-ruby
-      - type: SDK
+      - type: SDKs
         title: PHP SDK
         url: https://github.com/shift4developer/shift4-php
-      - type: SDK
+      - type: SDKs
         title: .NET SDK
         url: https://github.com/shift4developer/shift4-net
-      - type: SDK
+      - type: SDKs
         title: iOS SDK
         url: https://github.com/shift4developer/shift4-ios
-      - type: SDK
+      - type: SDKs
         title: Android SDK
         url: https://github.com/shift4developer/shift4-android
       - type: SpectralRules
@@ -133,7 +133,7 @@ apis:
     properties:
       - type: Documentation
         url: https://dev.shift4.com/docs/js
-      - type: SDK
+      - type: SDKs
         url: https://dev.shift4.com/docs/js
       - type: CodeExamples
         url: https://dev.shift4.com/examples
