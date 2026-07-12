@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.shift4.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 23 06:56:58 2026 GMT
+  hsts: null
+- host: dev.shift4.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 24 11:27:24 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.shift4.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 24 01:55:32 2026 GMT
+  hsts: null
+domains:
+- domain: shift4.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

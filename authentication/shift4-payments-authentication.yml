@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/shift4-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: Use your secret API key as the username with an empty password.
+  sources:
+  - openapi/shift4-api-openapi.yml

@@ -138,6 +138,10 @@ apis:
       - type: CodeExamples
         url: https://dev.shift4.com/examples
 common:
+  - type: DomainSecurity
+    url: security/shift4-payments-domain-security.yml
+  - type: Authentication
+    url: authentication/shift4-payments-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/shift4
   - type: Website
