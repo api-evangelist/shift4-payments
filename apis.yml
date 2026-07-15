@@ -138,6 +138,8 @@ apis:
       - type: CodeExamples
         url: https://dev.shift4.com/examples
 common:
+  - type: AgenticAccess
+    url: agentic-access/shift4-payments-agentic-access.yml
   - type: DomainSecurity
     url: security/shift4-payments-domain-security.yml
   - type: Authentication
