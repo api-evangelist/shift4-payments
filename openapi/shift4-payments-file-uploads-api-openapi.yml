@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist File Uploads API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: File Uploads
+  description: Upload files such as dispute evidence.
+paths:
+  /files:
+    post:
+      tags:
+      - File Uploads
+      summary: Upload a File
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                purpose:
+                  type: string
+                  enum:
+                  - dispute_evidence
+                  - identity_document
+      responses:
+        '200':
+          description: File uploaded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUpload'
+components:
+  schemas:
+    FileUpload:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        purpose:
+          type: string
+          enum:
+          - DISPUTE_EVIDENCE
+          - IDENTITY_DOCUMENT
+        size:
+          type: integer
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

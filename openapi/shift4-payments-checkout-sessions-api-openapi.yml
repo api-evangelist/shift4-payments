@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Checkout Sessions API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Checkout Sessions
+  description: Create hosted checkout sessions for drop-in payment acceptance.
+paths:
+  /checkout/sessions:
+    post:
+      tags:
+      - Checkout Sessions
+      summary: Create a Checkout Session
+      operationId: createCheckoutSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutSessionRequest'
+      responses:
+        '200':
+          description: Checkout session created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+  /checkout/sessions/{sessionId}:
+    parameters:
+    - name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Checkout Sessions
+      summary: Retrieve a Checkout Session
+      operationId: getCheckoutSession
+      responses:
+        '200':
+          description: A checkout session object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CheckoutSession'
+components:
+  schemas:
+    LineItem:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+        unitAmount:
+          type: integer
+        currency:
+          type: string
+    CheckoutSession:
+      type: object
+      properties:
+        id:
+          type: string
+        lastCharge:
+          type: string
+        paymentLink:
+          type: string
+        invoice:
+          type: string
+        customer:
+          type: string
+        clientSecret:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        locale:
+          type: string
+        collectBillingAddress:
+          type: boolean
+        collectShippingAddress:
+          type: boolean
+        capture:
+          type: boolean
+        captchaRequired:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - OPEN
+          - COMPLETED
+          - EXPIRED
+        allowSavedCards:
+          type: boolean
+        action:
+          type: string
+          enum:
+          - PAYMENT
+          - SETUP
+          - SUBSCRIPTION
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+        redirectUrl:
+          type: string
+          format: uri
+        vendorReference:
+          type: string
+    CheckoutSessionRequest:
+      type: object
+      properties:
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
+        currency:
+          type: string
+        locale:
+          type: string
+        collectBillingAddress:
+          type: boolean
+        collectShippingAddress:
+          type: boolean
+        allowSavedCards:
+          type: boolean
+        capture:
+          type: boolean
+          default: true
+        action:
+          type: string
+          enum:
+          - payment
+          - setup
+          - subscription
+        redirectUrl:
+          type: string
+          format: uri
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    LineItemRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+        unitAmount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

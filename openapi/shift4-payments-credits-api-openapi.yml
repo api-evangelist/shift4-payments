@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Credits API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Credits
+  description: Send funds (credits) to recipients.
+paths:
+  /credits:
+    post:
+      tags:
+      - Credits
+      summary: Create a Credit
+      operationId: createCredit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditRequest'
+      responses:
+        '200':
+          description: Credit created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+    get:
+      tags:
+      - Credits
+      summary: List Credits
+      operationId: listCredits
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of credits.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditList'
+  /credits/{creditId}:
+    parameters:
+    - name: creditId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Credits
+      summary: Retrieve a Credit
+      operationId: getCredit
+      responses:
+        '200':
+          description: A credit object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Credit'
+components:
+  schemas:
+    Credit:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        description:
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        customerId:
+          type: string
+        fast:
+          type: boolean
+        merchantAccountId:
+          type: string
+        disputed:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        failureCode:
+          type: string
+        failureIssuerDeclineCode:
+          type: string
+        failureMessage:
+          type: string
+    CreditList:
+      $ref: '#/components/schemas/ListResponseCredit'
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+          description: Unix timestamp.
+        deleted:
+          type: boolean
+        first6:
+          type: string
+        last4:
+          type: string
+        fingerprint:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cardholderName:
+          type: string
+        customerId:
+          type: string
+        brand:
+          type: string
+          description: Card brand.
+          enum:
+          - Visa
+          - MasterCard
+          - AmericanExpress
+          - Discover
+          - JCB
+          - DinersClub
+          - UnionPay
+          - Other
+        type:
+          type: string
+          enum:
+          - Credit
+          - Debit
+          - Prepaid
+          - Other
+        country:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+        issuer:
+          type: string
+        merchantAccountId:
+          type: string
+    CreditRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
+        description:
+          type: string
+        cardId:
+          type: string
+        customerId:
+          type: string
+        fast:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ListResponseCredit:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Credit'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

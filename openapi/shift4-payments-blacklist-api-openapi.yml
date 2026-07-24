@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Blacklist
+  description: Manage blacklist rules for fraud prevention.
+paths:
+  /blacklist:
+    post:
+      tags:
+      - Blacklist
+      summary: Create a Blacklist Rule
+      operationId: createBlacklistRule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlacklistRuleRequest'
+      responses:
+        '200':
+          description: Blacklist rule created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRule'
+    get:
+      tags:
+      - Blacklist
+      summary: List Blacklist Rules
+      operationId: listBlacklistRules
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of blacklist rules.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRuleList'
+  /blacklist/{ruleId}:
+    parameters:
+    - name: ruleId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Blacklist
+      summary: Retrieve a Blacklist Rule
+      operationId: getBlacklistRule
+      responses:
+        '200':
+          description: A blacklist rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRule'
+    post:
+      tags:
+      - Blacklist
+      summary: Update a Blacklist Rule
+      operationId: updateBlacklistRule
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlacklistRuleRequest'
+      responses:
+        '200':
+          description: Updated rule.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlacklistRule'
+    delete:
+      tags:
+      - Blacklist
+      summary: Delete a Blacklist Rule
+      operationId: deleteBlacklistRule
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteResponse'
+components:
+  schemas:
+    ListResponseBlacklistRule:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlacklistRule'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    DeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deleted:
+          type: boolean
+    BlacklistRuleList:
+      $ref: '#/components/schemas/ListResponseBlacklistRule'
+    BlacklistRuleRequest:
+      type: object
+      required:
+      - ruleType
+      properties:
+        ruleType:
+          type: string
+          enum:
+          - fingerprint
+          - ip_address
+          - ip_country
+          - email
+          - user_agent
+          - accept_language
+          - metadata
+          - card_bin
+          - card_country
+          - card_issuer
+        fingerprint:
+          type: string
+        ipAddress:
+          type: string
+        ipCountry:
+          type: string
+        metadataKey:
+          type: string
+        metadataValue:
+          type: string
+        email:
+          type: string
+        userAgent:
+          type: string
+        acceptLanguage:
+          type: string
+        cardCountry:
+          type: string
+        cardBin:
+          type: string
+        cardIssuer:
+          type: string
+    BlacklistRule:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        deleted:
+          type: boolean
+        ruleType:
+          type: string
+          enum:
+          - FINGERPRINT
+          - IP_ADDRESS
+          - IP_COUNTRY
+          - EMAIL
+          - USER_AGENT
+          - ACCEPT_LANGUAGE
+          - METADATA
+          - CARD_BIN
+          - CARD_COUNTRY
+          - CARD_ISSUER
+        fingerprint:
+          type: string
+        ipAddress:
+          type: string
+        ipCountry:
+          type: string
+        metadataKey:
+          type: string
+        metadataValue:
+          type: string
+        email:
+          type: string
+          format: email
+        userAgent:
+          type: string
+        acceptLanguage:
+          type: string
+        cardCountry:
+          type: string
+        cardBin:
+          type: string
+        cardIssuer:
+          type: string
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

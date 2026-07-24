@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Events API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Events
+  description: Retrieve event records that drive webhooks.
+paths:
+  /events:
+    get:
+      tags:
+      - Events
+      summary: List Events
+      operationId: listEvents
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of events.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventList'
+  /events/{eventId}:
+    parameters:
+    - name: eventId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Events
+      summary: Retrieve an Event
+      operationId: getEvent
+      responses:
+        '200':
+          description: An event object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  schemas:
+    ListResponseEvent:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    EventList:
+      $ref: '#/components/schemas/ListResponseEvent'
+    Event:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        type:
+          type: string
+          description: Event type, e.g., charge.succeeded, customer.created.
+        data:
+          description: Event payload (shape varies by event type).
+        log:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

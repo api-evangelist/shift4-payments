@@ -1,0 +1,196 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Plans API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Plans
+  description: Define recurring billing plans used by subscriptions.
+paths:
+  /plans:
+    post:
+      tags:
+      - Plans
+      summary: Create a Plan
+      operationId: createPlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanRequest'
+      responses:
+        '200':
+          description: Plan created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+    get:
+      tags:
+      - Plans
+      summary: List Plans
+      operationId: listPlans
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of plans.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanList'
+  /plans/{planId}:
+    parameters:
+    - name: planId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Plans
+      summary: Retrieve a Plan
+      operationId: getPlan
+      responses:
+        '200':
+          description: A plan object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+    post:
+      tags:
+      - Plans
+      summary: Update a Plan
+      operationId: updatePlan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanRequest'
+      responses:
+        '200':
+          description: Updated plan.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plan'
+components:
+  schemas:
+    PlanList:
+      $ref: '#/components/schemas/ListResponsePlan'
+    Plan:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        deleted:
+          type: boolean
+        amount:
+          type: integer
+        currency:
+          type: string
+        interval:
+          type: string
+          enum:
+          - DAY
+          - WEEK
+          - MONTH
+          - YEAR
+        intervalCount:
+          type: integer
+        billingCycles:
+          type: integer
+        name:
+          type: string
+        trialPeriodDays:
+          type: integer
+        recursTo:
+          type: string
+        statementDescription:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    PlanRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      - interval
+      - name
+      properties:
+        amount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
+        interval:
+          type: string
+          enum:
+          - day
+          - week
+          - month
+          - year
+        intervalCount:
+          type: integer
+          minimum: 1
+          default: 1
+        billingCycles:
+          type: integer
+        name:
+          type: string
+        trialPeriodDays:
+          type: integer
+        recursTo:
+          type: string
+        statementDescription:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ListResponsePlan:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plan'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

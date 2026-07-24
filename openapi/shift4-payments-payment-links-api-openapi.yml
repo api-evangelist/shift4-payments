@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Payment Links API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Payment Links
+  description: Create and retrieve hosted payment links.
+paths:
+  /payment-links:
+    post:
+      tags:
+      - Payment Links
+      summary: Create a Payment Link
+      operationId: createPaymentLink
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  minimum: 1
+                currency:
+                  type: string
+                description:
+                  type: string
+                metadata:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Payment link created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  amount:
+                    type: integer
+                  currency:
+                    type: string
+                  created:
+                    type: integer
+                    format: int64
+  /payment-links/{linkId}:
+    parameters:
+    - name: linkId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Payment Links
+      summary: Retrieve a Payment Link
+      operationId: getPaymentLink
+      responses:
+        '200':
+          description: A payment link object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  url:
+                    type: string
+                    format: uri
+                  amount:
+                    type: integer
+                  currency:
+                    type: string
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Payouts API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Payouts
+  description: Retrieve scheduled and historical payouts to bank accounts.
+paths:
+  /payouts:
+    get:
+      tags:
+      - Payouts
+      summary: List Payouts
+      operationId: listPayouts
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of payouts.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayoutList'
+  /payouts/{payoutId}:
+    parameters:
+    - name: payoutId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Payouts
+      summary: Retrieve a Payout
+      operationId: getPayout
+      responses:
+        '200':
+          description: A payout object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payout'
+components:
+  schemas:
+    ListResponsePayout:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payout'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    Payout:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        destination:
+          type: string
+    PayoutList:
+      $ref: '#/components/schemas/ListResponsePayout'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

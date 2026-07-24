@@ -1,0 +1,176 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Refunds API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Refunds
+  description: Refund charges and manage refund records.
+paths:
+  /refunds:
+    post:
+      tags:
+      - Refunds
+      summary: Refund a Charge
+      operationId: createRefund
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundRequest'
+      responses:
+        '200':
+          description: Refund created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+    get:
+      tags:
+      - Refunds
+      summary: List Refunds
+      operationId: listRefunds
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of refunds.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundList'
+  /refunds/{refundId}:
+    parameters:
+    - name: refundId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Refunds
+      summary: Retrieve a Refund
+      operationId: getRefund
+      responses:
+        '200':
+          description: A refund object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+    post:
+      tags:
+      - Refunds
+      summary: Update a Refund
+      operationId: updateRefund
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Updated refund.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+components:
+  schemas:
+    RefundList:
+      $ref: '#/components/schemas/ListResponseRefund'
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        charge:
+          type: string
+        reason:
+          type: string
+          enum:
+          - FRAUDULENT
+          - DUPLICATE
+          - REQUESTED_BY_CUSTOMER
+        status:
+          type: string
+          enum:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ListResponseRefund:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    RefundRequest:
+      type: object
+      required:
+      - chargeId
+      properties:
+        chargeId:
+          type: string
+        amount:
+          type: integer
+          minimum: 1
+        reason:
+          type: string
+          enum:
+          - fraudulent
+          - duplicate
+          - requested_by_customer
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

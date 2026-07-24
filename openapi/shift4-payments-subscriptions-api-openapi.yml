@@ -1,0 +1,213 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Subscriptions API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Subscriptions
+  description: Create and manage recurring subscriptions for customers.
+paths:
+  /subscriptions:
+    post:
+      tags:
+      - Subscriptions
+      summary: Create a Subscription
+      operationId: createSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '200':
+          description: Subscription created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+  /subscriptions/{subscriptionId}:
+    parameters:
+    - name: subscriptionId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Subscriptions
+      summary: Retrieve a Subscription
+      operationId: getSubscription
+      responses:
+        '200':
+          description: A subscription object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+    post:
+      tags:
+      - Subscriptions
+      summary: Update a Subscription
+      operationId: updateSubscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+      responses:
+        '200':
+          description: Updated subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+components:
+  schemas:
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        deleted:
+          type: boolean
+        planId:
+          type: string
+        customerId:
+          type: string
+        quantity:
+          type: integer
+        captureCharges:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - PAST_DUE
+          - CANCELED
+          - UNPAID
+        remainingBillingCycles:
+          type: integer
+        start:
+          type: integer
+          format: int64
+        currentPeriodStart:
+          type: integer
+          format: int64
+        currentPeriodEnd:
+          type: integer
+          format: int64
+        canceledAt:
+          type: integer
+          format: int64
+        endedAt:
+          type: integer
+          format: int64
+        trialStart:
+          type: integer
+          format: int64
+        trialEnd:
+          type: integer
+          format: int64
+        cancelAtPeriodEnd:
+          type: boolean
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        merchantAccountId:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    SubscriptionRequest:
+      type: object
+      properties:
+        planId:
+          type: string
+        customerId:
+          type: string
+        cardId:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+          default: 1
+        captureCharges:
+          type: boolean
+          default: true
+        trialEnd:
+          type: integer
+          format: int64
+        cancelAtPeriodEnd:
+          type: boolean
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    Billing:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    Shipping:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

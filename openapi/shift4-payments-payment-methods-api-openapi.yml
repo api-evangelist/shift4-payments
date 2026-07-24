@@ -1,0 +1,249 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Payment Methods API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Payment Methods
+  description: Create and retrieve alternative payment methods (Apple Pay, Google Pay, 3D Secure, etc.).
+paths:
+  /payment-methods:
+    post:
+      tags:
+      - Payment Methods
+      summary: Create a Payment Method
+      operationId: createPaymentMethod
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentMethodRequest'
+      responses:
+        '200':
+          description: Payment method created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethod'
+    get:
+      tags:
+      - Payment Methods
+      summary: List Payment Methods
+      operationId: listPaymentMethods
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of payment methods.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethodList'
+  /payment-methods/{paymentMethodId}:
+    parameters:
+    - name: paymentMethodId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Payment Methods
+      summary: Retrieve a Payment Method
+      operationId: getPaymentMethod
+      responses:
+        '200':
+          description: A payment method object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethod'
+components:
+  schemas:
+    ListResponsePaymentMethod:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    Billing:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
+    PaymentMethodList:
+      $ref: '#/components/schemas/ListResponsePaymentMethod'
+    PaymentMethodRequest:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          enum:
+          - card
+          - apple_pay
+          - google_pay
+          - three_d_secure
+          - ideal
+          - p24
+          - eps
+          - bancontact
+          - giropay
+          - multibanco
+          - sofort
+          - blik
+          - blik_redirect
+        customerId:
+          type: string
+        billing:
+          $ref: '#/components/schemas/Billing'
+        threeDSecure:
+          type: object
+          properties:
+            amount:
+              type: integer
+            currency:
+              type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    PaymentMethod:
+      type: object
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        clientObjectId:
+          type: string
+        created:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+          - CARD
+          - APPLE_PAY
+          - GOOGLE_PAY
+          - THREE_D_SECURE
+          - IDEAL
+          - P24
+          - EPS
+          - BANCONTACT
+          - GIROPAY
+          - MULTIBANCO
+          - SOFORT
+          - BLIK
+          - BLIK_REDIRECT
+          - OTHER
+        status:
+          type: string
+          enum:
+          - REQUIRES_ACTION
+          - CHARGEABLE
+          - USED
+          - DELETED
+          - FAILED
+        deleted:
+          type: boolean
+        billing:
+          $ref: '#/components/schemas/Billing'
+        applePay:
+          type: object
+          properties:
+            cardBrand:
+              type: string
+            cardType:
+              type: string
+            first6:
+              type: string
+            last4:
+              type: string
+            amount:
+              type: integer
+            currency:
+              type: string
+            merchantTokenIdentifier:
+              type: string
+        googlePay:
+          type: object
+          properties:
+            cardBrand:
+              type: string
+            cardType:
+              type: string
+            first6:
+              type: string
+            last4:
+              type: string
+        threeDSecure:
+          type: object
+          properties:
+            currency:
+              type: string
+            amount:
+              type: integer
+        merchantAccountId:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.

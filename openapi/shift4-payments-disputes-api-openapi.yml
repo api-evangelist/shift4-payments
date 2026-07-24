@@ -1,0 +1,416 @@
+openapi: 3.0.3
+info:
+  title: Shift4 Payments Blacklist Disputes API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  version: '1.0'
+  contact:
+    name: Shift4 Developer Support
+    email: devsupport@shift4.com
+    url: https://dev.shift4.com
+  license:
+    name: Documentation
+    url: https://dev.shift4.com/docs
+servers:
+- url: https://api.shift4.com
+  description: Production
+security:
+- BasicAuth: []
+tags:
+- name: Disputes
+  description: Retrieve and respond to chargeback disputes.
+paths:
+  /disputes:
+    get:
+      tags:
+      - Disputes
+      summary: List Disputes
+      operationId: listDisputes
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      responses:
+        '200':
+          description: A list of disputes.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisputeList'
+  /disputes/{disputeId}:
+    parameters:
+    - name: disputeId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Disputes
+      summary: Retrieve a Dispute
+      operationId: getDispute
+      responses:
+        '200':
+          description: A dispute object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dispute'
+components:
+  schemas:
+    DisputeList:
+      $ref: '#/components/schemas/ListResponseDispute'
+    Billing:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        charge:
+          type: string
+        reason:
+          type: string
+          enum:
+          - FRAUDULENT
+          - DUPLICATE
+          - REQUESTED_BY_CUSTOMER
+        status:
+          type: string
+          enum:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    Dispute:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        status:
+          type: string
+          enum:
+          - WARNING_NEEDS_RESPONSE
+          - WARNING_UNDER_REVIEW
+          - WARNING_CLOSED
+          - NEEDS_RESPONSE
+          - UNDER_REVIEW
+          - CHARGE_REFUNDED
+          - WON
+          - LOST
+          - ACCEPTED
+        reason:
+          type: string
+          enum:
+          - GENERAL
+          - FRAUDULENT
+          - DUPLICATE
+          - SUBSCRIPTION_CANCELED
+          - PRODUCT_UNACCEPTABLE
+          - PRODUCT_NOT_RECEIVED
+          - UNRECOGNIZED
+          - CREDIT_NOT_PROCESSED
+          - INCORRECT_ACCOUNT_DETAILS
+          - INSUFFICIENT_FUNDS
+          - BANK_CANNOT_PROCESS
+          - DEBIT_NOT_AUTHORIZED
+          - GOODS_SERVICES_RETURNED_OR_REFUSED
+          - GOODS_SERVICES_CANCELED
+          - TRANSACTION_AMOUNT_DIFFERS
+          - OTHER
+        acceptedAsLost:
+          type: boolean
+        charge:
+          $ref: '#/components/schemas/Charge'
+    PaymentMethod:
+      type: object
+      properties:
+        id:
+          type: string
+        customerId:
+          type: string
+        clientObjectId:
+          type: string
+        created:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+          - CARD
+          - APPLE_PAY
+          - GOOGLE_PAY
+          - THREE_D_SECURE
+          - IDEAL
+          - P24
+          - EPS
+          - BANCONTACT
+          - GIROPAY
+          - MULTIBANCO
+          - SOFORT
+          - BLIK
+          - BLIK_REDIRECT
+          - OTHER
+        status:
+          type: string
+          enum:
+          - REQUIRES_ACTION
+          - CHARGEABLE
+          - USED
+          - DELETED
+          - FAILED
+        deleted:
+          type: boolean
+        billing:
+          $ref: '#/components/schemas/Billing'
+        applePay:
+          type: object
+          properties:
+            cardBrand:
+              type: string
+            cardType:
+              type: string
+            first6:
+              type: string
+            last4:
+              type: string
+            amount:
+              type: integer
+            currency:
+              type: string
+            merchantTokenIdentifier:
+              type: string
+        googlePay:
+          type: object
+          properties:
+            cardBrand:
+              type: string
+            cardType:
+              type: string
+            first6:
+              type: string
+            last4:
+              type: string
+        threeDSecure:
+          type: object
+          properties:
+            currency:
+              type: string
+            amount:
+              type: integer
+        merchantAccountId:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ListResponseDispute:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dispute'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+          description: Unix timestamp.
+        deleted:
+          type: boolean
+        first6:
+          type: string
+        last4:
+          type: string
+        fingerprint:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cardholderName:
+          type: string
+        customerId:
+          type: string
+        brand:
+          type: string
+          description: Card brand.
+          enum:
+          - Visa
+          - MasterCard
+          - AmericanExpress
+          - Discover
+          - JCB
+          - DinersClub
+          - UnionPay
+          - Other
+        type:
+          type: string
+          enum:
+          - Credit
+          - Debit
+          - Prepaid
+          - Other
+        country:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+        issuer:
+          type: string
+        merchantAccountId:
+          type: string
+    Shipping:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    Charge:
+      type: object
+      properties:
+        id:
+          type: string
+        clientObjectId:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+          description: Smallest currency unit (e.g., cents).
+        amountRefunded:
+          type: integer
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        type:
+          type: string
+          enum:
+          - FIRST_RECURRING
+          - SUBSEQUENT_RECURRING
+          - CARDHOLDER_INITIATED
+          - MERCHANT_INITIATED
+        card:
+          $ref: '#/components/schemas/Card'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        customerId:
+          type: string
+        subscriptionId:
+          type: string
+        captured:
+          type: boolean
+        refunded:
+          type: boolean
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        disputed:
+          type: boolean
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        merchantAccountId:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        failureCode:
+          type: string
+        failureIssuerDeclineCode:
+          type: string
+        failureMessage:
+          type: string
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use your secret API key as the username with an empty password.
