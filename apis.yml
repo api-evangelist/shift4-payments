@@ -2,7 +2,20 @@ aid: shift4-payments
 url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/refs/heads/main/apis.yml
 name: Shift4 Payments
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/shift4-payments.png
 tags:
   - Payments
   - Fintech
@@ -18,125 +31,1208 @@ created: '2026-05-04'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: shift4-payments:shift4-api
-    name: Shift4 Payments API
-    tags:
-      - Payments
-      - Charges
-      - Refunds
-      - Customers
-      - Cards
-      - Tokens
-      - Subscriptions
-      - Plans
-      - Checkout
-      - Disputes
-      - Fraud
-      - Webhooks
-      - Events
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://dev.shift4.com/docs/api
-    baseURL: https://api.shift4.com
-    description: >-
-      The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges,
-      subscriptions, refunds, and regional payment methods, with support for fraud tools and 3D Secure.
-    properties:
-      - type: Documentation
-        url: https://dev.shift4.com/docs
-      - type: APIReference
-        url: https://dev.shift4.com/docs/api
-      - type: Sandbox
-        url: https://dev.shift4.com/docs
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/openapi/shift4-api-openapi.yml
-      - type: SDKs
-        title: Java SDK
-        url: https://github.com/shift4developer/shift4-java
-      - type: SDKs
-        title: Node.js SDK
-        url: https://github.com/shift4developer/shift4-node
-      - type: SDKs
-        title: Python SDK
-        url: https://github.com/shift4developer/shift4-python
-      - type: SDKs
-        title: Ruby SDK
-        url: https://github.com/shift4developer/shift4-ruby
-      - type: SDKs
-        title: PHP SDK
-        url: https://github.com/shift4developer/shift4-php
-      - type: SDKs
-        title: .NET SDK
-        url: https://github.com/shift4developer/shift4-net
-      - type: SDKs
-        title: iOS SDK
-        url: https://github.com/shift4developer/shift4-ios
-      - type: SDKs
-        title: Android SDK
-        url: https://github.com/shift4developer/shift4-android
-      - type: SpectralRules
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
-      - type: JSONSchema
-        title: Charge
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
-      - type: JSONSchema
-        title: Customer
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
-      - type: JSONSchema
-        title: Card
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
-      - type: JSONSchema
-        title: Token
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
-      - type: JSONSchema
-        title: Subscription
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
-      - type: JSONSchema
-        title: Plan
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
-      - type: JSONSchema
-        title: Refund
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
-      - type: JSONSchema
-        title: Event
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
-      - type: JSONSchema
-        title: CheckoutSession
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
-      - type: JSONLD
-        url: https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
-  - aid: shift4-payments:shift4-checkout
-    name: Shift4 Checkout
-    tags:
-      - Checkout
-      - Hosted Payments
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://dev.shift4.com/docs/checkout
-    description: >-
-      Shift4 Checkout provides a drop-in, frictionless checkout overlay that can be added to a website with copy-paste
-      integration for fast and secure payment acceptance.
-    properties:
-      - type: Documentation
-        url: https://dev.shift4.com/docs/checkout
-  - aid: shift4-payments:shift4-js
-    name: Shift4 JavaScript Library
-    tags:
-      - JavaScript
-      - SDK
-      - Components
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://dev.shift4.com/docs/js
-    description: >-
-      The Shift4 JavaScript library provides secure, customizable HTML/CSS components for building on-page payment forms
-      and multi-step checkout pages.
-    properties:
-      - type: Documentation
-        url: https://dev.shift4.com/docs/js
-      - type: SDKs
-        url: https://dev.shift4.com/docs/js
-      - type: CodeExamples
-        url: https://dev.shift4.com/examples
+- aid: shift4-payments:shift4-checkout
+  name: Shift4 Checkout
+  tags:
+  - Checkout
+  - Hosted Payments
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.shift4.com/docs/checkout
+  description: >-
+    Shift4 Checkout provides a drop-in, frictionless checkout overlay that can be added to a website with
+    copy-paste integration for fast and secure payment acceptance.
+  properties:
+  - type: Documentation
+    url: https://dev.shift4.com/docs/checkout
+- aid: shift4-payments:shift4-js
+  name: Shift4 JavaScript Library
+  tags:
+  - JavaScript
+  - SDK
+  - Components
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://dev.shift4.com/docs/js
+  description: >-
+    The Shift4 JavaScript library provides secure, customizable HTML/CSS components for building on-page
+    payment forms and multi-step checkout pages.
+  properties:
+  - type: Documentation
+    url: https://dev.shift4.com/docs/js
+  - type: SDKs
+    url: https://dev.shift4.com/docs/js
+  - type: CodeExamples
+    url: https://dev.shift4.com/examples
+- aid: shift4-payments:shift4-payments-blacklist-api
+  name: Shift4 Payments Blacklist API
+  description: Manage blacklist rules for fraud prevention.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Blacklist
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-blacklist-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-cards-api
+  name: Shift4 Payments Cards API
+  description: Manage saved cards on customer records.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-cards-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-charges-api
+  name: Shift4 Payments Charges API
+  description: Create, retrieve, update, capture, and list charges.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-charges-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-checkout-sessions-api
+  name: Shift4 Payments Checkout Sessions API
+  description: Create hosted checkout sessions for drop-in payment acceptance.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Checkout Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-checkout-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-credits-api
+  name: Shift4 Payments Credits API
+  description: Send funds (credits) to recipients.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-credits-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-customers-api
+  name: Shift4 Payments Customers API
+  description: Create, retrieve, update, delete, and list customers.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-customers-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-disputes-api
+  name: Shift4 Payments Disputes API
+  description: Retrieve and respond to chargeback disputes.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Disputes
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-disputes-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-events-api
+  name: Shift4 Payments Events API
+  description: Retrieve event records that drive webhooks.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-events-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-file-uploads-api
+  name: Shift4 Payments File Uploads API
+  description: Upload files such as dispute evidence.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - File Uploads
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-file-uploads-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-fraud-warnings-api
+  name: Shift4 Payments Fraud Warnings API
+  description: Retrieve early-warning fraud notifications.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Fraud Warnings
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-fraud-warnings-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-payment-links-api
+  name: Shift4 Payments Payment Links API
+  description: Create and retrieve hosted payment links.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Payment Links
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-payment-links-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-payment-methods-api
+  name: Shift4 Payments Payment Methods API
+  description: >-
+    Create and retrieve alternative payment methods (Apple Pay, Google Pay, 3D Secure, etc.).
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Payment Methods
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-payment-methods-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-payouts-api
+  name: Shift4 Payments Payouts API
+  description: Retrieve scheduled and historical payouts to bank accounts.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Payouts
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-payouts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-plans-api
+  name: Shift4 Payments Plans API
+  description: Define recurring billing plans used by subscriptions.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-plans-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-refunds-api
+  name: Shift4 Payments Refunds API
+  description: Refund charges and manage refund records.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-subscriptions-api
+  name: Shift4 Payments Subscriptions API
+  description: Create and manage recurring subscriptions for customers.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-tokens-api
+  name: Shift4 Payments Tokens API
+  description: Tokenize card data for safe transmission.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
+- aid: shift4-payments:shift4-payments-webhook-endpoints-api
+  name: Shift4 Payments Webhook Endpoints API
+  description: Register and manage webhook endpoints.
+  humanURL: https://dev.shift4.com/docs/api
+  baseURL: https://api.shift4.com
+  tags:
+  - Webhook Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/shift4-payments-webhook-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://dev.shift4.com/docs
+  - type: APIReference
+    url: https://dev.shift4.com/docs/api
+  - type: Sandbox
+    url: https://dev.shift4.com/docs
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-java
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-node
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-python
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ruby
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-php
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-net
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-ios
+  - type: SDKs
+    url: https://github.com/shift4developer/shift4-android
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/shift4-payments-agentic-access.yml
