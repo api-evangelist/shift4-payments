@@ -29,7 +29,7 @@ description: >-
   webhooks, and a sandbox testing environment.
 created: '2026-05-04'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: shift4-payments:shift4-checkout
   name: Shift4 Checkout
