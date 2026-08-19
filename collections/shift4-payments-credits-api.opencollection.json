@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shift4 Payments Blacklist Credits API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Credits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shift4.com/credits",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "A limit on the number of objects to be returned."
+              }
+            ]
+          },
+          "docs": "List Credits"
+        },
+        {
+          "info": {
+            "name": "Create a Credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.shift4.com/credits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Credit"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shift4.com/credits/:creditId",
+            "params": [
+              {
+                "name": "creditId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a Credit"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

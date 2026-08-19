@@ -1,0 +1,622 @@
+{
+  "item": [
+    {
+      "id": "fd681ba0-ce44-44ec-96ff-4a48a836c4ce",
+      "name": "Charges",
+      "description": {
+        "content": "Create, retrieve, update, capture, and list charges.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "521775cb-2c61-4a72-8257-9c3aa4cda7a1",
+          "name": "Create a Charge",
+          "request": {
+            "name": "Create a Charge",
+            "description": {},
+            "url": {
+              "path": [
+                "charges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"captured\": true,\n  \"customerId\": \"<string>\",\n  \"cardId\": \"<string>\",\n  \"card\": {\n    \"cardholderName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"cvc\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"shipping\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d558b19-15f6-4047-be67-2526f2db5c47",
+              "name": "Charge created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"captured\": true,\n  \"customerId\": \"<string>\",\n  \"cardId\": \"<string>\",\n  \"card\": {\n    \"cardholderName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"cvc\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"shipping\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"clientObjectId\": \"string\",\n  \"created\": 5611,\n  \"amount\": 9869,\n  \"amountRefunded\": 6571,\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"PENDING\",\n  \"type\": \"FIRST_RECURRING\",\n  \"card\": {\n    \"id\": \"string\",\n    \"created\": 5560,\n    \"deleted\": false,\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"fingerprint\": \"string\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"cardholderName\": \"string\",\n    \"customerId\": \"string\",\n    \"brand\": \"DinersClub\",\n    \"type\": \"Credit\",\n    \"country\": \"string\",\n    \"addressLine1\": \"string\",\n    \"addressLine2\": \"string\",\n    \"addressCity\": \"string\",\n    \"addressState\": \"string\",\n    \"addressZip\": \"string\",\n    \"addressCountry\": \"string\",\n    \"issuer\": \"string\",\n    \"merchantAccountId\": \"string\"\n  },\n  \"paymentMethod\": {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"clientObjectId\": \"string\",\n    \"created\": 9766,\n    \"type\": \"SOFORT\",\n    \"status\": \"REQUIRES_ACTION\",\n    \"deleted\": true,\n    \"billing\": {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"vatNumber\": \"<string>\"\n    },\n    \"applePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"amount\": 9745,\n      \"currency\": \"string\",\n      \"merchantTokenIdentifier\": \"string\"\n    },\n    \"googlePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\"\n    },\n    \"threeDSecure\": {\n      \"currency\": \"string\",\n      \"amount\": 9855\n    },\n    \"merchantAccountId\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    }\n  },\n  \"customerId\": \"string\",\n  \"subscriptionId\": \"string\",\n  \"captured\": true,\n  \"refunded\": false,\n  \"refunds\": [\n    {\n      \"id\": \"string\",\n      \"created\": 4309,\n      \"amount\": 9082,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"FRAUDULENT\",\n      \"status\": \"FAILED\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 7635,\n      \"amount\": 8607,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"FRAUDULENT\",\n      \"status\": \"FAILED\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    }\n  ],\n  \"disputed\": true,\n  \"shipping\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"merchantAccountId\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"failureCode\": \"string\",\n  \"failureIssuerDeclineCode\": \"string\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92f3b098-278e-4433-b950-f10b11e0a030",
+              "name": "An error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"captured\": true,\n  \"customerId\": \"<string>\",\n  \"cardId\": \"<string>\",\n  \"card\": {\n    \"cardholderName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"cvc\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"shipping\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"card_error\",\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"chargeId\": \"string\",\n    \"creditId\": \"string\",\n    \"issuerDeclineCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed62f178-839b-4ca4-8bf3-19ce04bff0a5",
+          "name": "List Charges",
+          "request": {
+            "name": "List Charges",
+            "description": {},
+            "url": {
+              "path": [
+                "charges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "A limit on the number of objects to be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "A cursor for use in pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "endingBefore",
+                  "value": "<string>",
+                  "description": "A cursor for use in pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed02ec70-868a-47cd-8461-0f52ea051fb0",
+              "name": "A list of charges.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "endingBefore",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"clientObjectId\": \"string\",\n      \"created\": 1811,\n      \"amount\": 7350,\n      \"amountRefunded\": 7659,\n      \"currency\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"SUCCESSFUL\",\n      \"type\": \"SUBSEQUENT_RECURRING\",\n      \"card\": {\n        \"id\": \"string\",\n        \"created\": 4641,\n        \"deleted\": false,\n        \"first6\": \"string\",\n        \"last4\": \"string\",\n        \"fingerprint\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\",\n        \"cardholderName\": \"string\",\n        \"customerId\": \"string\",\n        \"brand\": \"Other\",\n        \"type\": \"Debit\",\n        \"country\": \"string\",\n        \"addressLine1\": \"string\",\n        \"addressLine2\": \"string\",\n        \"addressCity\": \"string\",\n        \"addressState\": \"string\",\n        \"addressZip\": \"string\",\n        \"addressCountry\": \"string\",\n        \"issuer\": \"string\",\n        \"merchantAccountId\": \"string\"\n      },\n      \"paymentMethod\": {\n        \"id\": \"string\",\n        \"customerId\": \"string\",\n        \"clientObjectId\": \"string\",\n        \"created\": 2531,\n        \"type\": \"MULTIBANCO\",\n        \"status\": \"REQUIRES_ACTION\",\n        \"deleted\": false,\n        \"billing\": {\n          \"name\": \"<string>\",\n          \"email\": \"<email>\",\n          \"address\": {\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"vatNumber\": \"<string>\"\n        },\n        \"applePay\": {\n          \"cardBrand\": \"string\",\n          \"cardType\": \"string\",\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"amount\": 555,\n          \"currency\": \"string\",\n          \"merchantTokenIdentifier\": \"string\"\n        },\n        \"googlePay\": {\n          \"cardBrand\": \"string\",\n          \"cardType\": \"string\",\n          \"first6\": \"string\",\n          \"last4\": \"string\"\n        },\n        \"threeDSecure\": {\n          \"currency\": \"string\",\n          \"amount\": 1731\n        },\n        \"merchantAccountId\": \"string\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      \"customerId\": \"string\",\n      \"subscriptionId\": \"string\",\n      \"captured\": true,\n      \"refunded\": true,\n      \"refunds\": [\n        {\n          \"id\": \"string\",\n          \"created\": 5418,\n          \"amount\": 5717,\n          \"currency\": \"string\",\n          \"charge\": \"string\",\n          \"reason\": \"REQUESTED_BY_CUSTOMER\",\n          \"status\": \"SUCCESSFUL\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"created\": 1833,\n          \"amount\": 135,\n          \"currency\": \"string\",\n          \"charge\": \"string\",\n          \"reason\": \"FRAUDULENT\",\n          \"status\": \"SUCCESSFUL\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      ],\n      \"disputed\": true,\n      \"shipping\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"billing\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"vatNumber\": \"<string>\"\n      },\n      \"merchantAccountId\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"failureCode\": \"string\",\n      \"failureIssuerDeclineCode\": \"string\",\n      \"failureMessage\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"clientObjectId\": \"string\",\n      \"created\": 3857,\n      \"amount\": 6092,\n      \"amountRefunded\": 7990,\n      \"currency\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"PENDING\",\n      \"type\": \"SUBSEQUENT_RECURRING\",\n      \"card\": {\n        \"id\": \"string\",\n        \"created\": 1422,\n        \"deleted\": false,\n        \"first6\": \"string\",\n        \"last4\": \"string\",\n        \"fingerprint\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\",\n        \"cardholderName\": \"string\",\n        \"customerId\": \"string\",\n        \"brand\": \"AmericanExpress\",\n        \"type\": \"Other\",\n        \"country\": \"string\",\n        \"addressLine1\": \"string\",\n        \"addressLine2\": \"string\",\n        \"addressCity\": \"string\",\n        \"addressState\": \"string\",\n        \"addressZip\": \"string\",\n        \"addressCountry\": \"string\",\n        \"issuer\": \"string\",\n        \"merchantAccountId\": \"string\"\n      },\n      \"paymentMethod\": {\n        \"id\": \"string\",\n        \"customerId\": \"string\",\n        \"clientObjectId\": \"string\",\n        \"created\": 7619,\n        \"type\": \"MULTIBANCO\",\n        \"status\": \"CHARGEABLE\",\n        \"deleted\": true,\n        \"billing\": {\n          \"name\": \"<string>\",\n          \"email\": \"<email>\",\n          \"address\": {\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"vatNumber\": \"<string>\"\n        },\n        \"applePay\": {\n          \"cardBrand\": \"string\",\n          \"cardType\": \"string\",\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"amount\": 5394,\n          \"currency\": \"string\",\n          \"merchantTokenIdentifier\": \"string\"\n        },\n        \"googlePay\": {\n          \"cardBrand\": \"string\",\n          \"cardType\": \"string\",\n          \"first6\": \"string\",\n          \"last4\": \"string\"\n        },\n        \"threeDSecure\": {\n          \"currency\": \"string\",\n          \"amount\": 2733\n        },\n        \"merchantAccountId\": \"string\",\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      \"customerId\": \"string\",\n      \"subscriptionId\": \"string\",\n      \"captured\": false,\n      \"refunded\": false,\n      \"refunds\": [\n        {\n          \"id\": \"string\",\n          \"created\": 2275,\n          \"amount\": 2640,\n          \"currency\": \"string\",\n          \"charge\": \"string\",\n          \"reason\": \"REQUESTED_BY_CUSTOMER\",\n          \"status\": \"PENDING\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"created\": 112,\n          \"amount\": 4636,\n          \"currency\": \"string\",\n          \"charge\": \"string\",\n          \"reason\": \"REQUESTED_BY_CUSTOMER\",\n          \"status\": \"PENDING\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          }\n        }\n      ],\n      \"disputed\": false,\n      \"shipping\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"phoneNumber\": \"<string>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"billing\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"vatNumber\": \"<string>\"\n      },\n      \"merchantAccountId\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"failureCode\": \"string\",\n      \"failureIssuerDeclineCode\": \"string\",\n      \"failureMessage\": \"string\"\n    }\n  ],\n  \"hasMore\": true,\n  \"totalCount\": 3643\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d5fb998-4b65-420b-97c7-73b2936a87a4",
+          "name": "Retrieve a Charge",
+          "request": {
+            "name": "Retrieve a Charge",
+            "description": {},
+            "url": {
+              "path": [
+                "charges",
+                ":chargeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chargeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e8f16f6-e6ed-4e53-8698-a66ed649bcb8",
+              "name": "A charge object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges",
+                    ":chargeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chargeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"clientObjectId\": \"string\",\n  \"created\": 8236,\n  \"amount\": 6738,\n  \"amountRefunded\": 4078,\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"FAILED\",\n  \"type\": \"CARDHOLDER_INITIATED\",\n  \"card\": {\n    \"id\": \"string\",\n    \"created\": 2010,\n    \"deleted\": false,\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"fingerprint\": \"string\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"cardholderName\": \"string\",\n    \"customerId\": \"string\",\n    \"brand\": \"UnionPay\",\n    \"type\": \"Prepaid\",\n    \"country\": \"string\",\n    \"addressLine1\": \"string\",\n    \"addressLine2\": \"string\",\n    \"addressCity\": \"string\",\n    \"addressState\": \"string\",\n    \"addressZip\": \"string\",\n    \"addressCountry\": \"string\",\n    \"issuer\": \"string\",\n    \"merchantAccountId\": \"string\"\n  },\n  \"paymentMethod\": {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"clientObjectId\": \"string\",\n    \"created\": 1621,\n    \"type\": \"P24\",\n    \"status\": \"USED\",\n    \"deleted\": false,\n    \"billing\": {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"vatNumber\": \"<string>\"\n    },\n    \"applePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"amount\": 3943,\n      \"currency\": \"string\",\n      \"merchantTokenIdentifier\": \"string\"\n    },\n    \"googlePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\"\n    },\n    \"threeDSecure\": {\n      \"currency\": \"string\",\n      \"amount\": 1667\n    },\n    \"merchantAccountId\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"customerId\": \"string\",\n  \"subscriptionId\": \"string\",\n  \"captured\": false,\n  \"refunded\": false,\n  \"refunds\": [\n    {\n      \"id\": \"string\",\n      \"created\": 263,\n      \"amount\": 5422,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"REQUESTED_BY_CUSTOMER\",\n      \"status\": \"FAILED\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 6017,\n      \"amount\": 74,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"FRAUDULENT\",\n      \"status\": \"PENDING\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"disputed\": false,\n  \"shipping\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"merchantAccountId\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"failureCode\": \"string\",\n  \"failureIssuerDeclineCode\": \"string\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "164d4da6-17d8-448d-a4aa-39ae46ad5abe",
+          "name": "Update a Charge",
+          "request": {
+            "name": "Update a Charge",
+            "description": {},
+            "url": {
+              "path": [
+                "charges",
+                ":chargeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chargeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85abb605-d28d-4039-8aed-b03a6789326f",
+              "name": "Updated charge.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges",
+                    ":chargeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chargeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"clientObjectId\": \"string\",\n  \"created\": 8236,\n  \"amount\": 6738,\n  \"amountRefunded\": 4078,\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"FAILED\",\n  \"type\": \"CARDHOLDER_INITIATED\",\n  \"card\": {\n    \"id\": \"string\",\n    \"created\": 2010,\n    \"deleted\": false,\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"fingerprint\": \"string\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"cardholderName\": \"string\",\n    \"customerId\": \"string\",\n    \"brand\": \"UnionPay\",\n    \"type\": \"Prepaid\",\n    \"country\": \"string\",\n    \"addressLine1\": \"string\",\n    \"addressLine2\": \"string\",\n    \"addressCity\": \"string\",\n    \"addressState\": \"string\",\n    \"addressZip\": \"string\",\n    \"addressCountry\": \"string\",\n    \"issuer\": \"string\",\n    \"merchantAccountId\": \"string\"\n  },\n  \"paymentMethod\": {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"clientObjectId\": \"string\",\n    \"created\": 1621,\n    \"type\": \"P24\",\n    \"status\": \"USED\",\n    \"deleted\": false,\n    \"billing\": {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"vatNumber\": \"<string>\"\n    },\n    \"applePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"amount\": 3943,\n      \"currency\": \"string\",\n      \"merchantTokenIdentifier\": \"string\"\n    },\n    \"googlePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\"\n    },\n    \"threeDSecure\": {\n      \"currency\": \"string\",\n      \"amount\": 1667\n    },\n    \"merchantAccountId\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"customerId\": \"string\",\n  \"subscriptionId\": \"string\",\n  \"captured\": false,\n  \"refunded\": false,\n  \"refunds\": [\n    {\n      \"id\": \"string\",\n      \"created\": 263,\n      \"amount\": 5422,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"REQUESTED_BY_CUSTOMER\",\n      \"status\": \"FAILED\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 6017,\n      \"amount\": 74,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"FRAUDULENT\",\n      \"status\": \"PENDING\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"disputed\": false,\n  \"shipping\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"merchantAccountId\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"failureCode\": \"string\",\n  \"failureIssuerDeclineCode\": \"string\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "905a9793-ddeb-4277-b524-0966b89648cf",
+          "name": "Capture a Charge",
+          "request": {
+            "name": "Capture a Charge",
+            "description": {},
+            "url": {
+              "path": [
+                "charges",
+                ":chargeId",
+                "capture"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chargeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "828c1623-2827-44a5-ad83-cb6ffdfcfcbb",
+              "name": "Captured charge.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges",
+                    ":chargeId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chargeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"clientObjectId\": \"string\",\n  \"created\": 8236,\n  \"amount\": 6738,\n  \"amountRefunded\": 4078,\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"status\": \"FAILED\",\n  \"type\": \"CARDHOLDER_INITIATED\",\n  \"card\": {\n    \"id\": \"string\",\n    \"created\": 2010,\n    \"deleted\": false,\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"fingerprint\": \"string\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"cardholderName\": \"string\",\n    \"customerId\": \"string\",\n    \"brand\": \"UnionPay\",\n    \"type\": \"Prepaid\",\n    \"country\": \"string\",\n    \"addressLine1\": \"string\",\n    \"addressLine2\": \"string\",\n    \"addressCity\": \"string\",\n    \"addressState\": \"string\",\n    \"addressZip\": \"string\",\n    \"addressCountry\": \"string\",\n    \"issuer\": \"string\",\n    \"merchantAccountId\": \"string\"\n  },\n  \"paymentMethod\": {\n    \"id\": \"string\",\n    \"customerId\": \"string\",\n    \"clientObjectId\": \"string\",\n    \"created\": 1621,\n    \"type\": \"P24\",\n    \"status\": \"USED\",\n    \"deleted\": false,\n    \"billing\": {\n      \"name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"vatNumber\": \"<string>\"\n    },\n    \"applePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"amount\": 3943,\n      \"currency\": \"string\",\n      \"merchantTokenIdentifier\": \"string\"\n    },\n    \"googlePay\": {\n      \"cardBrand\": \"string\",\n      \"cardType\": \"string\",\n      \"first6\": \"string\",\n      \"last4\": \"string\"\n    },\n    \"threeDSecure\": {\n      \"currency\": \"string\",\n      \"amount\": 1667\n    },\n    \"merchantAccountId\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  },\n  \"customerId\": \"string\",\n  \"subscriptionId\": \"string\",\n  \"captured\": false,\n  \"refunded\": false,\n  \"refunds\": [\n    {\n      \"id\": \"string\",\n      \"created\": 263,\n      \"amount\": 5422,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"REQUESTED_BY_CUSTOMER\",\n      \"status\": \"FAILED\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 6017,\n      \"amount\": 74,\n      \"currency\": \"string\",\n      \"charge\": \"string\",\n      \"reason\": \"FRAUDULENT\",\n      \"status\": \"PENDING\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"disputed\": false,\n  \"shipping\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phoneNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"merchantAccountId\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"failureCode\": \"string\",\n  \"failureIssuerDeclineCode\": \"string\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92fc1bfe-f09b-42d0-a21f-8528647986ca",
+    "name": "Shift4 Payments Blacklist Charges API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

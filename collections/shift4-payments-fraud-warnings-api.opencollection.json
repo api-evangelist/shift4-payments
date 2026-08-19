@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shift4 Payments Blacklist Fraud Warnings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fraud Warnings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Fraud Warnings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.shift4.com/fraud-warnings",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "A limit on the number of objects to be returned."
+              }
+            ]
+          },
+          "docs": "List Fraud Warnings"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

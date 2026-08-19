@@ -1,0 +1,141 @@
+{
+  "item": [
+    {
+      "id": "9208a64f-5435-4cbf-8d28-71fe1cfe4e4e",
+      "name": "Tokens",
+      "description": {
+        "content": "Tokenize card data for safe transmission.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12fc9007-a580-4044-81a3-90f165b98d6f",
+          "name": "Create a Card Token",
+          "request": {
+            "name": "Create a Card Token",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"number\": \"<string>\",\n  \"expMonth\": \"<string>\",\n  \"expYear\": \"<string>\",\n  \"cvc\": \"<string>\",\n  \"cardholderName\": \"<string>\",\n  \"addressLine1\": \"<string>\",\n  \"addressLine2\": \"<string>\",\n  \"addressCity\": \"<string>\",\n  \"addressState\": \"<string>\",\n  \"addressZip\": \"<string>\",\n  \"addressCountry\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc4d9f00-fc97-42e3-a55a-b77f56395abb",
+              "name": "Token created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"number\": \"<string>\",\n  \"expMonth\": \"<string>\",\n  \"expYear\": \"<string>\",\n  \"cvc\": \"<string>\",\n  \"cardholderName\": \"<string>\",\n  \"addressLine1\": \"<string>\",\n  \"addressLine2\": \"<string>\",\n  \"addressCity\": \"<string>\",\n  \"addressState\": \"<string>\",\n  \"addressZip\": \"<string>\",\n  \"addressCountry\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 5415,\n  \"first6\": \"string\",\n  \"last4\": \"string\",\n  \"fingerprint\": \"string\",\n  \"expMonth\": \"string\",\n  \"expYear\": \"string\",\n  \"brand\": \"string\",\n  \"type\": \"string\",\n  \"cardholderName\": \"string\",\n  \"used\": true,\n  \"addressLine1\": \"string\",\n  \"addressLine2\": \"string\",\n  \"addressCity\": \"string\",\n  \"addressState\": \"string\",\n  \"addressZip\": \"string\",\n  \"addressCountry\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c4ebbd5-75b1-4c70-94c6-e6a3482e15e0",
+    "name": "Shift4 Payments Blacklist Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

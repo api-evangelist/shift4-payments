@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "baac18ad-1799-463a-be14-9d6e9734e0e2",
+      "name": "Checkout Sessions",
+      "description": {
+        "content": "Create hosted checkout sessions for drop-in payment acceptance.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7d78cb8-9b1c-45c2-be22-cab005ff55fe",
+          "name": "Create a Checkout Session",
+          "request": {
+            "name": "Create a Checkout Session",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"lineItems\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"unitAmount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"unitAmount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"currency\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"collectBillingAddress\": \"<boolean>\",\n  \"collectShippingAddress\": \"<boolean>\",\n  \"allowSavedCards\": \"<boolean>\",\n  \"capture\": true,\n  \"action\": \"<string>\",\n  \"redirectUrl\": \"<uri>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b7b8d855-0964-4486-bbb9-aa0892ffb275",
+              "name": "Checkout session created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lineItems\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"unitAmount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"unitAmount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"currency\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"collectBillingAddress\": \"<boolean>\",\n  \"collectShippingAddress\": \"<boolean>\",\n  \"allowSavedCards\": \"<boolean>\",\n  \"capture\": true,\n  \"action\": \"<string>\",\n  \"redirectUrl\": \"<uri>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"lastCharge\": \"string\",\n  \"paymentLink\": \"string\",\n  \"invoice\": \"string\",\n  \"customer\": \"string\",\n  \"clientSecret\": \"string\",\n  \"lineItems\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 3027,\n      \"unitAmount\": 4695,\n      \"currency\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 528,\n      \"unitAmount\": 3568,\n      \"currency\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"locale\": \"string\",\n  \"collectBillingAddress\": false,\n  \"collectShippingAddress\": true,\n  \"capture\": true,\n  \"captchaRequired\": false,\n  \"status\": \"OPEN\",\n  \"allowSavedCards\": false,\n  \"action\": \"SETUP\",\n  \"currency\": \"string\",\n  \"url\": \"http://ioLKoABqKpIizoRcXPmpAEUKVu.lbyWvq7DQTkkT0TFMIKD2NskzGvxwHm2Dkjg,riI0S+fnW4\",\n  \"redirectUrl\": \"http://ZjLjisIJomhcnQVS.jxwvXQQ19cP.O78\",\n  \"vendorReference\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41eb18df-817d-4660-b1a5-cc80cfd65572",
+          "name": "Retrieve a Checkout Session",
+          "request": {
+            "name": "Retrieve a Checkout Session",
+            "description": {},
+            "url": {
+              "path": [
+                "checkout",
+                "sessions",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15fb12b2-a7a3-47e5-aff8-1c2ecdbb1984",
+              "name": "A checkout session object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkout",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"lastCharge\": \"string\",\n  \"paymentLink\": \"string\",\n  \"invoice\": \"string\",\n  \"customer\": \"string\",\n  \"clientSecret\": \"string\",\n  \"lineItems\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 4680,\n      \"unitAmount\": 8555,\n      \"currency\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 7693,\n      \"unitAmount\": 9798,\n      \"currency\": \"string\"\n    }\n  ],\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"locale\": \"string\",\n  \"collectBillingAddress\": true,\n  \"collectShippingAddress\": true,\n  \"capture\": false,\n  \"captchaRequired\": true,\n  \"status\": \"EXPIRED\",\n  \"allowSavedCards\": false,\n  \"action\": \"SUBSCRIPTION\",\n  \"currency\": \"string\",\n  \"url\": \"https://GAceVJtVWPJskD.dcpA7mEt,UvgDc4CfqC0hzRsnjAfxCRA9IABa\",\n  \"redirectUrl\": \"https://ubeBoZBpPHJgbqtIgaiYYRlpSvfEm.nzjgWez7UlJsEPbDO+MSl,3yrAo4tzk+5VDJckyJTND2cicgYSsuKsZ0QnzE.AZnwAee5iLb7\",\n  \"vendorReference\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1d6bae7-197d-4237-864a-d0cc9e496348",
+    "name": "Shift4 Payments Blacklist Checkout Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "d1d5915b-0568-43a8-aea4-f8b9ff5f1fc0",
+      "name": "Credits",
+      "description": {
+        "content": "Send funds (credits) to recipients.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45398794-cfab-46c5-9573-30528a13590c",
+          "name": "Create a Credit",
+          "request": {
+            "name": "Create a Credit",
+            "description": {},
+            "url": {
+              "path": [
+                "credits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"cardId\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"fast\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be8335f1-e9d9-45b5-992e-c8f25b0c76b7",
+              "name": "Credit created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"cardId\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"fast\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 5512,\n  \"amount\": 5950,\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"card\": {\n    \"id\": \"string\",\n    \"created\": 4075,\n    \"deleted\": true,\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"fingerprint\": \"string\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"cardholderName\": \"string\",\n    \"customerId\": \"string\",\n    \"brand\": \"JCB\",\n    \"type\": \"Debit\",\n    \"country\": \"string\",\n    \"addressLine1\": \"string\",\n    \"addressLine2\": \"string\",\n    \"addressCity\": \"string\",\n    \"addressState\": \"string\",\n    \"addressZip\": \"string\",\n    \"addressCountry\": \"string\",\n    \"issuer\": \"string\",\n    \"merchantAccountId\": \"string\"\n  },\n  \"customerId\": \"string\",\n  \"fast\": true,\n  \"merchantAccountId\": \"string\",\n  \"disputed\": false,\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"failureCode\": \"string\",\n  \"failureIssuerDeclineCode\": \"string\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34451d3c-d7b2-4350-8229-4a7def16fe91",
+          "name": "List Credits",
+          "request": {
+            "name": "List Credits",
+            "description": {},
+            "url": {
+              "path": [
+                "credits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "A limit on the number of objects to be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cefc05f0-b924-4a0a-b9be-79b789978049",
+              "name": "A list of credits.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"created\": 4729,\n      \"amount\": 1865,\n      \"currency\": \"string\",\n      \"description\": \"string\",\n      \"card\": {\n        \"id\": \"string\",\n        \"created\": 9046,\n        \"deleted\": false,\n        \"first6\": \"string\",\n        \"last4\": \"string\",\n        \"fingerprint\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\",\n        \"cardholderName\": \"string\",\n        \"customerId\": \"string\",\n        \"brand\": \"UnionPay\",\n        \"type\": \"Credit\",\n        \"country\": \"string\",\n        \"addressLine1\": \"string\",\n        \"addressLine2\": \"string\",\n        \"addressCity\": \"string\",\n        \"addressState\": \"string\",\n        \"addressZip\": \"string\",\n        \"addressCountry\": \"string\",\n        \"issuer\": \"string\",\n        \"merchantAccountId\": \"string\"\n      },\n      \"customerId\": \"string\",\n      \"fast\": true,\n      \"merchantAccountId\": \"string\",\n      \"disputed\": true,\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\",\n        \"key_4\": \"string\"\n      },\n      \"failureCode\": \"string\",\n      \"failureIssuerDeclineCode\": \"string\",\n      \"failureMessage\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 7437,\n      \"amount\": 4337,\n      \"currency\": \"string\",\n      \"description\": \"string\",\n      \"card\": {\n        \"id\": \"string\",\n        \"created\": 2526,\n        \"deleted\": true,\n        \"first6\": \"string\",\n        \"last4\": \"string\",\n        \"fingerprint\": \"string\",\n        \"expMonth\": \"string\",\n        \"expYear\": \"string\",\n        \"cardholderName\": \"string\",\n        \"customerId\": \"string\",\n        \"brand\": \"MasterCard\",\n        \"type\": \"Credit\",\n        \"country\": \"string\",\n        \"addressLine1\": \"string\",\n        \"addressLine2\": \"string\",\n        \"addressCity\": \"string\",\n        \"addressState\": \"string\",\n        \"addressZip\": \"string\",\n        \"addressCountry\": \"string\",\n        \"issuer\": \"string\",\n        \"merchantAccountId\": \"string\"\n      },\n      \"customerId\": \"string\",\n      \"fast\": false,\n      \"merchantAccountId\": \"string\",\n      \"disputed\": true,\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"failureCode\": \"string\",\n      \"failureIssuerDeclineCode\": \"string\",\n      \"failureMessage\": \"string\"\n    }\n  ],\n  \"hasMore\": true,\n  \"totalCount\": 1827\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "341e1dd3-4bb5-4f44-8417-87646109575d",
+          "name": "Retrieve a Credit",
+          "request": {
+            "name": "Retrieve a Credit",
+            "description": {},
+            "url": {
+              "path": [
+                "credits",
+                ":creditId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "creditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff2ebee9-5392-45c1-ba94-a886d0aeb7dc",
+              "name": "A credit object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "credits",
+                    ":creditId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "creditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 5512,\n  \"amount\": 5950,\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"card\": {\n    \"id\": \"string\",\n    \"created\": 4075,\n    \"deleted\": true,\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"fingerprint\": \"string\",\n    \"expMonth\": \"string\",\n    \"expYear\": \"string\",\n    \"cardholderName\": \"string\",\n    \"customerId\": \"string\",\n    \"brand\": \"JCB\",\n    \"type\": \"Debit\",\n    \"country\": \"string\",\n    \"addressLine1\": \"string\",\n    \"addressLine2\": \"string\",\n    \"addressCity\": \"string\",\n    \"addressState\": \"string\",\n    \"addressZip\": \"string\",\n    \"addressCountry\": \"string\",\n    \"issuer\": \"string\",\n    \"merchantAccountId\": \"string\"\n  },\n  \"customerId\": \"string\",\n  \"fast\": true,\n  \"merchantAccountId\": \"string\",\n  \"disputed\": false,\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"failureCode\": \"string\",\n  \"failureIssuerDeclineCode\": \"string\",\n  \"failureMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d0427d29-661c-43b9-904a-0f9d530c86dc",
+    "name": "Shift4 Payments Blacklist Credits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

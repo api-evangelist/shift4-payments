@@ -1,0 +1,435 @@
+{
+  "item": [
+    {
+      "id": "15d5615c-570f-4cb6-899d-812ee0d83fd7",
+      "name": "Webhook Endpoints",
+      "description": {
+        "content": "Register and manage webhook endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "568e35b5-f32d-48e2-a5c1-78048a18bfce",
+          "name": "Create a Webhook Endpoint",
+          "request": {
+            "name": "Create a Webhook Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "webhook-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d126329b-803a-4b34-ae7d-ca7792d27d75",
+              "name": "Webhook endpoint created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 6147,\n  \"url\": \"https://GJXDFogGiyGvIfVyPybeJNOtoPERhPDJ.pbuqAUyZV77RPTZ8DIYUaTdt1c7+W0H4\",\n  \"signingSecret\": \"string\",\n  \"enabledEvents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"description\": \"string\",\n  \"deleted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "932465a9-7b57-4f86-96ef-41a6a0ad80bf",
+          "name": "List Webhook Endpoints",
+          "request": {
+            "name": "List Webhook Endpoints",
+            "description": {},
+            "url": {
+              "path": [
+                "webhook-endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "A limit on the number of objects to be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ea088fb-5fce-41d7-9f68-a5c6e840c388",
+              "name": "A list of webhook endpoints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook-endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"created\": 1353,\n      \"url\": \"https://akcMktwBrOaTWJlhV.uxrkUl3TnCUh9dNblKxCGd-OuqrqfwBRWuBI3fj4zofeAaq\",\n      \"signingSecret\": \"string\",\n      \"enabledEvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\",\n      \"deleted\": true\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 9759,\n      \"url\": \"https://lxyvyyiuUnYrcZVM.jyhdBmtc22W4YGiok7GHi780yGpnGlqekQFCiflo-8NX9-iorScP,ct5ZWkw5qJJ0autLS,-6-HFKK\",\n      \"signingSecret\": \"string\",\n      \"enabledEvents\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\",\n      \"deleted\": false\n    }\n  ],\n  \"hasMore\": false,\n  \"totalCount\": 5076\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "394e93ef-f2af-4bb5-a27a-c3e45bca41a9",
+          "name": "Retrieve a Webhook Endpoint",
+          "request": {
+            "name": "Retrieve a Webhook Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "webhook-endpoints",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e0fc660-68c2-443f-afd8-ff3144a460ca",
+              "name": "A webhook endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook-endpoints",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 884,\n  \"url\": \"https://dRcHTgNSp.hctZW24Vfhv2un5sqCwoLZg-XQN8u8R\",\n  \"signingSecret\": \"string\",\n  \"enabledEvents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"description\": \"string\",\n  \"deleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "153ef548-c406-4a8b-9dc4-4baec55276f3",
+          "name": "Update a Webhook Endpoint",
+          "request": {
+            "name": "Update a Webhook Endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "webhook-endpoints",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "840592a3-ca05-4cd6-b5be-305aed06ee1a",
+              "name": "Updated webhook endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhook-endpoints",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 884,\n  \"url\": \"https://dRcHTgNSp.hctZW24Vfhv2un5sqCwoLZg-XQN8u8R\",\n  \"signingSecret\": \"string\",\n  \"enabledEvents\": [\n    \"string\",\n    \"string\"\n  ],\n  \"description\": \"string\",\n  \"deleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dca17215-8424-4dc1-af49-3138a3d2dcd9",
+    "name": "Shift4 Payments Blacklist Webhook Endpoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

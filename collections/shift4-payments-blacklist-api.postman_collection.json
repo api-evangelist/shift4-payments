@@ -1,0 +1,528 @@
+{
+  "item": [
+    {
+      "id": "262f9ca7-5680-486d-8dce-1da0790119a8",
+      "name": "Blacklist",
+      "description": {
+        "content": "Manage blacklist rules for fraud prevention.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93c82778-ba63-442d-9152-f3b79e7df961",
+          "name": "Create a Blacklist Rule",
+          "request": {
+            "name": "Create a Blacklist Rule",
+            "description": {},
+            "url": {
+              "path": [
+                "blacklist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruleType\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"ipCountry\": \"<string>\",\n  \"metadataKey\": \"<string>\",\n  \"metadataValue\": \"<string>\",\n  \"email\": \"<string>\",\n  \"userAgent\": \"<string>\",\n  \"acceptLanguage\": \"<string>\",\n  \"cardCountry\": \"<string>\",\n  \"cardBin\": \"<string>\",\n  \"cardIssuer\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4a04733-45fe-4e82-93e3-19dcf3716882",
+              "name": "Blacklist rule created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blacklist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ruleType\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"ipCountry\": \"<string>\",\n  \"metadataKey\": \"<string>\",\n  \"metadataValue\": \"<string>\",\n  \"email\": \"<string>\",\n  \"userAgent\": \"<string>\",\n  \"acceptLanguage\": \"<string>\",\n  \"cardCountry\": \"<string>\",\n  \"cardBin\": \"<string>\",\n  \"cardIssuer\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 1670,\n  \"deleted\": false,\n  \"ruleType\": \"USER_AGENT\",\n  \"fingerprint\": \"string\",\n  \"ipAddress\": \"string\",\n  \"ipCountry\": \"string\",\n  \"metadataKey\": \"string\",\n  \"metadataValue\": \"string\",\n  \"email\": \"MwMta1b6@suetucvKnWEQQgP.wvo\",\n  \"userAgent\": \"string\",\n  \"acceptLanguage\": \"string\",\n  \"cardCountry\": \"string\",\n  \"cardBin\": \"string\",\n  \"cardIssuer\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b9df42e-9abe-4c2e-ab45-6dff2317e911",
+          "name": "List Blacklist Rules",
+          "request": {
+            "name": "List Blacklist Rules",
+            "description": {},
+            "url": {
+              "path": [
+                "blacklist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "A limit on the number of objects to be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c59a349-73e5-4906-9551-1a5e13d927c2",
+              "name": "A list of blacklist rules.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blacklist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"created\": 1595,\n      \"deleted\": false,\n      \"ruleType\": \"CARD_COUNTRY\",\n      \"fingerprint\": \"string\",\n      \"ipAddress\": \"string\",\n      \"ipCountry\": \"string\",\n      \"metadataKey\": \"string\",\n      \"metadataValue\": \"string\",\n      \"email\": \"8VOJBMLLEW@YRHsFvaPJfcUPRHs.pg\",\n      \"userAgent\": \"string\",\n      \"acceptLanguage\": \"string\",\n      \"cardCountry\": \"string\",\n      \"cardBin\": \"string\",\n      \"cardIssuer\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 1,\n      \"deleted\": false,\n      \"ruleType\": \"ACCEPT_LANGUAGE\",\n      \"fingerprint\": \"string\",\n      \"ipAddress\": \"string\",\n      \"ipCountry\": \"string\",\n      \"metadataKey\": \"string\",\n      \"metadataValue\": \"string\",\n      \"email\": \"yGl6G9@CMqfMzqhaTTMazOBihDId.dfmm\",\n      \"userAgent\": \"string\",\n      \"acceptLanguage\": \"string\",\n      \"cardCountry\": \"string\",\n      \"cardBin\": \"string\",\n      \"cardIssuer\": \"string\"\n    }\n  ],\n  \"hasMore\": false,\n  \"totalCount\": 9216\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bd56709-136a-4ff6-a7e4-7c08d8619c4f",
+          "name": "Retrieve a Blacklist Rule",
+          "request": {
+            "name": "Retrieve a Blacklist Rule",
+            "description": {},
+            "url": {
+              "path": [
+                "blacklist",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51ec8530-68e3-4559-8b50-ac743567352d",
+              "name": "A blacklist rule.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blacklist",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 1670,\n  \"deleted\": false,\n  \"ruleType\": \"USER_AGENT\",\n  \"fingerprint\": \"string\",\n  \"ipAddress\": \"string\",\n  \"ipCountry\": \"string\",\n  \"metadataKey\": \"string\",\n  \"metadataValue\": \"string\",\n  \"email\": \"MwMta1b6@suetucvKnWEQQgP.wvo\",\n  \"userAgent\": \"string\",\n  \"acceptLanguage\": \"string\",\n  \"cardCountry\": \"string\",\n  \"cardBin\": \"string\",\n  \"cardIssuer\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00bc403d-c0b1-4a0b-b494-e7181b80f92b",
+          "name": "Update a Blacklist Rule",
+          "request": {
+            "name": "Update a Blacklist Rule",
+            "description": {},
+            "url": {
+              "path": [
+                "blacklist",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ruleType\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"ipCountry\": \"<string>\",\n  \"metadataKey\": \"<string>\",\n  \"metadataValue\": \"<string>\",\n  \"email\": \"<string>\",\n  \"userAgent\": \"<string>\",\n  \"acceptLanguage\": \"<string>\",\n  \"cardCountry\": \"<string>\",\n  \"cardBin\": \"<string>\",\n  \"cardIssuer\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb1ecdf0-7843-4a9c-94a4-0bb70ee9becb",
+              "name": "Updated rule.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blacklist",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ruleType\": \"<string>\",\n  \"fingerprint\": \"<string>\",\n  \"ipAddress\": \"<string>\",\n  \"ipCountry\": \"<string>\",\n  \"metadataKey\": \"<string>\",\n  \"metadataValue\": \"<string>\",\n  \"email\": \"<string>\",\n  \"userAgent\": \"<string>\",\n  \"acceptLanguage\": \"<string>\",\n  \"cardCountry\": \"<string>\",\n  \"cardBin\": \"<string>\",\n  \"cardIssuer\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 1670,\n  \"deleted\": false,\n  \"ruleType\": \"USER_AGENT\",\n  \"fingerprint\": \"string\",\n  \"ipAddress\": \"string\",\n  \"ipCountry\": \"string\",\n  \"metadataKey\": \"string\",\n  \"metadataValue\": \"string\",\n  \"email\": \"MwMta1b6@suetucvKnWEQQgP.wvo\",\n  \"userAgent\": \"string\",\n  \"acceptLanguage\": \"string\",\n  \"cardCountry\": \"string\",\n  \"cardBin\": \"string\",\n  \"cardIssuer\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "37774983-b81f-43f3-863a-a49ea8c604f4",
+          "name": "Delete a Blacklist Rule",
+          "request": {
+            "name": "Delete a Blacklist Rule",
+            "description": {},
+            "url": {
+              "path": [
+                "blacklist",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "022ed6ff-b8b6-4e5b-8a41-8c03595ffa43",
+              "name": "Deletion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "blacklist",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"deleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8e967476-01f4-466f-acce-743cb2b6624d",
+    "name": "Shift4 Payments Blacklist API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

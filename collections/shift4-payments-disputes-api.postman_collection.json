@@ -1,0 +1,225 @@
+{
+  "item": [
+    {
+      "id": "d7240bca-828f-4b21-a3b1-e743c319f432",
+      "name": "Disputes",
+      "description": {
+        "content": "Retrieve and respond to chargeback disputes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4ddcf87-7130-41d4-ac3e-df8355082972",
+          "name": "List Disputes",
+          "request": {
+            "name": "List Disputes",
+            "description": {},
+            "url": {
+              "path": [
+                "disputes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "A limit on the number of objects to be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a963c6e1-de8f-4d5f-9aa3-0b6c996a0d7d",
+              "name": "A list of disputes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "disputes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"created\": 8017,\n      \"updated\": 3309,\n      \"amount\": 6308,\n      \"currency\": \"string\",\n      \"status\": \"WARNING_NEEDS_RESPONSE\",\n      \"reason\": \"GENERAL\",\n      \"acceptedAsLost\": false,\n      \"charge\": {\n        \"id\": \"string\",\n        \"clientObjectId\": \"string\",\n        \"created\": 4793,\n        \"amount\": 2030,\n        \"amountRefunded\": 1924,\n        \"currency\": \"string\",\n        \"description\": \"string\",\n        \"status\": \"SUCCESSFUL\",\n        \"type\": \"MERCHANT_INITIATED\",\n        \"card\": {\n          \"id\": \"string\",\n          \"created\": 9582,\n          \"deleted\": true,\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"fingerprint\": \"string\",\n          \"expMonth\": \"string\",\n          \"expYear\": \"string\",\n          \"cardholderName\": \"string\",\n          \"customerId\": \"string\",\n          \"brand\": \"UnionPay\",\n          \"type\": \"Prepaid\",\n          \"country\": \"string\",\n          \"addressLine1\": \"string\",\n          \"addressLine2\": \"string\",\n          \"addressCity\": \"string\",\n          \"addressState\": \"string\",\n          \"addressZip\": \"string\",\n          \"addressCountry\": \"string\",\n          \"issuer\": \"string\",\n          \"merchantAccountId\": \"string\"\n        },\n        \"paymentMethod\": {\n          \"id\": \"string\",\n          \"customerId\": \"string\",\n          \"clientObjectId\": \"string\",\n          \"created\": 8542,\n          \"type\": \"APPLE_PAY\",\n          \"status\": \"CHARGEABLE\",\n          \"deleted\": true,\n          \"billing\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vatNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"applePay\": {\n            \"cardBrand\": \"string\",\n            \"cardType\": \"string\",\n            \"first6\": \"string\",\n            \"last4\": \"string\",\n            \"amount\": 5636,\n            \"currency\": \"string\",\n            \"merchantTokenIdentifier\": \"string\"\n          },\n          \"googlePay\": {\n            \"cardBrand\": \"string\",\n            \"cardType\": \"string\",\n            \"first6\": \"string\",\n            \"last4\": \"string\"\n          },\n          \"threeDSecure\": {\n            \"currency\": \"string\",\n            \"amount\": 7958\n          },\n          \"merchantAccountId\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        \"customerId\": \"string\",\n        \"subscriptionId\": \"string\",\n        \"captured\": true,\n        \"refunded\": false,\n        \"refunds\": [\n          {\n            \"id\": \"string\",\n            \"created\": 9254,\n            \"amount\": 4017,\n            \"currency\": \"string\",\n            \"charge\": \"string\",\n            \"reason\": \"REQUESTED_BY_CUSTOMER\",\n            \"status\": \"FAILED\",\n            \"metadata\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"created\": 2579,\n            \"amount\": 6814,\n            \"currency\": \"string\",\n            \"charge\": \"string\",\n            \"reason\": \"FRAUDULENT\",\n            \"status\": \"SUCCESSFUL\",\n            \"metadata\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"disputed\": false,\n        \"shipping\": {\n          \"name\": \"string\",\n          \"email\": \"CzVyOt@Uwrj.fe\",\n          \"phoneNumber\": \"string\",\n          \"address\": {\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"billing\": {\n          \"name\": \"string\",\n          \"email\": \"GogS9iD27z@Y.nk\",\n          \"address\": {\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"vatNumber\": \"string\"\n        },\n        \"merchantAccountId\": \"string\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"failureCode\": \"string\",\n        \"failureIssuerDeclineCode\": \"string\",\n        \"failureMessage\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 5839,\n      \"updated\": 8058,\n      \"amount\": 3050,\n      \"currency\": \"string\",\n      \"status\": \"CHARGE_REFUNDED\",\n      \"reason\": \"CREDIT_NOT_PROCESSED\",\n      \"acceptedAsLost\": false,\n      \"charge\": {\n        \"id\": \"string\",\n        \"clientObjectId\": \"string\",\n        \"created\": 3324,\n        \"amount\": 6902,\n        \"amountRefunded\": 3837,\n        \"currency\": \"string\",\n        \"description\": \"string\",\n        \"status\": \"PENDING\",\n        \"type\": \"SUBSEQUENT_RECURRING\",\n        \"card\": {\n          \"id\": \"string\",\n          \"created\": 4050,\n          \"deleted\": true,\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"fingerprint\": \"string\",\n          \"expMonth\": \"string\",\n          \"expYear\": \"string\",\n          \"cardholderName\": \"string\",\n          \"customerId\": \"string\",\n          \"brand\": \"UnionPay\",\n          \"type\": \"Other\",\n          \"country\": \"string\",\n          \"addressLine1\": \"string\",\n          \"addressLine2\": \"string\",\n          \"addressCity\": \"string\",\n          \"addressState\": \"string\",\n          \"addressZip\": \"string\",\n          \"addressCountry\": \"string\",\n          \"issuer\": \"string\",\n          \"merchantAccountId\": \"string\"\n        },\n        \"paymentMethod\": {\n          \"id\": \"string\",\n          \"customerId\": \"string\",\n          \"clientObjectId\": \"string\",\n          \"created\": 3648,\n          \"type\": \"IDEAL\",\n          \"status\": \"DELETED\",\n          \"deleted\": true,\n          \"billing\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"email\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"vatNumber\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"applePay\": {\n            \"cardBrand\": \"string\",\n            \"cardType\": \"string\",\n            \"first6\": \"string\",\n            \"last4\": \"string\",\n            \"amount\": 5327,\n            \"currency\": \"string\",\n            \"merchantTokenIdentifier\": \"string\"\n          },\n          \"googlePay\": {\n            \"cardBrand\": \"string\",\n            \"cardType\": \"string\",\n            \"first6\": \"string\",\n            \"last4\": \"string\"\n          },\n          \"threeDSecure\": {\n            \"currency\": \"string\",\n            \"amount\": 9606\n          },\n          \"merchantAccountId\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"customerId\": \"string\",\n        \"subscriptionId\": \"string\",\n        \"captured\": true,\n        \"refunded\": true,\n        \"refunds\": [\n          {\n            \"id\": \"string\",\n            \"created\": 8937,\n            \"amount\": 4026,\n            \"currency\": \"string\",\n            \"charge\": \"string\",\n            \"reason\": \"FRAUDULENT\",\n            \"status\": \"PENDING\",\n            \"metadata\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"created\": 1934,\n            \"amount\": 1484,\n            \"currency\": \"string\",\n            \"charge\": \"string\",\n            \"reason\": \"FRAUDULENT\",\n            \"status\": \"FAILED\",\n            \"metadata\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"disputed\": true,\n        \"shipping\": {\n          \"name\": \"string\",\n          \"email\": \"vZ-hLT2@lTxGnk.jgaw\",\n          \"phoneNumber\": \"string\",\n          \"address\": {\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"billing\": {\n          \"name\": \"string\",\n          \"email\": \"PWgMlfw1thJjYv@nF.wjw\",\n          \"address\": {\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"vatNumber\": \"string\"\n        },\n        \"merchantAccountId\": \"string\",\n        \"metadata\": {\n          \"key_0\": \"string\"\n        },\n        \"failureCode\": \"string\",\n        \"failureIssuerDeclineCode\": \"string\",\n        \"failureMessage\": \"string\"\n      }\n    }\n  ],\n  \"hasMore\": false,\n  \"totalCount\": 8208\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22b3612f-eafe-462b-855d-871bb240e041",
+          "name": "Retrieve a Dispute",
+          "request": {
+            "name": "Retrieve a Dispute",
+            "description": {},
+            "url": {
+              "path": [
+                "disputes",
+                ":disputeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "disputeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0160735e-d353-4007-b436-d3427315c99c",
+              "name": "A dispute object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "disputes",
+                    ":disputeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "disputeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 5554,\n  \"updated\": 7973,\n  \"amount\": 7231,\n  \"currency\": \"string\",\n  \"status\": \"WARNING_UNDER_REVIEW\",\n  \"reason\": \"INCORRECT_ACCOUNT_DETAILS\",\n  \"acceptedAsLost\": true,\n  \"charge\": {\n    \"id\": \"string\",\n    \"clientObjectId\": \"string\",\n    \"created\": 1192,\n    \"amount\": 7248,\n    \"amountRefunded\": 9926,\n    \"currency\": \"string\",\n    \"description\": \"string\",\n    \"status\": \"PENDING\",\n    \"type\": \"FIRST_RECURRING\",\n    \"card\": {\n      \"id\": \"string\",\n      \"created\": 2601,\n      \"deleted\": true,\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"fingerprint\": \"string\",\n      \"expMonth\": \"string\",\n      \"expYear\": \"string\",\n      \"cardholderName\": \"string\",\n      \"customerId\": \"string\",\n      \"brand\": \"Other\",\n      \"type\": \"Credit\",\n      \"country\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"addressCity\": \"string\",\n      \"addressState\": \"string\",\n      \"addressZip\": \"string\",\n      \"addressCountry\": \"string\",\n      \"issuer\": \"string\",\n      \"merchantAccountId\": \"string\"\n    },\n    \"paymentMethod\": {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"clientObjectId\": \"string\",\n      \"created\": 905,\n      \"type\": \"CARD\",\n      \"status\": \"FAILED\",\n      \"deleted\": false,\n      \"billing\": {\n        \"name\": \"string\",\n        \"email\": \"216Ja@MC.rzam\",\n        \"address\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"zip\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"country\": \"string\"\n        },\n        \"vatNumber\": \"string\"\n      },\n      \"applePay\": {\n        \"cardBrand\": \"string\",\n        \"cardType\": \"string\",\n        \"first6\": \"string\",\n        \"last4\": \"string\",\n        \"amount\": 5064,\n        \"currency\": \"string\",\n        \"merchantTokenIdentifier\": \"string\"\n      },\n      \"googlePay\": {\n        \"cardBrand\": \"string\",\n        \"cardType\": \"string\",\n        \"first6\": \"string\",\n        \"last4\": \"string\"\n      },\n      \"threeDSecure\": {\n        \"currency\": \"string\",\n        \"amount\": 9361\n      },\n      \"merchantAccountId\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    \"customerId\": \"string\",\n    \"subscriptionId\": \"string\",\n    \"captured\": true,\n    \"refunded\": true,\n    \"refunds\": [\n      {\n        \"id\": \"string\",\n        \"created\": 7550,\n        \"amount\": 4166,\n        \"currency\": \"string\",\n        \"charge\": \"string\",\n        \"reason\": \"FRAUDULENT\",\n        \"status\": \"FAILED\",\n        \"metadata\": {\n          \"key_0\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"created\": 7644,\n        \"amount\": 6585,\n        \"currency\": \"string\",\n        \"charge\": \"string\",\n        \"reason\": \"REQUESTED_BY_CUSTOMER\",\n        \"status\": \"PENDING\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    ],\n    \"disputed\": false,\n    \"shipping\": {\n      \"name\": \"string\",\n      \"email\": \"jq24cypVKAflhL@tbzAQf.cp\",\n      \"phoneNumber\": \"string\",\n      \"address\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"zip\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\"\n      }\n    },\n    \"billing\": {\n      \"name\": \"string\",\n      \"email\": \"8we8E868GMVCy@AroMsbnVNrxryfvtljBylgkHkdLSoMLB.uvy\",\n      \"address\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"zip\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"country\": \"string\"\n      },\n      \"vatNumber\": \"string\"\n    },\n    \"merchantAccountId\": \"string\",\n    \"metadata\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\",\n      \"key_2\": \"string\",\n      \"key_3\": \"string\"\n    },\n    \"failureCode\": \"string\",\n    \"failureIssuerDeclineCode\": \"string\",\n    \"failureMessage\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2978e361-c2fc-4148-80df-07bba8bdeb16",
+    "name": "Shift4 Payments Blacklist Disputes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

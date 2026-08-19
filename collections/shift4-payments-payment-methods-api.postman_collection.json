@@ -1,0 +1,321 @@
+{
+  "item": [
+    {
+      "id": "bb13af35-9b85-47bc-a6cb-b915a8c58ce6",
+      "name": "Payment Methods",
+      "description": {
+        "content": "Create and retrieve alternative payment methods (Apple Pay, Google Pay, 3D Secure, etc.).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6930d0cc-e6e9-45d4-a339-e2fb65aae391",
+          "name": "Create a Payment Method",
+          "request": {
+            "name": "Create a Payment Method",
+            "description": {},
+            "url": {
+              "path": [
+                "payment-methods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"threeDSecure\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3067d83d-1791-4b04-9de5-84bf7c0134d5",
+              "name": "Payment method created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"customerId\": \"<string>\",\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"threeDSecure\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"clientObjectId\": \"string\",\n  \"created\": 9082,\n  \"type\": \"APPLE_PAY\",\n  \"status\": \"CHARGEABLE\",\n  \"deleted\": false,\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"applePay\": {\n    \"cardBrand\": \"string\",\n    \"cardType\": \"string\",\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"amount\": 4025,\n    \"currency\": \"string\",\n    \"merchantTokenIdentifier\": \"string\"\n  },\n  \"googlePay\": {\n    \"cardBrand\": \"string\",\n    \"cardType\": \"string\",\n    \"first6\": \"string\",\n    \"last4\": \"string\"\n  },\n  \"threeDSecure\": {\n    \"currency\": \"string\",\n    \"amount\": 998\n  },\n  \"merchantAccountId\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e91bf2e-6e46-4c17-bd9d-81bf3d3a47b1",
+          "name": "List Payment Methods",
+          "request": {
+            "name": "List Payment Methods",
+            "description": {},
+            "url": {
+              "path": [
+                "payment-methods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "A limit on the number of objects to be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb75bf11-156d-4208-90a8-b387c2c2ac39",
+              "name": "A list of payment methods.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-methods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"clientObjectId\": \"string\",\n      \"created\": 6897,\n      \"type\": \"BLIK\",\n      \"status\": \"REQUIRES_ACTION\",\n      \"deleted\": true,\n      \"billing\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"vatNumber\": \"<string>\"\n      },\n      \"applePay\": {\n        \"cardBrand\": \"string\",\n        \"cardType\": \"string\",\n        \"first6\": \"string\",\n        \"last4\": \"string\",\n        \"amount\": 5006,\n        \"currency\": \"string\",\n        \"merchantTokenIdentifier\": \"string\"\n      },\n      \"googlePay\": {\n        \"cardBrand\": \"string\",\n        \"cardType\": \"string\",\n        \"first6\": \"string\",\n        \"last4\": \"string\"\n      },\n      \"threeDSecure\": {\n        \"currency\": \"string\",\n        \"amount\": 2514\n      },\n      \"merchantAccountId\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"customerId\": \"string\",\n      \"clientObjectId\": \"string\",\n      \"created\": 4761,\n      \"type\": \"SOFORT\",\n      \"status\": \"FAILED\",\n      \"deleted\": false,\n      \"billing\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"vatNumber\": \"<string>\"\n      },\n      \"applePay\": {\n        \"cardBrand\": \"string\",\n        \"cardType\": \"string\",\n        \"first6\": \"string\",\n        \"last4\": \"string\",\n        \"amount\": 1022,\n        \"currency\": \"string\",\n        \"merchantTokenIdentifier\": \"string\"\n      },\n      \"googlePay\": {\n        \"cardBrand\": \"string\",\n        \"cardType\": \"string\",\n        \"first6\": \"string\",\n        \"last4\": \"string\"\n      },\n      \"threeDSecure\": {\n        \"currency\": \"string\",\n        \"amount\": 9686\n      },\n      \"merchantAccountId\": \"string\",\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"hasMore\": true,\n  \"totalCount\": 5294\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c84ab4a0-be41-49e3-8a05-1e6e2332c9eb",
+          "name": "Retrieve a Payment Method",
+          "request": {
+            "name": "Retrieve a Payment Method",
+            "description": {},
+            "url": {
+              "path": [
+                "payment-methods",
+                ":paymentMethodId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentMethodId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6476b964-9a06-435c-9262-32c1d873ea0a",
+              "name": "A payment method object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment-methods",
+                    ":paymentMethodId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentMethodId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"customerId\": \"string\",\n  \"clientObjectId\": \"string\",\n  \"created\": 9082,\n  \"type\": \"APPLE_PAY\",\n  \"status\": \"CHARGEABLE\",\n  \"deleted\": false,\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"applePay\": {\n    \"cardBrand\": \"string\",\n    \"cardType\": \"string\",\n    \"first6\": \"string\",\n    \"last4\": \"string\",\n    \"amount\": 4025,\n    \"currency\": \"string\",\n    \"merchantTokenIdentifier\": \"string\"\n  },\n  \"googlePay\": {\n    \"cardBrand\": \"string\",\n    \"cardType\": \"string\",\n    \"first6\": \"string\",\n    \"last4\": \"string\"\n  },\n  \"threeDSecure\": {\n    \"currency\": \"string\",\n    \"amount\": 998\n  },\n  \"merchantAccountId\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "48f73490-4cde-4a22-9411-a248267be9bd",
+    "name": "Shift4 Payments Blacklist Payment Methods API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}

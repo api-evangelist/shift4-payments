@@ -1,0 +1,528 @@
+{
+  "item": [
+    {
+      "id": "dcddf688-bcc3-4274-a316-d1321e5d3f3e",
+      "name": "Customers",
+      "description": {
+        "content": "Create, retrieve, update, delete, and list customers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0aa3377-d942-4d4e-b531-59d33388edd8",
+          "name": "Create a Customer",
+          "request": {
+            "name": "Create a Customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"phoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  },\n  \"card\": {\n    \"cardholderName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"cvc\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb2c3c2d-e581-41cf-96ba-2d037a2614ee",
+              "name": "Customer created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"phoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"card\": {\n    \"cardholderName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"cvc\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 6568,\n  \"deleted\": true,\n  \"email\": \"yPgaPO@vZBbtRZsyEjGrOtCvFlL.gvdy\",\n  \"phoneNumber\": \"string\",\n  \"description\": \"string\",\n  \"defaultCardId\": \"string\",\n  \"cards\": [\n    {\n      \"id\": \"string\",\n      \"created\": 8452,\n      \"deleted\": true,\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"fingerprint\": \"string\",\n      \"expMonth\": \"string\",\n      \"expYear\": \"string\",\n      \"cardholderName\": \"string\",\n      \"customerId\": \"string\",\n      \"brand\": \"JCB\",\n      \"type\": \"Other\",\n      \"country\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"addressCity\": \"string\",\n      \"addressState\": \"string\",\n      \"addressZip\": \"string\",\n      \"addressCountry\": \"string\",\n      \"issuer\": \"string\",\n      \"merchantAccountId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 2221,\n      \"deleted\": true,\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"fingerprint\": \"string\",\n      \"expMonth\": \"string\",\n      \"expYear\": \"string\",\n      \"cardholderName\": \"string\",\n      \"customerId\": \"string\",\n      \"brand\": \"Discover\",\n      \"type\": \"Credit\",\n      \"country\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"addressCity\": \"string\",\n      \"addressState\": \"string\",\n      \"addressZip\": \"string\",\n      \"addressCountry\": \"string\",\n      \"issuer\": \"string\",\n      \"merchantAccountId\": \"string\"\n    }\n  ],\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04d63b94-d814-4f6b-bc66-7a7efa4c85ea",
+          "name": "List Customers",
+          "request": {
+            "name": "List Customers",
+            "description": {},
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "A limit on the number of objects to be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3006cfcb-ee81-486e-96a6-c7608d96e1f1",
+              "name": "A list of customers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"string\",\n      \"created\": 7285,\n      \"deleted\": true,\n      \"email\": \"CkEF@DxI.gf\",\n      \"phoneNumber\": \"string\",\n      \"description\": \"string\",\n      \"defaultCardId\": \"string\",\n      \"cards\": [\n        {\n          \"id\": \"string\",\n          \"created\": 6773,\n          \"deleted\": true,\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"fingerprint\": \"string\",\n          \"expMonth\": \"string\",\n          \"expYear\": \"string\",\n          \"cardholderName\": \"string\",\n          \"customerId\": \"string\",\n          \"brand\": \"Other\",\n          \"type\": \"Credit\",\n          \"country\": \"string\",\n          \"addressLine1\": \"string\",\n          \"addressLine2\": \"string\",\n          \"addressCity\": \"string\",\n          \"addressState\": \"string\",\n          \"addressZip\": \"string\",\n          \"addressCountry\": \"string\",\n          \"issuer\": \"string\",\n          \"merchantAccountId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"created\": 8677,\n          \"deleted\": true,\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"fingerprint\": \"string\",\n          \"expMonth\": \"string\",\n          \"expYear\": \"string\",\n          \"cardholderName\": \"string\",\n          \"customerId\": \"string\",\n          \"brand\": \"Discover\",\n          \"type\": \"Prepaid\",\n          \"country\": \"string\",\n          \"addressLine1\": \"string\",\n          \"addressLine2\": \"string\",\n          \"addressCity\": \"string\",\n          \"addressState\": \"string\",\n          \"addressZip\": \"string\",\n          \"addressCountry\": \"string\",\n          \"issuer\": \"string\",\n          \"merchantAccountId\": \"string\"\n        }\n      ],\n      \"billing\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"vatNumber\": \"<string>\"\n      },\n      \"metadata\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 8725,\n      \"deleted\": true,\n      \"email\": \"xD-4g0JCMr5WjFA@KNdWFrPLCYJFBpmbnt.vt\",\n      \"phoneNumber\": \"string\",\n      \"description\": \"string\",\n      \"defaultCardId\": \"string\",\n      \"cards\": [\n        {\n          \"id\": \"string\",\n          \"created\": 9455,\n          \"deleted\": true,\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"fingerprint\": \"string\",\n          \"expMonth\": \"string\",\n          \"expYear\": \"string\",\n          \"cardholderName\": \"string\",\n          \"customerId\": \"string\",\n          \"brand\": \"JCB\",\n          \"type\": \"Debit\",\n          \"country\": \"string\",\n          \"addressLine1\": \"string\",\n          \"addressLine2\": \"string\",\n          \"addressCity\": \"string\",\n          \"addressState\": \"string\",\n          \"addressZip\": \"string\",\n          \"addressCountry\": \"string\",\n          \"issuer\": \"string\",\n          \"merchantAccountId\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"created\": 7957,\n          \"deleted\": true,\n          \"first6\": \"string\",\n          \"last4\": \"string\",\n          \"fingerprint\": \"string\",\n          \"expMonth\": \"string\",\n          \"expYear\": \"string\",\n          \"cardholderName\": \"string\",\n          \"customerId\": \"string\",\n          \"brand\": \"MasterCard\",\n          \"type\": \"Credit\",\n          \"country\": \"string\",\n          \"addressLine1\": \"string\",\n          \"addressLine2\": \"string\",\n          \"addressCity\": \"string\",\n          \"addressState\": \"string\",\n          \"addressZip\": \"string\",\n          \"addressCountry\": \"string\",\n          \"issuer\": \"string\",\n          \"merchantAccountId\": \"string\"\n        }\n      ],\n      \"billing\": {\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"zip\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"vatNumber\": \"<string>\"\n      },\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      }\n    }\n  ],\n  \"hasMore\": false,\n  \"totalCount\": 3773\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64991e1f-804d-497c-8e05-bd921219b50d",
+          "name": "Retrieve a Customer",
+          "request": {
+            "name": "Retrieve a Customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bee94fe3-2ff0-4a72-9926-9f63b1dd9a93",
+              "name": "A customer object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 8919,\n  \"deleted\": false,\n  \"email\": \"0mhNu93T@gWuvgusDYhIFcJtXiOHdfTTTOcEjENukX.tktw\",\n  \"phoneNumber\": \"string\",\n  \"description\": \"string\",\n  \"defaultCardId\": \"string\",\n  \"cards\": [\n    {\n      \"id\": \"string\",\n      \"created\": 3222,\n      \"deleted\": true,\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"fingerprint\": \"string\",\n      \"expMonth\": \"string\",\n      \"expYear\": \"string\",\n      \"cardholderName\": \"string\",\n      \"customerId\": \"string\",\n      \"brand\": \"Visa\",\n      \"type\": \"Other\",\n      \"country\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"addressCity\": \"string\",\n      \"addressState\": \"string\",\n      \"addressZip\": \"string\",\n      \"addressCountry\": \"string\",\n      \"issuer\": \"string\",\n      \"merchantAccountId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 6428,\n      \"deleted\": false,\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"fingerprint\": \"string\",\n      \"expMonth\": \"string\",\n      \"expYear\": \"string\",\n      \"cardholderName\": \"string\",\n      \"customerId\": \"string\",\n      \"brand\": \"JCB\",\n      \"type\": \"Prepaid\",\n      \"country\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"addressCity\": \"string\",\n      \"addressState\": \"string\",\n      \"addressZip\": \"string\",\n      \"addressCountry\": \"string\",\n      \"issuer\": \"string\",\n      \"merchantAccountId\": \"string\"\n    }\n  ],\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45e280d5-eb3b-41bf-8b56-3581234761e9",
+          "name": "Update a Customer",
+          "request": {
+            "name": "Update a Customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"phoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  },\n  \"card\": {\n    \"cardholderName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"cvc\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "15bfe4d3-b548-4f87-af41-463b9e7ab2b5",
+              "name": "Updated customer.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"phoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"card\": {\n    \"cardholderName\": \"<string>\",\n    \"number\": \"<string>\",\n    \"expMonth\": \"<string>\",\n    \"expYear\": \"<string>\",\n    \"cvc\": \"<string>\",\n    \"addressLine1\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created\": 8919,\n  \"deleted\": false,\n  \"email\": \"0mhNu93T@gWuvgusDYhIFcJtXiOHdfTTTOcEjENukX.tktw\",\n  \"phoneNumber\": \"string\",\n  \"description\": \"string\",\n  \"defaultCardId\": \"string\",\n  \"cards\": [\n    {\n      \"id\": \"string\",\n      \"created\": 3222,\n      \"deleted\": true,\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"fingerprint\": \"string\",\n      \"expMonth\": \"string\",\n      \"expYear\": \"string\",\n      \"cardholderName\": \"string\",\n      \"customerId\": \"string\",\n      \"brand\": \"Visa\",\n      \"type\": \"Other\",\n      \"country\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"addressCity\": \"string\",\n      \"addressState\": \"string\",\n      \"addressZip\": \"string\",\n      \"addressCountry\": \"string\",\n      \"issuer\": \"string\",\n      \"merchantAccountId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"created\": 6428,\n      \"deleted\": false,\n      \"first6\": \"string\",\n      \"last4\": \"string\",\n      \"fingerprint\": \"string\",\n      \"expMonth\": \"string\",\n      \"expYear\": \"string\",\n      \"cardholderName\": \"string\",\n      \"customerId\": \"string\",\n      \"brand\": \"JCB\",\n      \"type\": \"Prepaid\",\n      \"country\": \"string\",\n      \"addressLine1\": \"string\",\n      \"addressLine2\": \"string\",\n      \"addressCity\": \"string\",\n      \"addressState\": \"string\",\n      \"addressZip\": \"string\",\n      \"addressCountry\": \"string\",\n      \"issuer\": \"string\",\n      \"merchantAccountId\": \"string\"\n    }\n  ],\n  \"billing\": {\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"vatNumber\": \"<string>\"\n  },\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04ba298e-d98b-4cb5-a235-2a2eb5ef1818",
+          "name": "Delete a Customer",
+          "request": {
+            "name": "Delete a Customer",
+            "description": {},
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "058bd76c-0bd5-406e-86fa-488a108f7807",
+              "name": "Deletion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"deleted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.shift4.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1f995780-a885-4c04-93b0-4562d6cdf822",
+    "name": "Shift4 Payments Blacklist Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.\n\nContact Support:\n Name: Shift4 Developer Support\n Email: devsupport@shift4.com",
+      "type": "text/plain"
+    }
+  }
+}
