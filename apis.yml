@@ -523,6 +523,8 @@ apis:
   humanURL: https://dev.shift4.com/docs/api
   baseURL: https://api.shift4.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -1044,6 +1046,8 @@ apis:
   humanURL: https://dev.shift4.com/docs/api
   baseURL: https://api.shift4.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
