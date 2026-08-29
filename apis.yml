@@ -1249,6 +1249,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/shift4-payments-capability-edges.yml
+    name: Shift4 Payments Business Capability Map
   - type: AgenticAccess
     url: agentic-access/shift4-payments-agentic-access.yml
   - type: DomainSecurity
