@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Shift4 Payments Blacklist API
   description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
@@ -102,6 +102,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
   schemas:
     ListResponseBlacklistRule:
       type: object
@@ -121,48 +131,6 @@ components:
           type: string
         deleted:
           type: boolean
-    BlacklistRuleList:
-      $ref: '#/components/schemas/ListResponseBlacklistRule'
-    BlacklistRuleRequest:
-      type: object
-      required:
-      - ruleType
-      properties:
-        ruleType:
-          type: string
-          enum:
-          - fingerprint
-          - ip_address
-          - ip_country
-          - email
-          - user_agent
-          - accept_language
-          - metadata
-          - card_bin
-          - card_country
-          - card_issuer
-        fingerprint:
-          type: string
-        ipAddress:
-          type: string
-        ipCountry:
-          type: string
-        metadataKey:
-          type: string
-        metadataValue:
-          type: string
-        email:
-          type: string
-        userAgent:
-          type: string
-        acceptLanguage:
-          type: string
-        cardCountry:
-          type: string
-        cardBin:
-          type: string
-        cardIssuer:
-          type: string
     BlacklistRule:
       type: object
       properties:
@@ -209,16 +177,48 @@ components:
           type: string
         cardIssuer:
           type: string
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-      description: A limit on the number of objects to be returned.
+    BlacklistRuleList:
+      $ref: '#/components/schemas/ListResponseBlacklistRule'
+    BlacklistRuleRequest:
+      type: object
+      required:
+      - ruleType
+      properties:
+        ruleType:
+          type: string
+          enum:
+          - fingerprint
+          - ip_address
+          - ip_country
+          - email
+          - user_agent
+          - accept_language
+          - metadata
+          - card_bin
+          - card_country
+          - card_issuer
+        fingerprint:
+          type: string
+        ipAddress:
+          type: string
+        ipCountry:
+          type: string
+        metadataKey:
+          type: string
+        metadataValue:
+          type: string
+        email:
+          type: string
+        userAgent:
+          type: string
+        acceptLanguage:
+          type: string
+        cardCountry:
+          type: string
+        cardBin:
+          type: string
+        cardIssuer:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

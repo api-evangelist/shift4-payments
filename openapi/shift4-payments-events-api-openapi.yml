@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Shift4 Payments Blacklist Events API
   description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
@@ -54,17 +54,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Event'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-      description: A limit on the number of objects to be returned.
   schemas:
+    EventList:
+      $ref: '#/components/schemas/ListResponseEvent'
     ListResponseEvent:
       type: object
       properties:
@@ -76,8 +68,6 @@ components:
           type: boolean
         totalCount:
           type: integer
-    EventList:
-      $ref: '#/components/schemas/ListResponseEvent'
     Event:
       type: object
       properties:
@@ -93,6 +83,16 @@ components:
           description: Event payload (shape varies by event type).
         log:
           type: string
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
   securitySchemes:
     BasicAuth:
       type: http

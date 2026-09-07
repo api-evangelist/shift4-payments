@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Shift4 Payments Blacklist Credits API
   description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
@@ -73,42 +73,29 @@ paths:
                 $ref: '#/components/schemas/Credit'
 components:
   schemas:
-    Credit:
+    CreditRequest:
       type: object
+      required:
+      - amount
+      - currency
       properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
         amount:
           type: integer
+          minimum: 1
         currency:
           type: string
         description:
           type: string
-        card:
-          $ref: '#/components/schemas/Card'
+        cardId:
+          type: string
         customerId:
           type: string
         fast:
-          type: boolean
-        merchantAccountId:
-          type: string
-        disputed:
           type: boolean
         metadata:
           type: object
           additionalProperties:
             type: string
-        failureCode:
-          type: string
-        failureIssuerDeclineCode:
-          type: string
-        failureMessage:
-          type: string
-    CreditList:
-      $ref: '#/components/schemas/ListResponseCredit'
     Card:
       type: object
       properties:
@@ -171,29 +158,6 @@ components:
           type: string
         merchantAccountId:
           type: string
-    CreditRequest:
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: integer
-          minimum: 1
-        currency:
-          type: string
-        description:
-          type: string
-        cardId:
-          type: string
-        customerId:
-          type: string
-        fast:
-          type: boolean
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
     ListResponseCredit:
       type: object
       properties:
@@ -205,6 +169,42 @@ components:
           type: boolean
         totalCount:
           type: integer
+    Credit:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        description:
+          type: string
+        card:
+          $ref: '#/components/schemas/Card'
+        customerId:
+          type: string
+        fast:
+          type: boolean
+        merchantAccountId:
+          type: string
+        disputed:
+          type: boolean
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        failureCode:
+          type: string
+        failureIssuerDeclineCode:
+          type: string
+        failureMessage:
+          type: string
+    CreditList:
+      $ref: '#/components/schemas/ListResponseCredit'
   parameters:
     Limit:
       name: limit

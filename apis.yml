@@ -1293,3 +1293,5 @@ integrations:
 maintainers:
   - FN: API Evangelist
     url: https://apievangelist.com
+x-parent: shift4
+x-relationship: product

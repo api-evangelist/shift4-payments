@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Shift4 Payments Blacklist Charges API
   description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
@@ -119,40 +119,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Charge'
 components:
-  parameters:
-    EndingBefore:
-      name: endingBefore
-      in: query
-      schema:
-        type: string
-      description: A cursor for use in pagination.
-    StartingAfter:
-      name: startingAfter
-      in: query
-      schema:
-        type: string
-      description: A cursor for use in pagination.
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-      description: A limit on the number of objects to be returned.
   schemas:
-    ChargeUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    ChargeList:
-      $ref: '#/components/schemas/ListResponseCharge'
     Billing:
       type: object
       properties:
@@ -165,12 +132,42 @@ components:
           $ref: '#/components/schemas/Address'
         vatNumber:
           type: string
-    CaptureRequest:
+    ListResponseCharge:
       type: object
       properties:
-        amount:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+        hasMore:
+          type: boolean
+        totalCount:
           type: integer
-          minimum: 1
+    CardRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
     Address:
       type: object
       properties:
@@ -187,6 +184,221 @@ components:
         country:
           type: string
           description: ISO 3166-1 alpha-2 country code.
+    CaptureRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+          minimum: 1
+    Shipping:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+          description: Unix timestamp.
+        deleted:
+          type: boolean
+        first6:
+          type: string
+        last4:
+          type: string
+        fingerprint:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cardholderName:
+          type: string
+        customerId:
+          type: string
+        brand:
+          type: string
+          description: Card brand.
+          enum:
+          - Visa
+          - MasterCard
+          - AmericanExpress
+          - Discover
+          - JCB
+          - DinersClub
+          - UnionPay
+          - Other
+        type:
+          type: string
+          enum:
+          - Credit
+          - Debit
+          - Prepaid
+          - Other
+        country:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+        issuer:
+          type: string
+        merchantAccountId:
+          type: string
+    ChargeRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
+        description:
+          type: string
+        captured:
+          type: boolean
+          default: true
+        customerId:
+          type: string
+        cardId:
+          type: string
+        card:
+          oneOf:
+          - $ref: '#/components/schemas/CardRequest'
+          - type: string
+            description: A token id (tok_...).
+        billing:
+          $ref: '#/components/schemas/Billing'
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ChargeUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - invalid_request
+              - gateway_error
+              - processing_error
+              - card_error
+              - fraud
+              - three_d_secure_error
+              - blacklist_error
+            code:
+              type: string
+            message:
+              type: string
+            chargeId:
+              type: string
+            creditId:
+              type: string
+            issuerDeclineCode:
+              type: string
+    Charge:
+      type: object
+      properties:
+        id:
+          type: string
+        clientObjectId:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+          description: Smallest currency unit (e.g., cents).
+        amountRefunded:
+          type: integer
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        type:
+          type: string
+          enum:
+          - FIRST_RECURRING
+          - SUBSEQUENT_RECURRING
+          - CARDHOLDER_INITIATED
+          - MERCHANT_INITIATED
+        card:
+          $ref: '#/components/schemas/Card'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        customerId:
+          type: string
+        subscriptionId:
+          type: string
+        captured:
+          type: boolean
+        refunded:
+          type: boolean
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        disputed:
+          type: boolean
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        merchantAccountId:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        failureCode:
+          type: string
+        failureIssuerDeclineCode:
+          type: string
+        failureMessage:
+          type: string
     Refund:
       type: object
       properties:
@@ -299,242 +511,30 @@ components:
           type: object
           additionalProperties:
             type: string
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - invalid_request
-              - gateway_error
-              - processing_error
-              - card_error
-              - fraud
-              - three_d_secure_error
-              - blacklist_error
-            code:
-              type: string
-            message:
-              type: string
-            chargeId:
-              type: string
-            creditId:
-              type: string
-            issuerDeclineCode:
-              type: string
-    ListResponseCharge:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Charge'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
-    Card:
-      type: object
-      properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
-          description: Unix timestamp.
-        deleted:
-          type: boolean
-        first6:
-          type: string
-        last4:
-          type: string
-        fingerprint:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cardholderName:
-          type: string
-        customerId:
-          type: string
-        brand:
-          type: string
-          description: Card brand.
-          enum:
-          - Visa
-          - MasterCard
-          - AmericanExpress
-          - Discover
-          - JCB
-          - DinersClub
-          - UnionPay
-          - Other
-        type:
-          type: string
-          enum:
-          - Credit
-          - Debit
-          - Prepaid
-          - Other
-        country:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-        issuer:
-          type: string
-        merchantAccountId:
-          type: string
-    Shipping:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phoneNumber:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-    Charge:
-      type: object
-      properties:
-        id:
-          type: string
-        clientObjectId:
-          type: string
-        created:
-          type: integer
-          format: int64
-        amount:
-          type: integer
-          description: Smallest currency unit (e.g., cents).
-        amountRefunded:
-          type: integer
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESSFUL
-          - FAILED
-          - PENDING
-        type:
-          type: string
-          enum:
-          - FIRST_RECURRING
-          - SUBSEQUENT_RECURRING
-          - CARDHOLDER_INITIATED
-          - MERCHANT_INITIATED
-        card:
-          $ref: '#/components/schemas/Card'
-        paymentMethod:
-          $ref: '#/components/schemas/PaymentMethod'
-        customerId:
-          type: string
-        subscriptionId:
-          type: string
-        captured:
-          type: boolean
-        refunded:
-          type: boolean
-        refunds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Refund'
-        disputed:
-          type: boolean
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        billing:
-          $ref: '#/components/schemas/Billing'
-        merchantAccountId:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        failureCode:
-          type: string
-        failureIssuerDeclineCode:
-          type: string
-        failureMessage:
-          type: string
-    ChargeRequest:
-      type: object
-      required:
-      - amount
-      - currency
-      properties:
-        amount:
-          type: integer
-          minimum: 1
-        currency:
-          type: string
-        description:
-          type: string
-        captured:
-          type: boolean
-          default: true
-        customerId:
-          type: string
-        cardId:
-          type: string
-        card:
-          oneOf:
-          - $ref: '#/components/schemas/CardRequest'
-          - type: string
-            description: A token id (tok_...).
-        billing:
-          $ref: '#/components/schemas/Billing'
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
+    ChargeList:
+      $ref: '#/components/schemas/ListResponseCharge'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: A cursor for use in pagination.
+    EndingBefore:
+      name: endingBefore
+      in: query
+      schema:
+        type: string
+      description: A cursor for use in pagination.
   responses:
     ErrorResponse:
       description: An error response.
