@@ -340,6 +340,8 @@ apis:
   humanURL: https://dev.shift4.com/docs/api
   baseURL: https://api.shift4.com
   tags:
+  - Credit
+  tags_raw:
   - Credits
   properties:
   - type: OpenAPI
