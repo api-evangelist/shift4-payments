@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Shift4 Payments Blacklist Fraud Warnings API
-  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  title: Shift4 Payments Fraud Warnings API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events.
   version: '1.0'
   contact:
     name: Shift4 Developer Support
@@ -36,8 +36,17 @@ paths:
                 $ref: '#/components/schemas/FraudWarningList'
 components:
   schemas:
-    FraudWarningList:
-      $ref: '#/components/schemas/ListResponseFraudWarning'
+    ListResponseFraudWarning:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/FraudWarning'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     FraudWarning:
       type: object
       properties:
@@ -52,17 +61,8 @@ components:
           type: string
         chargeId:
           type: string
-    ListResponseFraudWarning:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/FraudWarning'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
+    FraudWarningList:
+      $ref: '#/components/schemas/ListResponseFraudWarning'
   parameters:
     Limit:
       name: limit

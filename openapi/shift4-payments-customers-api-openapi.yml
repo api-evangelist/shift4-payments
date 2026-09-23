@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Shift4 Payments Blacklist Customers API
-  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  title: Shift4 Payments Customers API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events.
   version: '1.0'
   contact:
     name: Shift4 Developer Support
@@ -103,90 +103,8 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
-    Billing:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        address:
-          $ref: '#/components/schemas/Address'
-        vatNumber:
-          type: string
     CustomerList:
       $ref: '#/components/schemas/ListResponseCustomer'
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        zip:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-    Customer:
-      type: object
-      properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
-        deleted:
-          type: boolean
-        email:
-          type: string
-          format: email
-        phoneNumber:
-          type: string
-        description:
-          type: string
-        defaultCardId:
-          type: string
-        cards:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
-        billing:
-          $ref: '#/components/schemas/Billing'
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
     CustomerRequest:
       type: object
       properties:
@@ -207,13 +125,6 @@ components:
           oneOf:
           - $ref: '#/components/schemas/CardRequest'
           - type: string
-    DeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deleted:
-          type: boolean
     Card:
       type: object
       properties:
@@ -276,6 +187,88 @@ components:
           type: string
         merchantAccountId:
           type: string
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    Billing:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        deleted:
+          type: boolean
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        description:
+          type: string
+        defaultCardId:
+          type: string
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    CardRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
     ListResponseCustomer:
       type: object
       properties:
@@ -287,6 +280,13 @@ components:
           type: boolean
         totalCount:
           type: integer
+    DeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deleted:
+          type: boolean
   parameters:
     Limit:
       name: limit

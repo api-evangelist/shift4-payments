@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Shift4 Payments Blacklist Cards API
-  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  title: Shift4 Payments Cards API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events.
   version: '1.0'
   contact:
     name: Shift4 Developer Support
@@ -114,38 +114,8 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-    DeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deleted:
-          type: boolean
+    CardList:
+      $ref: '#/components/schemas/ListResponseCard'
     Card:
       type: object
       properties:
@@ -208,8 +178,6 @@ components:
           type: string
         merchantAccountId:
           type: string
-    CardList:
-      $ref: '#/components/schemas/ListResponseCard'
     ListResponseCard:
       type: object
       properties:
@@ -242,6 +210,38 @@ components:
           type: string
         addressCountry:
           type: string
+    CardRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+    DeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deleted:
+          type: boolean
   parameters:
     Limit:
       name: limit

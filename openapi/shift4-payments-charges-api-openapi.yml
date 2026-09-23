@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Shift4 Payments Blacklist Charges API
-  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  title: Shift4 Payments Charges API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events.
   version: '1.0'
   contact:
     name: Shift4 Developer Support
@@ -120,76 +120,38 @@ paths:
                 $ref: '#/components/schemas/Charge'
 components:
   schemas:
-    Billing:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        address:
-          $ref: '#/components/schemas/Address'
-        vatNumber:
-          type: string
-    ListResponseCharge:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Charge'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        zip:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
     CaptureRequest:
       type: object
       properties:
         amount:
           type: integer
           minimum: 1
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - invalid_request
+              - gateway_error
+              - processing_error
+              - card_error
+              - fraud
+              - three_d_secure_error
+              - blacklist_error
+            code:
+              type: string
+            message:
+              type: string
+            chargeId:
+              type: string
+            creditId:
+              type: string
+            issuerDeclineCode:
+              type: string
     Shipping:
       type: object
       properties:
@@ -264,74 +226,102 @@ components:
           type: string
         merchantAccountId:
           type: string
-    ChargeRequest:
+    Address:
       type: object
-      required:
-      - amount
-      - currency
       properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    Billing:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
         amount:
           type: integer
-          minimum: 1
         currency:
           type: string
-        description:
+        charge:
           type: string
-        captured:
+        reason:
+          type: string
+          enum:
+          - FRAUDULENT
+          - DUPLICATE
+          - REQUESTED_BY_CUSTOMER
+        status:
+          type: string
+          enum:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ChargeList:
+      $ref: '#/components/schemas/ListResponseCharge'
+    CardRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+    ListResponseCharge:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+        hasMore:
           type: boolean
-          default: true
-        customerId:
-          type: string
-        cardId:
-          type: string
-        card:
-          oneOf:
-          - $ref: '#/components/schemas/CardRequest'
-          - type: string
-            description: A token id (tok_...).
-        billing:
-          $ref: '#/components/schemas/Billing'
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    ChargeUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - invalid_request
-              - gateway_error
-              - processing_error
-              - card_error
-              - fraud
-              - three_d_secure_error
-              - blacklist_error
-            code:
-              type: string
-            message:
-              type: string
-            chargeId:
-              type: string
-            creditId:
-              type: string
-            issuerDeclineCode:
-              type: string
+        totalCount:
+          type: integer
     Charge:
       type: object
       properties:
@@ -399,36 +389,6 @@ components:
           type: string
         failureMessage:
           type: string
-    Refund:
-      type: object
-      properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
-        amount:
-          type: integer
-        currency:
-          type: string
-        charge:
-          type: string
-        reason:
-          type: string
-          enum:
-          - FRAUDULENT
-          - DUPLICATE
-          - REQUESTED_BY_CUSTOMER
-        status:
-          type: string
-          enum:
-          - SUCCESSFUL
-          - FAILED
-          - PENDING
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
     PaymentMethod:
       type: object
       properties:
@@ -511,9 +471,55 @@ components:
           type: object
           additionalProperties:
             type: string
-    ChargeList:
-      $ref: '#/components/schemas/ListResponseCharge'
+    ChargeRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
+        description:
+          type: string
+        captured:
+          type: boolean
+          default: true
+        customerId:
+          type: string
+        cardId:
+          type: string
+        card:
+          oneOf:
+          - $ref: '#/components/schemas/CardRequest'
+          - type: string
+            description: A token id (tok_...).
+        billing:
+          $ref: '#/components/schemas/Billing'
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ChargeUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
   parameters:
+    StartingAfter:
+      name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: A cursor for use in pagination.
     Limit:
       name: limit
       in: query
@@ -523,12 +529,6 @@ components:
         maximum: 100
         default: 10
       description: A limit on the number of objects to be returned.
-    StartingAfter:
-      name: startingAfter
-      in: query
-      schema:
-        type: string
-      description: A cursor for use in pagination.
     EndingBefore:
       name: endingBefore
       in: query

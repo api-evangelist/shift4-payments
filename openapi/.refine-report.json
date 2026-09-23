@@ -1,24 +1,7 @@
 {
   "provider": "shift4-payments",
   "sources": [
-    "shift4-payments-blacklist-api-openapi.yml",
-    "shift4-payments-cards-api-openapi.yml",
-    "shift4-payments-charges-api-openapi.yml",
-    "shift4-payments-checkout-sessions-api-openapi.yml",
-    "shift4-payments-credits-api-openapi.yml",
-    "shift4-payments-customers-api-openapi.yml",
-    "shift4-payments-disputes-api-openapi.yml",
-    "shift4-payments-events-api-openapi.yml",
-    "shift4-payments-file-uploads-api-openapi.yml",
-    "shift4-payments-fraud-warnings-api-openapi.yml",
-    "shift4-payments-payment-links-api-openapi.yml",
-    "shift4-payments-payment-methods-api-openapi.yml",
-    "shift4-payments-payouts-api-openapi.yml",
-    "shift4-payments-plans-api-openapi.yml",
-    "shift4-payments-refunds-api-openapi.yml",
-    "shift4-payments-subscriptions-api-openapi.yml",
-    "shift4-payments-tokens-api-openapi.yml",
-    "shift4-payments-webhook-endpoints-api-openapi.yml"
+    "_original/shift4-api-openapi.yml"
   ],
   "outputs": [
     "shift4-payments-blacklist-api-openapi.yml",
@@ -44,25 +27,28 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "shift4-payments-blacklist-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-cards-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-charges-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-checkout-sessions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-credits-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-customers-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-disputes-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-events-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-file-uploads-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-fraud-warnings-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-payment-links-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-payment-methods-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-payouts-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-plans-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-refunds-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-subscriptions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-tokens-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "shift4-payments-webhook-endpoints-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shift4-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "shift4-payments-blacklist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-cards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-charges-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-checkout-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-credits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-disputes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-file-uploads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-fraud-warnings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-payment-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-payment-methods-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-payouts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-refunds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shift4-payments-webhook-endpoints-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
-  title: Shift4 Payments Blacklist Checkout Sessions API
-  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events. Endpoints, parameters, and resource shapes are extracted from the public Shift4 documentation at https://dev.shift4.com/docs/api and the official open-source Shift4 SDKs (Java, Node, Python, Ruby, PHP, .NET, iOS, Android, WooCommerce, Salesforce B2C) maintained at https://github.com/shift4developer.
+  title: Shift4 Payments Checkout Sessions API
+  description: The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, refunds, customers, cards, tokenization, subscriptions, plans, payment methods, payment links, checkout sessions, fraud warnings, blacklist rules, disputes, file uploads, payouts, webhook endpoints, and events.
   version: '1.0'
   contact:
     name: Shift4 Developer Support
@@ -59,34 +59,6 @@ paths:
                 $ref: '#/components/schemas/CheckoutSession'
 components:
   schemas:
-    LineItemRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-          minimum: 1
-        unitAmount:
-          type: integer
-          minimum: 1
-        currency:
-          type: string
-    LineItem:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-        unitAmount:
-          type: integer
-        currency:
-          type: string
     CheckoutSessionRequest:
       type: object
       properties:
@@ -120,6 +92,34 @@ components:
           type: object
           additionalProperties:
             type: string
+    LineItem:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+        unitAmount:
+          type: integer
+        currency:
+          type: string
+    LineItemRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+        unitAmount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
     CheckoutSession:
       type: object
       properties:
