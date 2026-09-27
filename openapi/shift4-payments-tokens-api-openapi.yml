@@ -40,31 +40,6 @@ paths:
                 $ref: '#/components/schemas/Token'
 components:
   schemas:
-    TokenRequest:
-      type: object
-      properties:
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        cardholderName:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
     Token:
       type: object
       properties:
@@ -91,6 +66,31 @@ components:
           type: string
         used:
           type: boolean
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+    TokenRequest:
+      type: object
+      properties:
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        cardholderName:
+          type: string
         addressLine1:
           type: string
         addressLine2:

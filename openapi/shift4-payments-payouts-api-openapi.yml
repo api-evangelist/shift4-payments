@@ -57,6 +57,17 @@ components:
   schemas:
     PayoutList:
       $ref: '#/components/schemas/ListResponsePayout'
+    ListResponsePayout:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payout'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     Payout:
       type: object
       properties:
@@ -75,17 +86,6 @@ components:
           type: string
         destination:
           type: string
-    ListResponsePayout:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Payout'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
   parameters:
     Limit:
       name: limit

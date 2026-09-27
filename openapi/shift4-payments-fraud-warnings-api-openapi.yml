@@ -36,17 +36,6 @@ paths:
                 $ref: '#/components/schemas/FraudWarningList'
 components:
   schemas:
-    ListResponseFraudWarning:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/FraudWarning'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
     FraudWarning:
       type: object
       properties:
@@ -63,6 +52,17 @@ components:
           type: string
     FraudWarningList:
       $ref: '#/components/schemas/ListResponseFraudWarning'
+    ListResponseFraudWarning:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/FraudWarning'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
   parameters:
     Limit:
       name: limit

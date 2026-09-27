@@ -114,8 +114,51 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
+    CardRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
     CardList:
       $ref: '#/components/schemas/ListResponseCard'
+    ListResponseCard:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    DeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deleted:
+          type: boolean
     Card:
       type: object
       properties:
@@ -178,17 +221,6 @@ components:
           type: string
         merchantAccountId:
           type: string
-    ListResponseCard:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
     CardUpdateRequest:
       type: object
       properties:
@@ -210,38 +242,6 @@ components:
           type: string
         addressCountry:
           type: string
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-    DeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deleted:
-          type: boolean
   parameters:
     Limit:
       name: limit

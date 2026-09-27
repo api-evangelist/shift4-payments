@@ -102,9 +102,77 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
   schemas:
+    DeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deleted:
+          type: boolean
+    BlacklistRuleRequest:
+      type: object
+      required:
+      - ruleType
+      properties:
+        ruleType:
+          type: string
+          enum:
+          - fingerprint
+          - ip_address
+          - ip_country
+          - email
+          - user_agent
+          - accept_language
+          - metadata
+          - card_bin
+          - card_country
+          - card_issuer
+        fingerprint:
+          type: string
+        ipAddress:
+          type: string
+        ipCountry:
+          type: string
+        metadataKey:
+          type: string
+        metadataValue:
+          type: string
+        email:
+          type: string
+        userAgent:
+          type: string
+        acceptLanguage:
+          type: string
+        cardCountry:
+          type: string
+        cardBin:
+          type: string
+        cardIssuer:
+          type: string
     BlacklistRuleList:
       $ref: '#/components/schemas/ListResponseBlacklistRule'
+    ListResponseBlacklistRule:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlacklistRule'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     BlacklistRule:
       type: object
       properties:
@@ -151,74 +219,6 @@ components:
           type: string
         cardIssuer:
           type: string
-    BlacklistRuleRequest:
-      type: object
-      required:
-      - ruleType
-      properties:
-        ruleType:
-          type: string
-          enum:
-          - fingerprint
-          - ip_address
-          - ip_country
-          - email
-          - user_agent
-          - accept_language
-          - metadata
-          - card_bin
-          - card_country
-          - card_issuer
-        fingerprint:
-          type: string
-        ipAddress:
-          type: string
-        ipCountry:
-          type: string
-        metadataKey:
-          type: string
-        metadataValue:
-          type: string
-        email:
-          type: string
-        userAgent:
-          type: string
-        acceptLanguage:
-          type: string
-        cardCountry:
-          type: string
-        cardBin:
-          type: string
-        cardIssuer:
-          type: string
-    ListResponseBlacklistRule:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlacklistRule'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
-    DeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deleted:
-          type: boolean
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-      description: A limit on the number of objects to be returned.
   securitySchemes:
     BasicAuth:
       type: http

@@ -120,12 +120,6 @@ paths:
                 $ref: '#/components/schemas/Charge'
 components:
   schemas:
-    CaptureRequest:
-      type: object
-      properties:
-        amount:
-          type: integer
-          minimum: 1
     ErrorResponse:
       type: object
       properties:
@@ -152,80 +146,6 @@ components:
               type: string
             issuerDeclineCode:
               type: string
-    Shipping:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phoneNumber:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-    Card:
-      type: object
-      properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
-          description: Unix timestamp.
-        deleted:
-          type: boolean
-        first6:
-          type: string
-        last4:
-          type: string
-        fingerprint:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cardholderName:
-          type: string
-        customerId:
-          type: string
-        brand:
-          type: string
-          description: Card brand.
-          enum:
-          - Visa
-          - MasterCard
-          - AmericanExpress
-          - Discover
-          - JCB
-          - DinersClub
-          - UnionPay
-          - Other
-        type:
-          type: string
-          enum:
-          - Credit
-          - Debit
-          - Prepaid
-          - Other
-        country:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-        issuer:
-          type: string
-        merchantAccountId:
-          type: string
     Address:
       type: object
       properties:
@@ -242,50 +162,6 @@ components:
         country:
           type: string
           description: ISO 3166-1 alpha-2 country code.
-    Billing:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        address:
-          $ref: '#/components/schemas/Address'
-        vatNumber:
-          type: string
-    Refund:
-      type: object
-      properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
-        amount:
-          type: integer
-        currency:
-          type: string
-        charge:
-          type: string
-        reason:
-          type: string
-          enum:
-          - FRAUDULENT
-          - DUPLICATE
-          - REQUESTED_BY_CUSTOMER
-        status:
-          type: string
-          enum:
-          - SUCCESSFUL
-          - FAILED
-          - PENDING
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    ChargeList:
-      $ref: '#/components/schemas/ListResponseCharge'
     CardRequest:
       type: object
       properties:
@@ -311,17 +187,6 @@ components:
           type: string
         addressCountry:
           type: string
-    ListResponseCharge:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Charge'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
     Charge:
       type: object
       properties:
@@ -389,6 +254,88 @@ components:
           type: string
         failureMessage:
           type: string
+    Shipping:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+    ChargeUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    CaptureRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+          minimum: 1
+    ListResponseCharge:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    Billing:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
+    Refund:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        charge:
+          type: string
+        reason:
+          type: string
+          enum:
+          - FRAUDULENT
+          - DUPLICATE
+          - REQUESTED_BY_CUSTOMER
+        status:
+          type: string
+          enum:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ChargeList:
+      $ref: '#/components/schemas/ListResponseCharge'
     PaymentMethod:
       type: object
       properties:
@@ -504,18 +451,71 @@ components:
           type: object
           additionalProperties:
             type: string
-    ChargeUpdateRequest:
+    Card:
       type: object
       properties:
-        description:
+        id:
           type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
+        created:
+          type: integer
+          format: int64
+          description: Unix timestamp.
+        deleted:
+          type: boolean
+        first6:
+          type: string
+        last4:
+          type: string
+        fingerprint:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cardholderName:
+          type: string
+        customerId:
+          type: string
+        brand:
+          type: string
+          description: Card brand.
+          enum:
+          - Visa
+          - MasterCard
+          - AmericanExpress
+          - Discover
+          - JCB
+          - DinersClub
+          - UnionPay
+          - Other
+        type:
+          type: string
+          enum:
+          - Credit
+          - Debit
+          - Prepaid
+          - Other
+        country:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+        issuer:
+          type: string
+        merchantAccountId:
+          type: string
   parameters:
-    StartingAfter:
-      name: startingAfter
+    EndingBefore:
+      name: endingBefore
       in: query
       schema:
         type: string
@@ -529,8 +529,8 @@ components:
         maximum: 100
         default: 10
       description: A limit on the number of objects to be returned.
-    EndingBefore:
-      name: endingBefore
+    StartingAfter:
+      name: startingAfter
       in: query
       schema:
         type: string

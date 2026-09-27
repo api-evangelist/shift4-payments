@@ -106,6 +106,17 @@ components:
         default: 10
       description: A limit on the number of objects to be returned.
   schemas:
+    ListResponseRefund:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     RefundRequest:
       type: object
       required:
@@ -158,17 +169,6 @@ components:
             type: string
     RefundList:
       $ref: '#/components/schemas/ListResponseRefund'
-    ListResponseRefund:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Refund'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http

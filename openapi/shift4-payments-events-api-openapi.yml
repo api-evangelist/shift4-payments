@@ -55,17 +55,6 @@ paths:
                 $ref: '#/components/schemas/Event'
 components:
   schemas:
-    ListResponseEvent:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Event'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
     Event:
       type: object
       properties:
@@ -81,6 +70,17 @@ components:
           description: Event payload (shape varies by event type).
         log:
           type: string
+    ListResponseEvent:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     EventList:
       $ref: '#/components/schemas/ListResponseEvent'
   parameters:

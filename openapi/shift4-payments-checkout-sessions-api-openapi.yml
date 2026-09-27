@@ -59,6 +59,63 @@ paths:
                 $ref: '#/components/schemas/CheckoutSession'
 components:
   schemas:
+    CheckoutSession:
+      type: object
+      properties:
+        id:
+          type: string
+        lastCharge:
+          type: string
+        paymentLink:
+          type: string
+        invoice:
+          type: string
+        customer:
+          type: string
+        clientSecret:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        locale:
+          type: string
+        collectBillingAddress:
+          type: boolean
+        collectShippingAddress:
+          type: boolean
+        capture:
+          type: boolean
+        captchaRequired:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - OPEN
+          - COMPLETED
+          - EXPIRED
+        allowSavedCards:
+          type: boolean
+        action:
+          type: string
+          enum:
+          - PAYMENT
+          - SETUP
+          - SUBSCRIPTION
+        currency:
+          type: string
+        url:
+          type: string
+          format: uri
+        redirectUrl:
+          type: string
+          format: uri
+        vendorReference:
+          type: string
     CheckoutSessionRequest:
       type: object
       properties:
@@ -119,63 +176,6 @@ components:
           type: integer
           minimum: 1
         currency:
-          type: string
-    CheckoutSession:
-      type: object
-      properties:
-        id:
-          type: string
-        lastCharge:
-          type: string
-        paymentLink:
-          type: string
-        invoice:
-          type: string
-        customer:
-          type: string
-        clientSecret:
-          type: string
-        lineItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        locale:
-          type: string
-        collectBillingAddress:
-          type: boolean
-        collectShippingAddress:
-          type: boolean
-        capture:
-          type: boolean
-        captchaRequired:
-          type: boolean
-        status:
-          type: string
-          enum:
-          - OPEN
-          - COMPLETED
-          - EXPIRED
-        allowSavedCards:
-          type: boolean
-        action:
-          type: string
-          enum:
-          - PAYMENT
-          - SETUP
-          - SUBSCRIPTION
-        currency:
-          type: string
-        url:
-          type: string
-          format: uri
-        redirectUrl:
-          type: string
-          format: uri
-        vendorReference:
           type: string
   securitySchemes:
     BasicAuth:
