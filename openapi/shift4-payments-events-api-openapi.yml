@@ -55,6 +55,8 @@ paths:
                 $ref: '#/components/schemas/Event'
 components:
   schemas:
+    EventList:
+      $ref: '#/components/schemas/ListResponseEvent'
     Event:
       type: object
       properties:
@@ -81,8 +83,6 @@ components:
           type: boolean
         totalCount:
           type: integer
-    EventList:
-      $ref: '#/components/schemas/ListResponseEvent'
   parameters:
     Limit:
       name: limit

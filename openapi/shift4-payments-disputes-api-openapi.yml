@@ -55,72 +55,17 @@ paths:
                 $ref: '#/components/schemas/Dispute'
 components:
   schemas:
-    Charge:
+    Billing:
       type: object
       properties:
-        id:
+        name:
           type: string
-        clientObjectId:
+        email:
           type: string
-        created:
-          type: integer
-          format: int64
-        amount:
-          type: integer
-          description: Smallest currency unit (e.g., cents).
-        amountRefunded:
-          type: integer
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESSFUL
-          - FAILED
-          - PENDING
-        type:
-          type: string
-          enum:
-          - FIRST_RECURRING
-          - SUBSEQUENT_RECURRING
-          - CARDHOLDER_INITIATED
-          - MERCHANT_INITIATED
-        card:
-          $ref: '#/components/schemas/Card'
-        paymentMethod:
-          $ref: '#/components/schemas/PaymentMethod'
-        customerId:
-          type: string
-        subscriptionId:
-          type: string
-        captured:
-          type: boolean
-        refunded:
-          type: boolean
-        refunds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Refund'
-        disputed:
-          type: boolean
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        billing:
-          $ref: '#/components/schemas/Billing'
-        merchantAccountId:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        failureCode:
-          type: string
-        failureIssuerDeclineCode:
-          type: string
-        failureMessage:
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
           type: string
     Address:
       type: object
@@ -150,18 +95,6 @@ components:
           type: string
         address:
           $ref: '#/components/schemas/Address'
-    Billing:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        address:
-          $ref: '#/components/schemas/Address'
-        vatNumber:
-          type: string
     Refund:
       type: object
       properties:
@@ -192,17 +125,56 @@ components:
           type: object
           additionalProperties:
             type: string
-    ListResponseDispute:
+    Dispute:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Dispute'
-        hasMore:
-          type: boolean
-        totalCount:
+        id:
+          type: string
+        created:
           type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        status:
+          type: string
+          enum:
+          - WARNING_NEEDS_RESPONSE
+          - WARNING_UNDER_REVIEW
+          - WARNING_CLOSED
+          - NEEDS_RESPONSE
+          - UNDER_REVIEW
+          - CHARGE_REFUNDED
+          - WON
+          - LOST
+          - ACCEPTED
+        reason:
+          type: string
+          enum:
+          - GENERAL
+          - FRAUDULENT
+          - DUPLICATE
+          - SUBSCRIPTION_CANCELED
+          - PRODUCT_UNACCEPTABLE
+          - PRODUCT_NOT_RECEIVED
+          - UNRECOGNIZED
+          - CREDIT_NOT_PROCESSED
+          - INCORRECT_ACCOUNT_DETAILS
+          - INSUFFICIENT_FUNDS
+          - BANK_CANNOT_PROCESS
+          - DEBIT_NOT_AUTHORIZED
+          - GOODS_SERVICES_RETURNED_OR_REFUSED
+          - GOODS_SERVICES_CANCELED
+          - TRANSACTION_AMOUNT_DIFFERS
+          - OTHER
+        acceptedAsLost:
+          type: boolean
+        charge:
+          $ref: '#/components/schemas/Charge'
     PaymentMethod:
       type: object
       properties:
@@ -285,56 +257,86 @@ components:
           type: object
           additionalProperties:
             type: string
-    Dispute:
+    Charge:
       type: object
       properties:
         id:
           type: string
+        clientObjectId:
+          type: string
         created:
-          type: integer
-          format: int64
-        updated:
           type: integer
           format: int64
         amount:
           type: integer
+          description: Smallest currency unit (e.g., cents).
+        amountRefunded:
+          type: integer
         currency:
+          type: string
+          description: ISO 4217 currency code.
+        description:
           type: string
         status:
           type: string
           enum:
-          - WARNING_NEEDS_RESPONSE
-          - WARNING_UNDER_REVIEW
-          - WARNING_CLOSED
-          - NEEDS_RESPONSE
-          - UNDER_REVIEW
-          - CHARGE_REFUNDED
-          - WON
-          - LOST
-          - ACCEPTED
-        reason:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        type:
           type: string
           enum:
-          - GENERAL
-          - FRAUDULENT
-          - DUPLICATE
-          - SUBSCRIPTION_CANCELED
-          - PRODUCT_UNACCEPTABLE
-          - PRODUCT_NOT_RECEIVED
-          - UNRECOGNIZED
-          - CREDIT_NOT_PROCESSED
-          - INCORRECT_ACCOUNT_DETAILS
-          - INSUFFICIENT_FUNDS
-          - BANK_CANNOT_PROCESS
-          - DEBIT_NOT_AUTHORIZED
-          - GOODS_SERVICES_RETURNED_OR_REFUSED
-          - GOODS_SERVICES_CANCELED
-          - TRANSACTION_AMOUNT_DIFFERS
-          - OTHER
-        acceptedAsLost:
+          - FIRST_RECURRING
+          - SUBSEQUENT_RECURRING
+          - CARDHOLDER_INITIATED
+          - MERCHANT_INITIATED
+        card:
+          $ref: '#/components/schemas/Card'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        customerId:
+          type: string
+        subscriptionId:
+          type: string
+        captured:
           type: boolean
-        charge:
-          $ref: '#/components/schemas/Charge'
+        refunded:
+          type: boolean
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        disputed:
+          type: boolean
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        merchantAccountId:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        failureCode:
+          type: string
+        failureIssuerDeclineCode:
+          type: string
+        failureMessage:
+          type: string
+    ListResponseDispute:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dispute'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    DisputeList:
+      $ref: '#/components/schemas/ListResponseDispute'
     Card:
       type: object
       properties:
@@ -397,8 +399,6 @@ components:
           type: string
         merchantAccountId:
           type: string
-    DisputeList:
-      $ref: '#/components/schemas/ListResponseDispute'
   parameters:
     Limit:
       name: limit

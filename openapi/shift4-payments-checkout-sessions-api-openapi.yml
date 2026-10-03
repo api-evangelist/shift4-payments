@@ -59,6 +59,21 @@ paths:
                 $ref: '#/components/schemas/CheckoutSession'
 components:
   schemas:
+    LineItemRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+        unitAmount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
     CheckoutSession:
       type: object
       properties:
@@ -116,6 +131,19 @@ components:
           format: uri
         vendorReference:
           type: string
+    LineItem:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+        unitAmount:
+          type: integer
+        currency:
+          type: string
     CheckoutSessionRequest:
       type: object
       properties:
@@ -149,34 +177,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    LineItem:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-        unitAmount:
-          type: integer
-        currency:
-          type: string
-    LineItemRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-          minimum: 1
-        unitAmount:
-          type: integer
-          minimum: 1
-        currency:
-          type: string
   securitySchemes:
     BasicAuth:
       type: http

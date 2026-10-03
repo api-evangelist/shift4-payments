@@ -120,32 +120,23 @@ paths:
                 $ref: '#/components/schemas/Charge'
 components:
   schemas:
-    ErrorResponse:
+    ListResponseCharge:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - invalid_request
-              - gateway_error
-              - processing_error
-              - card_error
-              - fraud
-              - three_d_secure_error
-              - blacklist_error
-            code:
-              type: string
-            message:
-              type: string
-            chargeId:
-              type: string
-            creditId:
-              type: string
-            issuerDeclineCode:
-              type: string
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Charge'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    CaptureRequest:
+      type: object
+      properties:
+        amount:
+          type: integer
+          minimum: 1
     Address:
       type: object
       properties:
@@ -162,98 +153,6 @@ components:
         country:
           type: string
           description: ISO 3166-1 alpha-2 country code.
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-    Charge:
-      type: object
-      properties:
-        id:
-          type: string
-        clientObjectId:
-          type: string
-        created:
-          type: integer
-          format: int64
-        amount:
-          type: integer
-          description: Smallest currency unit (e.g., cents).
-        amountRefunded:
-          type: integer
-        currency:
-          type: string
-          description: ISO 4217 currency code.
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - SUCCESSFUL
-          - FAILED
-          - PENDING
-        type:
-          type: string
-          enum:
-          - FIRST_RECURRING
-          - SUBSEQUENT_RECURRING
-          - CARDHOLDER_INITIATED
-          - MERCHANT_INITIATED
-        card:
-          $ref: '#/components/schemas/Card'
-        paymentMethod:
-          $ref: '#/components/schemas/PaymentMethod'
-        customerId:
-          type: string
-        subscriptionId:
-          type: string
-        captured:
-          type: boolean
-        refunded:
-          type: boolean
-        refunds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Refund'
-        disputed:
-          type: boolean
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        billing:
-          $ref: '#/components/schemas/Billing'
-        merchantAccountId:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        failureCode:
-          type: string
-        failureIssuerDeclineCode:
-          type: string
-        failureMessage:
-          type: string
     Shipping:
       type: object
       properties:
@@ -266,32 +165,6 @@ components:
           type: string
         address:
           $ref: '#/components/schemas/Address'
-    ChargeUpdateRequest:
-      type: object
-      properties:
-        description:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    CaptureRequest:
-      type: object
-      properties:
-        amount:
-          type: integer
-          minimum: 1
-    ListResponseCharge:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Charge'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
     Billing:
       type: object
       properties:
@@ -418,39 +291,124 @@ components:
           type: object
           additionalProperties:
             type: string
-    ChargeRequest:
+    ErrorResponse:
       type: object
-      required:
-      - amount
-      - currency
       properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - invalid_request
+              - gateway_error
+              - processing_error
+              - card_error
+              - fraud
+              - three_d_secure_error
+              - blacklist_error
+            code:
+              type: string
+            message:
+              type: string
+            chargeId:
+              type: string
+            creditId:
+              type: string
+            issuerDeclineCode:
+              type: string
+    CardRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+    Charge:
+      type: object
+      properties:
+        id:
+          type: string
+        clientObjectId:
+          type: string
+        created:
+          type: integer
+          format: int64
         amount:
           type: integer
-          minimum: 1
+          description: Smallest currency unit (e.g., cents).
+        amountRefunded:
+          type: integer
         currency:
           type: string
+          description: ISO 4217 currency code.
         description:
+          type: string
+        status:
+          type: string
+          enum:
+          - SUCCESSFUL
+          - FAILED
+          - PENDING
+        type:
+          type: string
+          enum:
+          - FIRST_RECURRING
+          - SUBSEQUENT_RECURRING
+          - CARDHOLDER_INITIATED
+          - MERCHANT_INITIATED
+        card:
+          $ref: '#/components/schemas/Card'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        customerId:
+          type: string
+        subscriptionId:
           type: string
         captured:
           type: boolean
-          default: true
-        customerId:
-          type: string
-        cardId:
-          type: string
-        card:
-          oneOf:
-          - $ref: '#/components/schemas/CardRequest'
-          - type: string
-            description: A token id (tok_...).
-        billing:
-          $ref: '#/components/schemas/Billing'
+        refunded:
+          type: boolean
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+        disputed:
+          type: boolean
         shipping:
           $ref: '#/components/schemas/Shipping'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        merchantAccountId:
+          type: string
         metadata:
           type: object
           additionalProperties:
             type: string
+        failureCode:
+          type: string
+        failureIssuerDeclineCode:
+          type: string
+        failureMessage:
+          type: string
     Card:
       type: object
       properties:
@@ -513,13 +471,49 @@ components:
           type: string
         merchantAccountId:
           type: string
+    ChargeRequest:
+      type: object
+      required:
+      - amount
+      - currency
+      properties:
+        amount:
+          type: integer
+          minimum: 1
+        currency:
+          type: string
+        description:
+          type: string
+        captured:
+          type: boolean
+          default: true
+        customerId:
+          type: string
+        cardId:
+          type: string
+        card:
+          oneOf:
+          - $ref: '#/components/schemas/CardRequest'
+          - type: string
+            description: A token id (tok_...).
+        billing:
+          $ref: '#/components/schemas/Billing'
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    ChargeUpdateRequest:
+      type: object
+      properties:
+        description:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
   parameters:
-    EndingBefore:
-      name: endingBefore
-      in: query
-      schema:
-        type: string
-      description: A cursor for use in pagination.
     Limit:
       name: limit
       in: query
@@ -531,6 +525,12 @@ components:
       description: A limit on the number of objects to be returned.
     StartingAfter:
       name: startingAfter
+      in: query
+      schema:
+        type: string
+      description: A cursor for use in pagination.
+    EndingBefore:
+      name: endingBefore
       in: query
       schema:
         type: string

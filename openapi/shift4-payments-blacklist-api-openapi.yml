@@ -102,17 +102,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 10
-      description: A limit on the number of objects to be returned.
   schemas:
+    ListResponseBlacklistRule:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlacklistRule'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    BlacklistRuleList:
+      $ref: '#/components/schemas/ListResponseBlacklistRule'
     DeleteResponse:
       type: object
       properties:
@@ -160,19 +163,6 @@ components:
           type: string
         cardIssuer:
           type: string
-    BlacklistRuleList:
-      $ref: '#/components/schemas/ListResponseBlacklistRule'
-    ListResponseBlacklistRule:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlacklistRule'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
     BlacklistRule:
       type: object
       properties:
@@ -219,6 +209,16 @@ components:
           type: string
         cardIssuer:
           type: string
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: A limit on the number of objects to be returned.
   securitySchemes:
     BasicAuth:
       type: http
