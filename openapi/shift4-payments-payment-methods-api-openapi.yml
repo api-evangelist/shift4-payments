@@ -73,8 +73,17 @@ paths:
                 $ref: '#/components/schemas/PaymentMethod'
 components:
   schemas:
-    PaymentMethodList:
-      $ref: '#/components/schemas/ListResponsePaymentMethod'
+    ListResponsePaymentMethod:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentMethod'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     Billing:
       type: object
       properties:
@@ -87,22 +96,6 @@ components:
           $ref: '#/components/schemas/Address'
         vatNumber:
           type: string
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        zip:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
     PaymentMethod:
       type: object
       properties:
@@ -185,17 +178,22 @@ components:
           type: object
           additionalProperties:
             type: string
-    ListResponsePaymentMethod:
+    Address:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentMethod'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
     PaymentMethodRequest:
       type: object
       required:
@@ -232,6 +230,8 @@ components:
           type: object
           additionalProperties:
             type: string
+    PaymentMethodList:
+      $ref: '#/components/schemas/ListResponsePaymentMethod'
   parameters:
     Limit:
       name: limit

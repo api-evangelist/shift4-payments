@@ -74,6 +74,19 @@ components:
           minimum: 1
         currency:
           type: string
+    LineItem:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: integer
+        unitAmount:
+          type: integer
+        currency:
+          type: string
     CheckoutSession:
       type: object
       properties:
@@ -130,19 +143,6 @@ components:
           type: string
           format: uri
         vendorReference:
-          type: string
-    LineItem:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: integer
-        unitAmount:
-          type: integer
-        currency:
           type: string
     CheckoutSessionRequest:
       type: object

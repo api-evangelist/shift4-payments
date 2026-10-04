@@ -96,6 +96,26 @@ paths:
                 $ref: '#/components/schemas/Refund'
 components:
   schemas:
+    RefundRequest:
+      type: object
+      required:
+      - chargeId
+      properties:
+        chargeId:
+          type: string
+        amount:
+          type: integer
+          minimum: 1
+        reason:
+          type: string
+          enum:
+          - fraudulent
+          - duplicate
+          - requested_by_customer
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
     ListResponseRefund:
       type: object
       properties:
@@ -107,8 +127,6 @@ components:
           type: boolean
         totalCount:
           type: integer
-    RefundList:
-      $ref: '#/components/schemas/ListResponseRefund'
     Refund:
       type: object
       properties:
@@ -139,26 +157,8 @@ components:
           type: object
           additionalProperties:
             type: string
-    RefundRequest:
-      type: object
-      required:
-      - chargeId
-      properties:
-        chargeId:
-          type: string
-        amount:
-          type: integer
-          minimum: 1
-        reason:
-          type: string
-          enum:
-          - fraudulent
-          - duplicate
-          - requested_by_customer
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
+    RefundList:
+      $ref: '#/components/schemas/ListResponseRefund'
   parameters:
     Limit:
       name: limit

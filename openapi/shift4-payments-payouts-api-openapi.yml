@@ -55,8 +55,6 @@ paths:
                 $ref: '#/components/schemas/Payout'
 components:
   schemas:
-    PayoutList:
-      $ref: '#/components/schemas/ListResponsePayout'
     ListResponsePayout:
       type: object
       properties:
@@ -86,6 +84,8 @@ components:
           type: string
         destination:
           type: string
+    PayoutList:
+      $ref: '#/components/schemas/ListResponsePayout'
   parameters:
     Limit:
       name: limit

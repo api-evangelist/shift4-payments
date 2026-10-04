@@ -103,19 +103,6 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
-    ListResponseBlacklistRule:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlacklistRule'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
-    BlacklistRuleList:
-      $ref: '#/components/schemas/ListResponseBlacklistRule'
     DeleteResponse:
       type: object
       properties:
@@ -123,6 +110,8 @@ components:
           type: string
         deleted:
           type: boolean
+    BlacklistRuleList:
+      $ref: '#/components/schemas/ListResponseBlacklistRule'
     BlacklistRuleRequest:
       type: object
       required:
@@ -163,6 +152,17 @@ components:
           type: string
         cardIssuer:
           type: string
+    ListResponseBlacklistRule:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlacklistRule'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     BlacklistRule:
       type: object
       properties:

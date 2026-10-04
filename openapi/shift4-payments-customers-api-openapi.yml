@@ -103,6 +103,31 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
+    CustomerList:
+      $ref: '#/components/schemas/ListResponseCustomer'
+    ListResponseCustomer:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    Billing:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
     Customer:
       type: object
       properties:
@@ -132,34 +157,33 @@ components:
           type: object
           additionalProperties:
             type: string
-    Billing:
+    DeleteResponse:
       type: object
       properties:
-        name:
+        id:
           type: string
+        deleted:
+          type: boolean
+    CustomerRequest:
+      type: object
+      properties:
         email:
           type: string
           format: email
-        address:
-          $ref: '#/components/schemas/Address'
-        vatNumber:
+        phoneNumber:
           type: string
-    Address:
-      type: object
-      properties:
-        line1:
+        description:
           type: string
-        line2:
-          type: string
-        zip:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
+        billing:
+          $ref: '#/components/schemas/Billing'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+        card:
+          oneOf:
+          - $ref: '#/components/schemas/CardRequest'
+          - type: string
     Card:
       type: object
       properties:
@@ -222,6 +246,22 @@ components:
           type: string
         merchantAccountId:
           type: string
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
     CardRequest:
       type: object
       properties:
@@ -247,46 +287,6 @@ components:
           type: string
         addressCountry:
           type: string
-    DeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deleted:
-          type: boolean
-    CustomerRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        phoneNumber:
-          type: string
-        description:
-          type: string
-        billing:
-          $ref: '#/components/schemas/Billing'
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-        card:
-          oneOf:
-          - $ref: '#/components/schemas/CardRequest'
-          - type: string
-    CustomerList:
-      $ref: '#/components/schemas/ListResponseCustomer'
-    ListResponseCustomer:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Customer'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
   parameters:
     Limit:
       name: limit
