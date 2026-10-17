@@ -103,19 +103,31 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
-    CustomerList:
-      $ref: '#/components/schemas/ListResponseCustomer'
-    ListResponseCustomer:
+    CardRequest:
       type: object
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Customer'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
     Billing:
       type: object
       properties:
@@ -128,42 +140,17 @@ components:
           $ref: '#/components/schemas/Address'
         vatNumber:
           type: string
-    Customer:
+    ListResponseCustomer:
       type: object
       properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
-        deleted:
-          type: boolean
-        email:
-          type: string
-          format: email
-        phoneNumber:
-          type: string
-        description:
-          type: string
-        defaultCardId:
-          type: string
-        cards:
+        list:
           type: array
           items:
-            $ref: '#/components/schemas/Card'
-        billing:
-          $ref: '#/components/schemas/Billing'
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    DeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deleted:
+            $ref: '#/components/schemas/Customer'
+        hasMore:
           type: boolean
+        totalCount:
+          type: integer
     CustomerRequest:
       type: object
       properties:
@@ -184,6 +171,31 @@ components:
           oneOf:
           - $ref: '#/components/schemas/CardRequest'
           - type: string
+    CustomerList:
+      $ref: '#/components/schemas/ListResponseCustomer'
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    DeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deleted:
+          type: boolean
     Card:
       type: object
       properties:
@@ -246,47 +258,35 @@ components:
           type: string
         merchantAccountId:
           type: string
-    Address:
+    Customer:
       type: object
       properties:
-        line1:
+        id:
           type: string
-        line2:
+        created:
+          type: integer
+          format: int64
+        deleted:
+          type: boolean
+        email:
           type: string
-        zip:
+          format: email
+        phoneNumber:
           type: string
-        city:
+        description:
           type: string
-        state:
+        defaultCardId:
           type: string
-        country:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
+        cards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
   parameters:
     Limit:
       name: limit

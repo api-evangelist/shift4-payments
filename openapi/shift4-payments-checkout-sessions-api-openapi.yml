@@ -87,6 +87,39 @@ components:
           type: integer
         currency:
           type: string
+    CheckoutSessionRequest:
+      type: object
+      properties:
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemRequest'
+        currency:
+          type: string
+        locale:
+          type: string
+        collectBillingAddress:
+          type: boolean
+        collectShippingAddress:
+          type: boolean
+        allowSavedCards:
+          type: boolean
+        capture:
+          type: boolean
+          default: true
+        action:
+          type: string
+          enum:
+          - payment
+          - setup
+          - subscription
+        redirectUrl:
+          type: string
+          format: uri
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
     CheckoutSession:
       type: object
       properties:
@@ -144,39 +177,6 @@ components:
           format: uri
         vendorReference:
           type: string
-    CheckoutSessionRequest:
-      type: object
-      properties:
-        lineItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemRequest'
-        currency:
-          type: string
-        locale:
-          type: string
-        collectBillingAddress:
-          type: boolean
-        collectShippingAddress:
-          type: boolean
-        allowSavedCards:
-          type: boolean
-        capture:
-          type: boolean
-          default: true
-        action:
-          type: string
-          enum:
-          - payment
-          - setup
-          - subscription
-        redirectUrl:
-          type: string
-          format: uri
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
   securitySchemes:
     BasicAuth:
       type: http

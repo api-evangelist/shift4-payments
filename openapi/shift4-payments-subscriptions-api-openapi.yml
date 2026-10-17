@@ -77,7 +77,7 @@ paths:
                 $ref: '#/components/schemas/Subscription'
 components:
   schemas:
-    Billing:
+    Shipping:
       type: object
       properties:
         name:
@@ -85,10 +85,39 @@ components:
         email:
           type: string
           format: email
+        phoneNumber:
+          type: string
         address:
           $ref: '#/components/schemas/Address'
-        vatNumber:
+    SubscriptionRequest:
+      type: object
+      properties:
+        planId:
           type: string
+        customerId:
+          type: string
+        cardId:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+          default: 1
+        captureCharges:
+          type: boolean
+          default: true
+        trialEnd:
+          type: integer
+          format: int64
+        cancelAtPeriodEnd:
+          type: boolean
+        shipping:
+          $ref: '#/components/schemas/Shipping'
+        billing:
+          $ref: '#/components/schemas/Billing'
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
     Address:
       type: object
       properties:
@@ -165,36 +194,7 @@ components:
           type: object
           additionalProperties:
             type: string
-    SubscriptionRequest:
-      type: object
-      properties:
-        planId:
-          type: string
-        customerId:
-          type: string
-        cardId:
-          type: string
-        quantity:
-          type: integer
-          minimum: 1
-          default: 1
-        captureCharges:
-          type: boolean
-          default: true
-        trialEnd:
-          type: integer
-          format: int64
-        cancelAtPeriodEnd:
-          type: boolean
-        shipping:
-          $ref: '#/components/schemas/Shipping'
-        billing:
-          $ref: '#/components/schemas/Billing'
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-    Shipping:
+    Billing:
       type: object
       properties:
         name:
@@ -202,10 +202,10 @@ components:
         email:
           type: string
           format: email
-        phoneNumber:
-          type: string
         address:
           $ref: '#/components/schemas/Address'
+        vatNumber:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

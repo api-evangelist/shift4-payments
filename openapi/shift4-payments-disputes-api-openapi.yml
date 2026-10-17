@@ -55,20 +55,6 @@ paths:
                 $ref: '#/components/schemas/Dispute'
 components:
   schemas:
-    DisputeList:
-      $ref: '#/components/schemas/ListResponseDispute'
-    Billing:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        address:
-          $ref: '#/components/schemas/Address'
-        vatNumber:
-          type: string
     PaymentMethod:
       type: object
       properties:
@@ -181,68 +167,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    Card:
-      type: object
-      properties:
-        id:
-          type: string
-        created:
-          type: integer
-          format: int64
-          description: Unix timestamp.
-        deleted:
-          type: boolean
-        first6:
-          type: string
-        last4:
-          type: string
-        fingerprint:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cardholderName:
-          type: string
-        customerId:
-          type: string
-        brand:
-          type: string
-          description: Card brand.
-          enum:
-          - Visa
-          - MasterCard
-          - AmericanExpress
-          - Discover
-          - JCB
-          - DinersClub
-          - UnionPay
-          - Other
-        type:
-          type: string
-          enum:
-          - Credit
-          - Debit
-          - Prepaid
-          - Other
-        country:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-        issuer:
-          type: string
-        merchantAccountId:
-          type: string
     ListResponseDispute:
       type: object
       properties:
@@ -254,22 +178,82 @@ components:
           type: boolean
         totalCount:
           type: integer
-    Address:
+    Billing:
       type: object
       properties:
-        line1:
+        name:
           type: string
-        line2:
+        email:
           type: string
-        zip:
+          format: email
+        address:
+          $ref: '#/components/schemas/Address'
+        vatNumber:
           type: string
-        city:
+    Shipping:
+      type: object
+      properties:
+        name:
           type: string
-        state:
+        email:
           type: string
-        country:
+          format: email
+        phoneNumber:
           type: string
-          description: ISO 3166-1 alpha-2 country code.
+        address:
+          $ref: '#/components/schemas/Address'
+    Dispute:
+      type: object
+      properties:
+        id:
+          type: string
+        created:
+          type: integer
+          format: int64
+        updated:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+        currency:
+          type: string
+        status:
+          type: string
+          enum:
+          - WARNING_NEEDS_RESPONSE
+          - WARNING_UNDER_REVIEW
+          - WARNING_CLOSED
+          - NEEDS_RESPONSE
+          - UNDER_REVIEW
+          - CHARGE_REFUNDED
+          - WON
+          - LOST
+          - ACCEPTED
+        reason:
+          type: string
+          enum:
+          - GENERAL
+          - FRAUDULENT
+          - DUPLICATE
+          - SUBSCRIPTION_CANCELED
+          - PRODUCT_UNACCEPTABLE
+          - PRODUCT_NOT_RECEIVED
+          - UNRECOGNIZED
+          - CREDIT_NOT_PROCESSED
+          - INCORRECT_ACCOUNT_DETAILS
+          - INSUFFICIENT_FUNDS
+          - BANK_CANNOT_PROCESS
+          - DEBIT_NOT_AUTHORIZED
+          - GOODS_SERVICES_RETURNED_OR_REFUSED
+          - GOODS_SERVICES_CANCELED
+          - TRANSACTION_AMOUNT_DIFFERS
+          - OTHER
+        acceptedAsLost:
+          type: boolean
+        charge:
+          $ref: '#/components/schemas/Charge'
+    DisputeList:
+      $ref: '#/components/schemas/ListResponseDispute'
     Charge:
       type: object
       properties:
@@ -337,7 +321,23 @@ components:
           type: string
         failureMessage:
           type: string
-    Dispute:
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+    Card:
       type: object
       properties:
         id:
@@ -345,60 +345,60 @@ components:
         created:
           type: integer
           format: int64
-        updated:
-          type: integer
-          format: int64
-        amount:
-          type: integer
-        currency:
-          type: string
-        status:
-          type: string
-          enum:
-          - WARNING_NEEDS_RESPONSE
-          - WARNING_UNDER_REVIEW
-          - WARNING_CLOSED
-          - NEEDS_RESPONSE
-          - UNDER_REVIEW
-          - CHARGE_REFUNDED
-          - WON
-          - LOST
-          - ACCEPTED
-        reason:
-          type: string
-          enum:
-          - GENERAL
-          - FRAUDULENT
-          - DUPLICATE
-          - SUBSCRIPTION_CANCELED
-          - PRODUCT_UNACCEPTABLE
-          - PRODUCT_NOT_RECEIVED
-          - UNRECOGNIZED
-          - CREDIT_NOT_PROCESSED
-          - INCORRECT_ACCOUNT_DETAILS
-          - INSUFFICIENT_FUNDS
-          - BANK_CANNOT_PROCESS
-          - DEBIT_NOT_AUTHORIZED
-          - GOODS_SERVICES_RETURNED_OR_REFUSED
-          - GOODS_SERVICES_CANCELED
-          - TRANSACTION_AMOUNT_DIFFERS
-          - OTHER
-        acceptedAsLost:
+          description: Unix timestamp.
+        deleted:
           type: boolean
-        charge:
-          $ref: '#/components/schemas/Charge'
-    Shipping:
-      type: object
-      properties:
-        name:
+        first6:
           type: string
-        email:
+        last4:
           type: string
-          format: email
-        phoneNumber:
+        fingerprint:
           type: string
-        address:
-          $ref: '#/components/schemas/Address'
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cardholderName:
+          type: string
+        customerId:
+          type: string
+        brand:
+          type: string
+          description: Card brand.
+          enum:
+          - Visa
+          - MasterCard
+          - AmericanExpress
+          - Discover
+          - JCB
+          - DinersClub
+          - UnionPay
+          - Other
+        type:
+          type: string
+          enum:
+          - Credit
+          - Debit
+          - Prepaid
+          - Other
+        country:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+        issuer:
+          type: string
+        merchantAccountId:
+          type: string
   parameters:
     Limit:
       name: limit

@@ -114,8 +114,54 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
+    CardRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        number:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        cvc:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
     CardList:
       $ref: '#/components/schemas/ListResponseCard'
+    CardUpdateRequest:
+      type: object
+      properties:
+        cardholderName:
+          type: string
+        expMonth:
+          type: string
+        expYear:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
     DeleteResponse:
       type: object
       properties:
@@ -123,6 +169,17 @@ components:
           type: string
         deleted:
           type: boolean
+    ListResponseCard:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Card'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
     Card:
       type: object
       properties:
@@ -184,63 +241,6 @@ components:
         issuer:
           type: string
         merchantAccountId:
-          type: string
-    ListResponseCard:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Card'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
-    CardRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        number:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        cvc:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-    CardUpdateRequest:
-      type: object
-      properties:
-        cardholderName:
-          type: string
-        expMonth:
-          type: string
-        expYear:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
           type: string
   parameters:
     Limit:

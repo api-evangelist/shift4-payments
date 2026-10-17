@@ -103,66 +103,6 @@ paths:
                 $ref: '#/components/schemas/DeleteResponse'
 components:
   schemas:
-    DeleteResponse:
-      type: object
-      properties:
-        id:
-          type: string
-        deleted:
-          type: boolean
-    BlacklistRuleList:
-      $ref: '#/components/schemas/ListResponseBlacklistRule'
-    BlacklistRuleRequest:
-      type: object
-      required:
-      - ruleType
-      properties:
-        ruleType:
-          type: string
-          enum:
-          - fingerprint
-          - ip_address
-          - ip_country
-          - email
-          - user_agent
-          - accept_language
-          - metadata
-          - card_bin
-          - card_country
-          - card_issuer
-        fingerprint:
-          type: string
-        ipAddress:
-          type: string
-        ipCountry:
-          type: string
-        metadataKey:
-          type: string
-        metadataValue:
-          type: string
-        email:
-          type: string
-        userAgent:
-          type: string
-        acceptLanguage:
-          type: string
-        cardCountry:
-          type: string
-        cardBin:
-          type: string
-        cardIssuer:
-          type: string
-    ListResponseBlacklistRule:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/BlacklistRule'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
     BlacklistRule:
       type: object
       properties:
@@ -199,6 +139,66 @@ components:
         email:
           type: string
           format: email
+        userAgent:
+          type: string
+        acceptLanguage:
+          type: string
+        cardCountry:
+          type: string
+        cardBin:
+          type: string
+        cardIssuer:
+          type: string
+    DeleteResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        deleted:
+          type: boolean
+    BlacklistRuleList:
+      $ref: '#/components/schemas/ListResponseBlacklistRule'
+    ListResponseBlacklistRule:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/BlacklistRule'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
+    BlacklistRuleRequest:
+      type: object
+      required:
+      - ruleType
+      properties:
+        ruleType:
+          type: string
+          enum:
+          - fingerprint
+          - ip_address
+          - ip_country
+          - email
+          - user_agent
+          - accept_language
+          - metadata
+          - card_bin
+          - card_country
+          - card_issuer
+        fingerprint:
+          type: string
+        ipAddress:
+          type: string
+        ipCountry:
+          type: string
+        metadataKey:
+          type: string
+        metadataValue:
+          type: string
+        email:
+          type: string
         userAgent:
           type: string
         acceptLanguage:

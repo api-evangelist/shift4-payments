@@ -91,6 +91,8 @@ paths:
                 $ref: '#/components/schemas/Plan'
 components:
   schemas:
+    PlanList:
+      $ref: '#/components/schemas/ListResponsePlan'
     Plan:
       type: object
       properties:
@@ -128,19 +130,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    ListResponsePlan:
-      type: object
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Plan'
-        hasMore:
-          type: boolean
-        totalCount:
-          type: integer
-    PlanList:
-      $ref: '#/components/schemas/ListResponsePlan'
     PlanRequest:
       type: object
       required:
@@ -179,6 +168,17 @@ components:
           type: object
           additionalProperties:
             type: string
+    ListResponsePlan:
+      type: object
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plan'
+        hasMore:
+          type: boolean
+        totalCount:
+          type: integer
   parameters:
     Limit:
       name: limit
