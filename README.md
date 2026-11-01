@@ -1,4 +1,4 @@
-# Shift4 Payments (shift4-payments)
+# Shift4 Payments
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,129 +66,206 @@
 
 Shift4 Payments is a leading integrated payments and commerce technology provider and a Fortune 1000 company. The company processes payments for hospitality, retail, gaming, sports, e-commerce, and other verticals, offering checkout flows, custom payment forms, hosted UI components, and a developer API that supports global payment methods, subscriptions, fraud prevention, and 3D Secure. Developers integrate Shift4 through a REST API, JavaScript library, webhooks, and a sandbox testing environment.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/shift4-payments/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/shift4-payments/refs/heads/main/apis.yml)
+**Areas:** Payments · Fintech · Commerce · Checkout
 
-## Scope
+## Shift4 Payments on APIs.io
 
-- **Type:** Index
+Everything profiled for Shift4 Payments is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/shift4-payments/](https://apis.io/providers/shift4-payments/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (20)
 
-- Payments
-- Fintech
-- Commerce
-- Checkout
+- [Shift4 Checkout](https://apis.io/apis/shift4-payments/shift4-checkout/) — Shift4 Checkout provides a drop-in, frictionless checkout overlay that can be added to a website with copy-paste integration for fast and secure payment…
+- [Shift4 JavaScript Library](https://apis.io/apis/shift4-payments/shift4-js/) — The Shift4 JavaScript library provides secure, customizable HTML/CSS components for building on-page payment forms and multi-step checkout pages.
+- [Shift4 Payments Blacklist API](https://apis.io/apis/shift4-payments/shift4-payments-blacklist-api/) — Manage blacklist rules for fraud prevention.
+- [Shift4 Payments Cards API](https://apis.io/apis/shift4-payments/shift4-payments-cards-api/) — Manage saved cards on customer records.
+- [Shift4 Payments Charges API](https://apis.io/apis/shift4-payments/shift4-payments-charges-api/) — Create, retrieve, update, capture, and list charges.
+- [Shift4 Payments Checkout Sessions API](https://apis.io/apis/shift4-payments/shift4-payments-checkout-sessions-api/) — Create hosted checkout sessions for drop-in payment acceptance.
+- [Shift4 Payments Credits API](https://apis.io/apis/shift4-payments/shift4-payments-credits-api/) — Send funds (credits) to recipients.
+- [Shift4 Payments Customers API](https://apis.io/apis/shift4-payments/shift4-payments-customers-api/) — Create, retrieve, update, delete, and list customers.
+- [Shift4 Payments Disputes API](https://apis.io/apis/shift4-payments/shift4-payments-disputes-api/) — Retrieve and respond to chargeback disputes.
+- [Shift4 Payments Events API](https://apis.io/apis/shift4-payments/shift4-payments-events-api/) — Retrieve event records that drive webhooks.
+- [Shift4 Payments File Uploads API](https://apis.io/apis/shift4-payments/shift4-payments-file-uploads-api/) — Upload files such as dispute evidence.
+- [Shift4 Payments Fraud Warnings API](https://apis.io/apis/shift4-payments/shift4-payments-fraud-warnings-api/) — Retrieve early-warning fraud notifications.
+- [Shift4 Payments Payment Links API](https://apis.io/apis/shift4-payments/shift4-payments-payment-links-api/) — Create and retrieve hosted payment links.
+- [Shift4 Payments Payment Methods API](https://apis.io/apis/shift4-payments/shift4-payments-payment-methods-api/) — Create and retrieve alternative payment methods (Apple Pay, Google Pay, 3D Secure, etc.).
+- [Shift4 Payments Payouts API](https://apis.io/apis/shift4-payments/shift4-payments-payouts-api/) — Retrieve scheduled and historical payouts to bank accounts.
+- [Shift4 Payments Plans API](https://apis.io/apis/shift4-payments/shift4-payments-plans-api/) — Define recurring billing plans used by subscriptions.
+- [Shift4 Payments Refunds API](https://apis.io/apis/shift4-payments/shift4-payments-refunds-api/) — Refund charges and manage refund records.
+- [Shift4 Payments Subscriptions API](https://apis.io/apis/shift4-payments/shift4-payments-subscriptions-api/) — Create and manage recurring subscriptions for customers.
+- [Shift4 Payments Tokens API](https://apis.io/apis/shift4-payments/shift4-payments-tokens-api/) — Tokenize card data for safe transmission.
+- [Shift4 Payments Webhook Endpoints API](https://apis.io/apis/shift4-payments/shift4-payments-webhook-endpoints-api/) — Register and manage webhook endpoints.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-04
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Shift4 Payments API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Shift4 Payments API enables merchants and platforms to accept and manage payments, including one-time charges, subscriptions, refunds, and regional payment methods, with support for fraud tools and 3D Secure.
+- [Shift4 Payments Agentic Access](https://apis.io/agentic-access/shift4-payments/shift4-payments-agentic-access/)
 
-- **Human URL:** [https://dev.shift4.com/docs/api](https://dev.shift4.com/docs/api)
-- **Base URL:** `https://api.shift4.com`
+#### JSON Schema (9)
 
-#### Tags
+The data models the API reads and writes.
 
-- Payments
-- Charges
-- Refunds
-- Customers
-- Cards
-- Tokens
-- Subscriptions
-- Plans
-- Checkout
-- Disputes
-- Fraud
-- Webhooks
-- Events
+- [Shift4 Card](https://apis.io/schemas/shift4-payments/shift4-card/)
+- [Shift4 Charge](https://apis.io/schemas/shift4-payments/shift4-charge/)
+- [Shift4 Checkout Session](https://apis.io/schemas/shift4-payments/shift4-checkout-session/)
+- [Shift4 Customer](https://apis.io/schemas/shift4-payments/shift4-customer/)
+- [Shift4 Event](https://apis.io/schemas/shift4-payments/shift4-event/)
+- [Shift4 Plan](https://apis.io/schemas/shift4-payments/shift4-plan/)
+- [Shift4 Refund](https://apis.io/schemas/shift4-payments/shift4-refund/)
+- [Shift4 Subscription](https://apis.io/schemas/shift4-payments/shift4-subscription/)
+- [Shift4 Token](https://apis.io/schemas/shift4-payments/shift4-token/)
 
-#### Properties
+#### JSON Structure (3)
 
-- [Documentation](https://dev.shift4.com/docs)
-- [API Reference](https://dev.shift4.com/docs/api)
-- [Sandbox](https://dev.shift4.com/docs)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/openapi/shift4-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [SDK](https://github.com/shift4developer/shift4-java)
-- [SDK](https://github.com/shift4developer/shift4-node)
-- [SDK](https://github.com/shift4developer/shift4-python)
-- [SDK](https://github.com/shift4developer/shift4-ruby)
-- [SDK](https://github.com/shift4developer/shift4-php)
-- [SDK](https://github.com/shift4developer/shift4-net)
-- [SDK](https://github.com/shift4developer/shift4-ios)
-- [SDK](https://github.com/shift4developer/shift4-android)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/rules/shift4-api-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-charge-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-customer-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-card-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-token-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-subscription-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-plan-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-refund-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-schema/shift4-checkout-session-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/json-ld/shift4-payments-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Postman Collection](collections/shift4-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shift4-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### Shift4 Checkout
+- [Shift4 Charge Structure](https://apis.io/json-structure/shift4-payments/shift4-charge-structure/)
+- [Shift4 Customer Structure](https://apis.io/json-structure/shift4-payments/shift4-customer-structure/)
+- [Shift4 Subscription Structure](https://apis.io/json-structure/shift4-payments/shift4-subscription-structure/)
 
-Shift4 Checkout provides a drop-in, frictionless checkout overlay that can be added to a website with copy-paste integration for fast and secure payment acceptance.
+#### JSON-LD (1)
 
-- **Human URL:** [https://dev.shift4.com/docs/checkout](https://dev.shift4.com/docs/checkout)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Shift4 Payments Context](https://apis.io/jsonld/shift4-payments/shift4-payments-context/)
 
-- Checkout
-- Hosted Payments
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://dev.shift4.com/docs/checkout)
-- [Postman Collection](collections/shift4-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shift4-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Shift4 Payments Vocabulary](https://apis.io/vocabularies/shift4-payments/shift4-payments-vocabulary/)
 
-### Shift4 JavaScript Library
+#### Examples (7)
 
-The Shift4 JavaScript library provides secure, customizable HTML/CSS components for building on-page payment forms and multi-step checkout pages.
+Example requests and responses.
 
-- **Human URL:** [https://dev.shift4.com/docs/js](https://dev.shift4.com/docs/js)
+- [Shift4 Api Create Charge Example](https://apis.io/examples/shift4-payments/shift4-api-create-charge-example/)
+- [Shift4 Api Create Checkout Session Example](https://apis.io/examples/shift4-payments/shift4-api-create-checkout-session-example/)
+- [Shift4 Api Create Customer Example](https://apis.io/examples/shift4-payments/shift4-api-create-customer-example/)
+- [Shift4 Api Create Refund Example](https://apis.io/examples/shift4-payments/shift4-api-create-refund-example/)
+- [Shift4 Api Create Subscription Example](https://apis.io/examples/shift4-payments/shift4-api-create-subscription-example/)
+- [Shift4 Api Create Token Example](https://apis.io/examples/shift4-payments/shift4-api-create-token-example/)
+- [Shift4 Api List Events Example](https://apis.io/examples/shift4-payments/shift4-api-list-events-example/)
 
-#### Tags
+#### Collections (19)
 
-- JavaScript
-- SDK
-- Components
+Postman and Open Collection request collections.
 
-#### Properties
+- [Shift4 Payments API](https://apis.io/collections/shift4-payments/open-shift4-api/)
+- [Shift4 Payments Blacklist API](https://apis.io/collections/shift4-payments/open-shift4-payments-blacklist-api/)
+- [Shift4 Payments Blacklist Cards API](https://apis.io/collections/shift4-payments/open-shift4-payments-cards-api/)
+- [Shift4 Payments Blacklist Charges API](https://apis.io/collections/shift4-payments/open-shift4-payments-charges-api/)
+- [Shift4 Payments Blacklist Checkout Sessions API](https://apis.io/collections/shift4-payments/open-shift4-payments-checkout-sessions-api/)
+- [Shift4 Payments Blacklist Credits API](https://apis.io/collections/shift4-payments/open-shift4-payments-credits-api/)
+- [Shift4 Payments Blacklist Customers API](https://apis.io/collections/shift4-payments/open-shift4-payments-customers-api/)
+- [Shift4 Payments Blacklist Disputes API](https://apis.io/collections/shift4-payments/open-shift4-payments-disputes-api/)
+- [Shift4 Payments Blacklist Events API](https://apis.io/collections/shift4-payments/open-shift4-payments-events-api/)
+- [Shift4 Payments Blacklist File Uploads API](https://apis.io/collections/shift4-payments/open-shift4-payments-file-uploads-api/)
+- [Shift4 Payments Blacklist Fraud Warnings API](https://apis.io/collections/shift4-payments/open-shift4-payments-fraud-warnings-api/)
+- [Shift4 Payments Blacklist Payment Links API](https://apis.io/collections/shift4-payments/open-shift4-payments-payment-links-api/)
+- [Shift4 Payments Blacklist Payment Methods API](https://apis.io/collections/shift4-payments/open-shift4-payments-payment-methods-api/)
+- [Shift4 Payments Blacklist Payouts API](https://apis.io/collections/shift4-payments/open-shift4-payments-payouts-api/)
+- [Shift4 Payments Blacklist Plans API](https://apis.io/collections/shift4-payments/open-shift4-payments-plans-api/)
+- [Shift4 Payments Blacklist Refunds API](https://apis.io/collections/shift4-payments/open-shift4-payments-refunds-api/)
+- [Shift4 Payments Blacklist Subscriptions API](https://apis.io/collections/shift4-payments/open-shift4-payments-subscriptions-api/)
+- [Shift4 Payments Blacklist Tokens API](https://apis.io/collections/shift4-payments/open-shift4-payments-tokens-api/)
+- [Shift4 Payments Blacklist Webhook Endpoints API](https://apis.io/collections/shift4-payments/open-shift4-payments-webhook-endpoints-api/)
 
-- [Documentation](https://dev.shift4.com/docs/js)
-- [SDK](https://dev.shift4.com/docs/js)
-- [Code Examples](https://dev.shift4.com/examples)
-- [Postman Collection](collections/shift4-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/shift4-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (2)
 
-## Common Properties
+Spectral rulesets for the provider's contracts.
 
-- [LinkedIn](https://www.linkedin.com/company/shift4)
+- [Shift4 Payments — shift4 api rules](https://apis.io/rules/shift4-payments/shift4-api-rules/)
+- [Shift4 Payments — jsonschema rules](https://apis.io/rules/shift4-payments/shift4-payments-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Shift4 Payments Authentication](https://apis.io/security/shift4-payments/shift4-payments-authentication/)
+- [Shift4 Payments Domain Security](https://apis.io/security/shift4-payments/shift4-payments-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Shift4 Payments Plans Pricing](https://apis.io/plans/shift4-payments/shift4-payments-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Shift4 Payments Rate Limits](https://apis.io/rate-limits/shift4-payments/shift4-payments-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Shift4 Payments Finops](https://apis.io/finops/shift4-payments/shift4-payments-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.shift4.com)
-- [Developer Portal](https://dev.shift4.com)
 - [Documentation](https://dev.shift4.com/docs)
-- [API Reference](https://dev.shift4.com/docs/api)
-- [Code Examples](https://dev.shift4.com/examples)
+- [API reference](https://dev.shift4.com/docs/api)
 - [Support](https://dev.shift4.com/support)
-- [GitHub Organization](https://github.com/shift4developer)
-- [Integrations](https://github.com/shift4developer/shift4-woocommerce)
-- [Integrations](https://github.com/shift4developer/shift4-salesforce-b2c)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/shift4-payments/main/vocabulary/shift4-payments-vocabulary.yml)
+- [GitHub](https://github.com/shift4developer)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**URL:** https://apievangelist.com
+**Kin Score 36.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 42.9 |
+| Contract quality | 59.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 66.7 |
+| Access clarity | 5.3 |
+
+**Agent readiness 20.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.2** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/shift4-payments/](https://apis.io/providers/shift4-payments/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Shift4 Payments: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/shift4-payments/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
